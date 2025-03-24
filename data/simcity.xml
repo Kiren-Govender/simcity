@@ -21,6 +21,16 @@
           </mapping>
           <selections />
         </class>
+        <class base-class="TItemType" base-class-parent="TtiObject" auto-map="true" auto-create-list="true">
+          <class-props>
+            <prop name="item_type_name" type="String" />
+          </class-props>
+          <validators />
+          <mapping table="item_type" pk="OID" pk-field="OID" oid-type="string">
+            <prop-map prop="item_type_name" field="item_type" type="String" />
+          </mapping>
+          <selections />
+        </class>
       </classes>
     </unit>
   </project-units>

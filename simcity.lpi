@@ -59,6 +59,22 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="30-ui\10-items\form_update_item.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_update_item"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="simcity_data_facade.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\10-items\form_manage_item_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_manage_item_types"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

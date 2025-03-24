@@ -1,0 +1,74 @@
+object frm_manage_item_types: Tfrm_manage_item_types
+  Left = 373
+  Height = 331
+  Top = 187
+  Width = 454
+  Caption = 'frm_manage_item_types'
+  ClientHeight = 331
+  ClientWidth = 454
+  LCLVersion = '4.0.0.1'
+  object ListBox1: TListBox
+    Left = 8
+    Height = 275
+    Top = 32
+    Width = 185
+    ItemHeight = 0
+    TabOrder = 0
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 454
+    Caption = 'ToolBar1'
+    Images = frmMain.ImageList1
+    TabOrder = 1
+    object ToolButton1: TToolButton
+      Left = 1
+      Top = 2
+      Action = acAddItemType
+    end
+    object ToolButton2: TToolButton
+      Left = 24
+      Top = 2
+      Action = acUpdateItemType
+    end
+    object ToolButton3: TToolButton
+      Left = 47
+      Top = 2
+      Action = acDeleteItemType
+    end
+  end
+  object Edit1: TEdit
+    Left = 232
+    Height = 23
+    Top = 80
+    Width = 160
+    TabOrder = 2
+    Text = 'Edit1'
+  end
+  object Label1: TLabel
+    Left = 232
+    Height = 15
+    Top = 54
+    Width = 34
+    Caption = 'Label1'
+  end
+  object ActionList1: TActionList
+    Images = frmMain.ImageList1
+    Left = 392
+    Top = 280
+    object acAddItemType: TAction
+      Caption = 'acAddItemType'
+      ImageIndex = 1
+    end
+    object acUpdateItemType: TAction
+      Caption = 'acUpdateItemType'
+      ImageIndex = 0
+    end
+    object acDeleteItemType: TAction
+      Caption = 'acDeleteItemType'
+      ImageIndex = 177
+    end
+  end
+end

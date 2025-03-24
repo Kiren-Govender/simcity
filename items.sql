@@ -1,0 +1,11 @@
+INSERT INTO "item" ("OID", "item_name", "item_type_id", "item_onhand", "item_required", "item_production_time") VALUES ('AF82734E-2EF4-433A-94B2-951EC4F70661', 'Backpacks', '', 0, 0, '2415018.5');
+INSERT INTO "item" ("OID", "item_name", "item_type_id", "item_onhand", "item_required", "item_production_time") VALUES ('7D20CD09-A017-4272-A194-784C9877B586', 'Donuts', '', 0, 0, '2415018.528125');
+INSERT INTO "item" ("OID", "item_name", "item_type_id", "item_onhand", "item_required", "item_production_time") VALUES ('60D80C9B-DD5B-44E0-B730-D4273A2B0A2A', 'Smoothie', '', 0, 0, '2415018.51875');
+INSERT INTO "item" ("OID", "item_name", "item_type_id", "item_onhand", "item_required", "item_production_time") VALUES ('F085253B-F35D-4767-B2B3-EDCDC31EA2DB', 'Coffee', '', 0, 0, '2415018.5');
+INSERT INTO "item" ("OID", "item_name", "item_type_id", "item_onhand", "item_required", "item_production_time") VALUES ('9113824C-820F-4B05-AFAD-BCA195D87176', 'Nails', '', 0, 0, '2415018.5');
+INSERT INTO "item" ("OID", "item_name", "item_type_id", "item_onhand", "item_required", "item_production_time") VALUES ('5BDCFBCD-F112-4520-BB56-D11C0A910109', 'Shovel', '', 0, 0, '2415018.5');
+INSERT INTO "item" ("OID", "item_name", "item_type_id", "item_onhand", "item_required", "item_production_time") VALUES ('F9C101E8-D572-4102-B6D7-A3991352015C', 'Boards', '', 0, 0, '2415018.5');
+INSERT INTO "item" ("OID", "item_name", "item_type_id", "item_onhand", "item_required", "item_production_time") VALUES ('E1C0B90D-E350-4862-BDCA-67E975AD77F1', 'Cement', '', 0, 0, '2415018.5');
+INSERT INTO "item" ("OID", "item_name", "item_type_id", "item_onhand", "item_required", "item_production_time") VALUES ('279EC6D7-9CA0-419D-844E-C15C772F6684', 'Bread', '', 0, 0, '2415018.5');
+INSERT INTO "item" ("OID", "item_name", "item_type_id", "item_onhand", "item_required", "item_production_time") VALUES ('6BE88753-D8F1-4958-A01D-4232195E9D37', 'Ladder', '', 0, 0, '2415018.5');
+INSERT INTO "item" ("OID", "item_name", "item_type_id", "item_onhand", "item_required", "item_production_time") VALUES ('BC94684E-77CF-4300-906A-B13151DC3CCF', 'Cooking Utensils', '', 0, 0, '2415018.5265625');

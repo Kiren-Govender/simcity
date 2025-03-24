@@ -1,7 +1,7 @@
 object frm_add_new_item: Tfrm_add_new_item
-  Left = 360
+  Left = 754
   Height = 240
-  Top = 215
+  Top = 262
   Width = 398
   Caption = 'Add a new Item'
   ClientHeight = 240
@@ -46,13 +46,6 @@ object frm_add_new_item: Tfrm_add_new_item
     Width = 48
     Caption = 'On Hand'
   end
-  object edtOnHand: TEdit
-    Left = 200
-    Height = 23
-    Top = 55
-    Width = 176
-    TabOrder = 3
-  end
   object Label3: TLabel
     Left = 59
     Height = 15
@@ -60,25 +53,39 @@ object frm_add_new_item: Tfrm_add_new_item
     Width = 47
     Caption = 'Required'
   end
-  object edtRequired: TEdit
-    Left = 204
-    Height = 23
-    Top = 83
-    Width = 172
-    TabOrder = 4
-  end
   object Label4: TLabel
     Left = 59
     Height = 15
     Top = 112
-    Width = 87
-    Caption = 'Time to produce'
+    Width = 88
+    Caption = 'Production Time'
+    OnClick = Label4Click
   end
-  object edtProductionTime: TEdit
-    Left = 207
+  object seditOnHand: TSpinEdit
+    Left = 200
     Height = 23
-    Top = 110
-    Width = 168
+    Top = 56
+    Width = 50
+    TabOrder = 3
+  end
+  object seRequired: TSpinEdit
+    Left = 200
+    Height = 23
+    Top = 86
+    Width = 50
+    TabOrder = 4
+  end
+  object teProductionTime: TTimeEdit
+    Left = 200
+    Height = 23
+    Top = 112
+    Width = 103
+    ButtonWidth = 23
+    NumGlyphs = 1
+    MaxLength = 0
     TabOrder = 5
+    TimeFormat = 'hh:mm:ss'
+    TimeSeparator = ':'
+    Text = '00:00:00'
   end
 end

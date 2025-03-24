@@ -26,6 +26,7 @@ var
    a: Tfrm_add_new_item;
 begin
    a:=Tfrm_add_new_item.create(nil);
+   a.showmodal;
 end;
 
 end.

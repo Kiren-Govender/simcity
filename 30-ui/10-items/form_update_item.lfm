@@ -1,0 +1,90 @@
+object frm_update_item: Tfrm_update_item
+  Left = 440
+  Height = 362
+  Top = 178
+  Width = 454
+  Caption = 'frm_update_item'
+  ClientHeight = 362
+  ClientWidth = 454
+  LCLVersion = '4.0.0.1'
+  object Button1: TButton
+    Left = 160
+    Height = 25
+    Top = 188
+    Width = 75
+    Caption = 'Save'
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 252
+    Height = 25
+    Top = 187
+    Width = 75
+    Caption = 'Cancel'
+    TabOrder = 1
+    OnClick = Button2Click
+  end
+  object Label1: TLabel
+    Left = 54
+    Height = 15
+    Top = 26
+    Width = 32
+    Caption = 'Name'
+  end
+  object edtItemName: TEdit
+    Left = 201
+    Height = 23
+    Top = 25
+    Width = 175
+    TabOrder = 2
+  end
+  object Label2: TLabel
+    Left = 55
+    Height = 15
+    Top = 48
+    Width = 48
+    Caption = 'On Hand'
+  end
+  object Label3: TLabel
+    Left = 59
+    Height = 15
+    Top = 86
+    Width = 47
+    Caption = 'Required'
+  end
+  object Label4: TLabel
+    Left = 59
+    Height = 15
+    Top = 112
+    Width = 88
+    Caption = 'Production Time'
+  end
+  object seditOnHand: TSpinEdit
+    Left = 200
+    Height = 23
+    Top = 56
+    Width = 50
+    TabOrder = 3
+  end
+  object seRequired: TSpinEdit
+    Left = 200
+    Height = 23
+    Top = 88
+    Width = 50
+    TabOrder = 4
+  end
+  object teProductionTime: TTimeEdit
+    Left = 200
+    Height = 23
+    Top = 120
+    Width = 103
+    ButtonWidth = 23
+    NumGlyphs = 1
+    MaxLength = 0
+    TabOrder = 5
+    TimeFormat = 'hh:mm:ss'
+    TimeSeparator = ':'
+    Text = '00:00:00'
+  end
+end
