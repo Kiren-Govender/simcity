@@ -1,0 +1,278 @@
+object frmMain: TfrmMain
+  Left = -22
+  Height = 505
+  Top = 172
+  Width = 1094
+  Caption = 'frmMain'
+  ClientHeight = 505
+  ClientWidth = 1094
+  LCLVersion = '4.0.0.1'
+  OnCreate = FormCreate
+  object Panel1: TPanel
+    Left = 200
+    Height = 405
+    Top = 50
+    Width = 684
+    Align = alClient
+    Caption = 'Panel1'
+    ClientHeight = 405
+    ClientWidth = 684
+    TabOrder = 0
+    object pagecontrol1: TPageControl
+      Left = 1
+      Height = 403
+      Top = 1
+      Width = 682
+      ActivePage = tbItems
+      Align = alClient
+      TabIndex = 1
+      TabOrder = 0
+      object tbOrders: TTabSheet
+        Caption = 'Orders'
+      end
+      object tbItems: TTabSheet
+        Caption = 'Items'
+        ClientHeight = 375
+        ClientWidth = 674
+        object Panel9: TPanel
+          Left = 0
+          Height = 375
+          Top = 0
+          Width = 250
+          Align = alLeft
+          Caption = 'Panel9'
+          ClientHeight = 375
+          ClientWidth = 250
+          TabOrder = 0
+          object ComboBox1: TComboBox
+            Left = 1
+            Height = 23
+            Top = 27
+            Width = 248
+            Align = alTop
+            ItemHeight = 15
+            ItemIndex = 0
+            Items.Strings = (
+              'All'
+              'Raw Materials - Factories'
+              'Building Supplies Store'
+              'Hardware Store'
+              'Farmers Market'
+              'Furniture Store'
+              'Gardening Supplies'
+              'Donut Shop'
+              'Home Appliances'
+              'Fashion Store'
+              'Fast Food Restuarant'
+              'Tropical Products Store'
+            )
+            TabOrder = 0
+            Text = 'All'
+          end
+          object ListBox1: TListBox
+            Left = 1
+            Height = 230
+            Top = 144
+            Width = 248
+            Align = alBottom
+            ItemHeight = 0
+            TabOrder = 1
+          end
+          object ToolBar1: TToolBar
+            Left = 1
+            Height = 26
+            Top = 1
+            Width = 248
+            Caption = 'ToolBar1'
+            TabOrder = 2
+          end
+        end
+        object Panel11: TPanel
+          Left = 250
+          Height = 375
+          Top = 0
+          Width = 424
+          Align = alClient
+          Caption = 'Panel11'
+          ClientHeight = 375
+          ClientWidth = 424
+          TabOrder = 1
+          object Label1: TLabel
+            Left = 38
+            Height = 15
+            Top = 47
+            Width = 34
+            Caption = 'Label1'
+          end
+          object Label2: TLabel
+            Left = 38
+            Height = 15
+            Top = 72
+            Width = 34
+            Caption = 'Label2'
+          end
+          object Label3: TLabel
+            Left = 41
+            Height = 15
+            Top = 97
+            Width = 34
+            Caption = 'Label3'
+          end
+          object Label4: TLabel
+            Left = 41
+            Height = 15
+            Top = 122
+            Width = 34
+            Caption = 'Label4'
+          end
+          object Button1: TButton
+            Left = 317
+            Height = 25
+            Top = 342
+            Width = 75
+            Caption = 'Button1'
+            TabOrder = 0
+          end
+          object Button2: TButton
+            Left = 236
+            Height = 25
+            Top = 340
+            Width = 75
+            Caption = 'Button2'
+            TabOrder = 1
+          end
+          object SpeedButton1: TSpeedButton
+            Left = 181
+            Height = 22
+            Top = 46
+            Width = 23
+            OnClick = SpeedButton1Click
+          end
+          object Button3: TButton
+            Left = 84
+            Height = 25
+            Top = 199
+            Width = 75
+            Caption = 'Button3'
+            TabOrder = 2
+            OnClick = Button3Click
+          end
+        end
+      end
+      object tbBuildings: TTabSheet
+        Caption = 'Buildings'
+        ClientHeight = 375
+        ClientWidth = 674
+        object Panel8: TPanel
+          Left = 288
+          Height = 50
+          Top = 160
+          Width = 170
+          Caption = 'Panel8'
+          TabOrder = 0
+        end
+      end
+      object tbStorage: TTabSheet
+        Caption = 'Storage'
+        ClientHeight = 375
+        ClientWidth = 674
+        object Panel10: TPanel
+          Left = 145
+          Height = 50
+          Top = 126
+          Width = 170
+          Caption = 'Panel10'
+          TabOrder = 0
+        end
+      end
+      object tbEvents: TTabSheet
+        Caption = 'Events'
+      end
+    end
+  end
+  object Panel2: TPanel
+    Left = 884
+    Height = 405
+    Top = 50
+    Width = 210
+    Align = alRight
+    Caption = 'Panel2'
+    ClientHeight = 405
+    ClientWidth = 210
+    TabOrder = 1
+    object Panel6: TPanel
+      Left = 1
+      Height = 194
+      Top = 210
+      Width = 208
+      Align = alBottom
+      Caption = 'Panel6'
+      TabOrder = 0
+    end
+    object Panel7: TPanel
+      Left = 1
+      Height = 209
+      Top = 1
+      Width = 208
+      Align = alClient
+      Caption = 'Panel7'
+      ClientHeight = 209
+      ClientWidth = 208
+      TabOrder = 1
+      object TreeView1: TTreeView
+        Left = 1
+        Height = 207
+        Top = 1
+        Width = 206
+        Align = alClient
+        ReadOnly = True
+        TabOrder = 0
+        Options = [tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoReadOnly, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
+        Items.Data = {
+          F9FFFFFF020003000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF020000000000
+          00000109000000466163746F72792031FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          000000000000000000140000004D6574616C20782033202830303A30303A3435
+          29FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000015000000506C
+          6173746963207832202830303A30343A333429FFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFF01000000000000000109000000466163746F72792032FFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFF00000000000000000013000000576F6F64207820352028
+          30303A30313A333229FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF01000000000000
+          000109000000466163746F72792032FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+          0000000000000000050000004974656D36
+        }
+      end
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Height = 50
+    Top = 455
+    Width = 1094
+    Align = alBottom
+    Caption = 'Panel3'
+    TabOrder = 2
+  end
+  object Panel4: TPanel
+    Left = 0
+    Height = 50
+    Top = 0
+    Width = 1094
+    Align = alTop
+    Caption = 'Panel4'
+    TabOrder = 3
+    OnClick = Panel4Click
+  end
+  object Panel5: TPanel
+    Left = 0
+    Height = 405
+    Top = 50
+    Width = 200
+    Align = alLeft
+    Caption = 'Panel5'
+    TabOrder = 4
+  end
+  object ImageList1: TImageList
+    Left = 816
+    Top = 111
+  end
+end

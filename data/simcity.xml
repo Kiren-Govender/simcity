@@ -1,0 +1,27 @@
+<project tab-spaces="0" begin-end-tabs="0" visibility-tabs="0" project-name="My New Project" outputdir="" enum-type="int">
+  <project-units>
+    <unit name="items">
+      <enums />
+      <classes>
+        <class base-class="TItem" base-class-parent="TtiObject" auto-map="true" auto-create-list="true">
+          <class-props>
+            <prop name="item_name" type="String" />
+            <prop name="item_type_id" type="String" />
+            <prop name="item_onhand" type="Integer" />
+            <prop name="item_required" type="Integer" />
+            <prop name="item_production_time" type="TDateTime" />
+          </class-props>
+          <validators />
+          <mapping table="item" pk="OID" pk-field="OID" oid-type="string">
+            <prop-map prop="item_name" field="item_name" type="String" />
+            <prop-map prop="item_type_id" field="item_type_id" type="String" />
+            <prop-map prop="item_onhand" field="item_onhand" type="Integer" />
+            <prop-map prop="item_required" field="item_required" type="Integer" />
+            <prop-map prop="item_production_time" field="item_production_time" type="TDateTime" />
+          </mapping>
+          <selections />
+        </class>
+      </classes>
+    </unit>
+  </project-units>
+</project>
