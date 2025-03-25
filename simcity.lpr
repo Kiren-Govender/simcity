@@ -10,8 +10,8 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  uConnectionUtil, Forms, mainform, items, simcity_facade, form_add_new_item,
-  form_update_item, simcity_data_facade, form_manage_item_types
+  uConnectionUtil, Forms, mainform, simcity_data_facade, simcity_facade, items,
+  form_add_new_item, form_update_item
   { you can add units after this };
 
 {$R *.res}
@@ -20,12 +20,11 @@ begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.{%H-}MainFormOnTaskbar:=True;
+  ConnectToDatabase('simcity.db','','','');
   Application.Initialize;
-  ConnecttoDatabase('simcity.db','','','');
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(Tfrm_add_new_item, frm_add_new_item);
   Application.CreateForm(Tfrm_update_item, frm_update_item);
-  Application.CreateForm(Tfrm_manage_item_types, frm_manage_item_types);
   Application.Run;
 end.
 

@@ -41,11 +41,10 @@
         <Filename Value="mainform.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmMain"/>
-        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
-        <Filename Value="data\items.pas"/>
+        <Filename Value="simcity_data_facade.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
@@ -56,8 +55,12 @@
         <Filename Value="30-ui\10-items\form_add_new_item.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frm_add_new_item"/>
-        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\10-items\form_manage_item_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <HasResources Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\10-items\form_update_item.pas"/>
@@ -66,14 +69,8 @@
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
-        <Filename Value="simcity_data_facade.pas"/>
+        <Filename Value="data\items.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="30-ui\10-items\form_manage_item_types.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frm_manage_item_types"/>
-        <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -85,7 +82,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="data;30-ui\10-items"/>
+      <OtherUnitFiles Value="30-ui\10-items;data"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
