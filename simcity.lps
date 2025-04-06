@@ -28,7 +28,7 @@
       <Unit>
         <Filename Value="data\items.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="25"/>
         <CursorPos X="7" Y="35"/>
         <UsageCount Value="35"/>
@@ -51,7 +51,7 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <CursorPos X="64" Y="56"/>
+        <CursorPos X="40" Y="9"/>
         <UsageCount Value="34"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -79,11 +79,10 @@
       </Unit>
       <Unit>
         <Filename Value="C:\tiopf\tiopf\Options\tiQuerySqldb.pas"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="107"/>
         <CursorPos Y="117"/>
         <UsageCount Value="16"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\$KalimaTech.Dev\Projects\KIS\SRC\KISDATA\uConnectionUtil.pas"/>
@@ -94,29 +93,35 @@
       </Unit>
       <Unit>
         <Filename Value="C:\tiopf\tiopf\Core\tiOPFManager.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="210"/>
         <CursorPos X="17" Y="217"/>
         <UsageCount Value="16"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\tiopf\tiopf\Core\tiOIDGUID.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="22"/>
         <UsageCount Value="16"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\tiopf\tiopf\Core\tiOID.pas"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="69"/>
         <CursorPos X="28" Y="82"/>
         <UsageCount Value="16"/>
-        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\10-items\form_update_item.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="20"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="27">
       <Position>
         <Filename Value="mainform.pas"/>
         <Caret Line="60" Column="3" TopLine="45"/>
@@ -215,14 +220,6 @@
       <Position>
         <Filename Value="30-ui\10-items\form_add_new_item.pas"/>
         <Caret Line="48" Column="4" TopLine="45"/>
-      </Position>
-      <Position>
-        <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\$KalimaTech.Dev\Projects\KIS\SRC\KISDATA\uConnectionUtil.pas"/>
-        <Caret TopLine="55"/>
-      </Position>
-      <Position>
-        <Filename Value="C:\tiopf\tiopf\Core\tiOPFManager.pas"/>
-        <Caret Line="217" Column="17" TopLine="210"/>
       </Position>
       <Position>
         <Filename Value="30-ui\10-items\form_add_new_item.pas"/>
