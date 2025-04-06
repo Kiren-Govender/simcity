@@ -7,7 +7,10 @@ interface
 uses
   Classes, SysUtils, items
   , form_add_new_item
-  , form_update_item;
+  , form_update_item
+  , form_maintain_item_types
+  , form_add_new_order
+  ;
 
 type
 
@@ -18,6 +21,8 @@ type
     public
           procedure add_new_item;
           procedure update_item(aoid : string);
+          procedure maintain_item_types;
+          procedure add_new_order;
   end;
 
 implementation
@@ -38,6 +43,22 @@ var
 begin
    a:=Tfrm_update_item.create(aoid);
    a.showmodal;
+end;
+
+procedure TUI_Facade.maintain_item_types;
+var
+   a: Tfrm_maintain_item_types;
+begin
+   a:= Tfrm_maintain_item_types.create(nil);
+   a.showmodal;
+end;
+
+procedure TUI_Facade.add_new_order;
+var
+   frm: Tfrm_add_new_order;
+begin
+   frm:= Tfrm_add_new_order.create(nil);
+   frm.showmodal;
 end;
 
 end.

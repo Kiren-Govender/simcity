@@ -19,7 +19,16 @@
             <prop-map prop="item_required" field="item_required" type="Integer" />
             <prop-map prop="item_production_time" field="item_production_time" type="TDateTime" />
           </mapping>
-          <selections />
+          <selections>
+            <select name="FindByName">
+              <sql>
+                <![CDATA[SELECT * FROM item WHERE item_name = :aname]]>
+              </sql>
+              <params>
+                <param name="aname" pass-by="" sql-param="aname" type="String" />
+              </params>
+            </select>
+          </selections>
         </class>
         <class base-class="TItemType" base-class-parent="TtiObject" auto-map="true" auto-create-list="true">
           <class-props>

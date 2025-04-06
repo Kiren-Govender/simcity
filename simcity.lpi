@@ -26,6 +26,12 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="TAChartLazarusPkg"/>
+      </Item>
+      <Item>
+        <PackageName Value="MetaDarkStyle"/>
+      </Item>
+      <Item>
         <PackageName Value="kali_base"/>
       </Item>
       <Item>
@@ -41,6 +47,7 @@
         <Filename Value="mainform.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmMain"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
@@ -55,22 +62,32 @@
         <Filename Value="30-ui\10-items\form_add_new_item.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frm_add_new_item"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="30-ui\10-items\form_manage_item_types.pas"/>
-        <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\10-items\form_update_item.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frm_update_item"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
         <Filename Value="data\items.pas"/>
         <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\10-items\form_maintain_item_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_maintain_item_types"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\40-orders\form_add_new_order.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_add_new_order"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -82,7 +99,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="30-ui\10-items;data"/>
+      <OtherUnitFiles Value="30-ui\10-items;data;30-ui\40-orders"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
