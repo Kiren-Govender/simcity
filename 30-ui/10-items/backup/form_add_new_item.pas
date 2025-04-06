@@ -5,7 +5,8 @@ unit form_add_new_item;
 interface
 
 uses
-  Classes, TiopfManager, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, items, tiobject;
+  Classes, TiopfManager, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Spin, EditBtn, items, tiobject;
 
 type
 
@@ -14,17 +15,21 @@ type
   Tfrm_add_new_item = class(TForm)
     Button1: TButton;
     Button2: TButton;
+    ComboBox1: TComboBox;
     edtItemName: TEdit;
-    edtOnHand: TEdit;
-    edtRequired: TEdit;
-    edtProductionTime: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
+    Label5: TLabel;
+    seditOnHand: TSpinEdit;
+    seRequired: TSpinEdit;
+    teProductionTime: TTimeEdit;
     procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure Label4Click(Sender: TObject);
   private
+    procedure SaveItem;
 
   public
 
@@ -40,24 +45,34 @@ implementation
 { Tfrm_add_new_item }
 
 procedure Tfrm_add_new_item.Button1Click(Sender: TObject);
-var
-  a : TItem;
 begin
-  a:=TItem.Create;
-  a.ObjectState:=posCreate;
-  gTiopfManager.DefaultOIDGenerator.AssignNextOID(a.OID);
-  a.item_name:=edtItemName.text;
-  //a.item_onhand:=strtoint(edtOnHand.text);
- // a.item_required:=strtoint(edtRequired.text);
-  //a.item_production_time:=strtodatetime(edtProductionTime.text);
-  a.save;
-
+  SaveItem;
 end;
 
 procedure Tfrm_add_new_item.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
   CloseAction:=cafree;
+end;
+
+procedure Tfrm_add_new_item.Label4Click(Sender: TObject);
+begin
+
+end;
+
+procedure Tfrm_add_new_item.SaveItem;
+var
+  item: TItem;
+begin
+  item:=TItem.Create;
+  item.ObjectState:=posCreate;
+  gTiopfManager.DefaultOIDGenerator.AssignNextOID(item.OID);
+  item.item_name:=edtItemName.text;
+  item.item_onhand:=seditOnHand.Value;
+  item.item_required:=seRequired.Value;
+  item.item_production_time:=teProductionTime.Time;
+  item.save;
+  self.close;
 end;
 
 end.

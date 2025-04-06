@@ -5,7 +5,12 @@ unit simcity_facade;
 interface
 
 uses
-  Classes, SysUtils, items, form_add_new_item;
+  Classes, SysUtils, items
+  , form_add_new_item
+  , form_update_item
+  , form_maintain_item_types
+  , form_add_new_order
+  ;
 
 type
 
@@ -15,6 +20,9 @@ type
     private
     public
           procedure add_new_item;
+          procedure update_item(aoid : string);
+          procedure maintain_item_types;
+          procedure add_new_order;
   end;
 
 implementation
@@ -26,6 +34,31 @@ var
    a: Tfrm_add_new_item;
 begin
    a:=Tfrm_add_new_item.create(nil);
+   a.showmodal;
+end;
+
+procedure TUI_Facade.update_item(aoid: string);
+var
+   a: Tfrm_update_item;
+begin
+   a:=Tfrm_update_item.create(aoid);
+   a.showmodal;
+end;
+
+procedure TUI_Facade.maintain_item_types;
+var
+   a: Tfrm_maintain_item_types;
+begin
+   a:= Tfrm_maintain_item_types.create(nil);
+   a.showmodal;
+end;
+
+procedure TUI_Facade.add_new_order;
+var
+   a: Tfrm_add_new_order;
+begin
+   a:= Tfrm_add_new_order.create(nil);
+   a.showmodal;
 end;
 
 end.
