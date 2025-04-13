@@ -47,6 +47,8 @@ object frm_maintain_item_types: Tfrm_maintain_item_types
   }
   Position = poMainFormCenter
   LCLVersion = '4.0.0.3'
+  OnClose = FormClose
+  OnCreate = FormCreate
   object ListBox1: TListBox
     Left = 16
     Height = 328
@@ -60,7 +62,6 @@ object frm_maintain_item_types: Tfrm_maintain_item_types
     Height = 22
     Top = 97
     Width = 23
-    Images = frmMain.ImageList1
     ImageIndex = 42
   end
   object SpeedButton2: TSpeedButton
@@ -68,7 +69,6 @@ object frm_maintain_item_types: Tfrm_maintain_item_types
     Height = 22
     Top = 137
     Width = 23
-    Images = frmMain.ImageList1
     ImageIndex = 59
   end
   object ToolBar1: TToolBar
@@ -77,7 +77,6 @@ object frm_maintain_item_types: Tfrm_maintain_item_types
     Top = 0
     Width = 532
     Caption = 'ToolBar1'
-    Images = frmMain.ImageList1
     TabOrder = 1
     object ToolButton1: TToolButton
       Left = 1
@@ -112,6 +111,7 @@ object frm_maintain_item_types: Tfrm_maintain_item_types
     Width = 75
     Caption = '&Save'
     TabOrder = 3
+    OnClick = Button1Click
   end
   object Button2: TButton
     Left = 413

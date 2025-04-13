@@ -8,6 +8,7 @@ object frm_update_item: Tfrm_update_item
   ClientWidth = 370
   Position = poMainFormCenter
   LCLVersion = '4.0.0.3'
+  OnClose = FormClose
   OnCreate = FormCreate
   object Button1: TButton
     Left = 172
@@ -103,5 +104,13 @@ object frm_update_item: Tfrm_update_item
     Top = 154
     Width = 52
     Caption = 'Item Type'
+  end
+  object Panel1: TPanel
+    Left = 108
+    Height = 45
+    Top = 164
+    Width = 45
+    Caption = 'Panel1'
+    TabOrder = 7
   end
 end

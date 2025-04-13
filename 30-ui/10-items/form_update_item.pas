@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Spin,
-  EditBtn, items, tiobject;
+  EditBtn, ExtCtrls, items, tiobject;
 
 type
 
@@ -22,11 +22,13 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Panel1: TPanel;
     seditOnHand: TSpinEdit;
     seRequired: TSpinEdit;
     teProductionTime: TTimeEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
     loid : string;
@@ -54,6 +56,12 @@ end;
 procedure Tfrm_update_item.Button2Click(Sender: TObject);
 begin
   self.close;
+end;
+
+procedure Tfrm_update_item.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+    CloseAction:=cafree;
 end;
 
 procedure Tfrm_update_item.FormCreate(Sender: TObject);

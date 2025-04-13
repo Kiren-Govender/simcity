@@ -36,7 +36,66 @@
           </class-props>
           <validators />
           <mapping table="item_type" pk="OID" pk-field="OID" oid-type="string">
-            <prop-map prop="item_type_name" field="item_type" type="String" />
+            <prop-map prop="item_type_name" field="item_type_name" type="String" />
+          </mapping>
+          <selections />
+        </class>
+        <class base-class="TItemBOM" base-class-parent="TtiObject" auto-map="true" auto-create-list="true">
+          <class-props>
+            <prop name="item_id" type="String" />
+            <prop name="bom_item_id" type="String" />
+            <prop name="bom_item_quantity" type="Integer" />
+          </class-props>
+          <validators />
+          <mapping table="item_bom" pk="OID" pk-field="OID" oid-type="string">
+            <prop-map prop="item_id" field="item_id" type="String" />
+            <prop-map prop="bom_item_id" field="bom_item_id" type="String" />
+            <prop-map prop="bom_item_quantity" field="bom_item_quantity" type="Integer" />
+          </mapping>
+          <selections />
+        </class>
+      </classes>
+    </unit>
+    <unit name="Orders">
+      <enums />
+      <classes>
+        <class base-class="TOrder" base-class-parent="TtiObject" auto-map="true" auto-create-list="true">
+          <class-props>
+            <prop name="time_left" type="TDateTime" />
+            <prop name="order_type_id" type="String" />
+            <prop name="time_entered" type="TDateTime" />
+            <prop name="order_status" type="String" />
+          </class-props>
+          <validators />
+          <mapping table="order" pk="OID" pk-field="OID" oid-type="string">
+            <prop-map prop="time_left" field="time_left" type="TDateTime" />
+            <prop-map prop="order_type_id" field="order_type_id" type="String" />
+            <prop-map prop="time_entered" field="time_entered" type="TDateTime" />
+            <prop-map prop="order_status" field="order_status" type="String" />
+          </mapping>
+          <selections />
+        </class>
+        <class base-class="TOrderItem" base-class-parent="TtiObject" auto-map="true" auto-create-list="true">
+          <class-props>
+            <prop name="order_id" type="String" />
+            <prop name="item_id" type="String" />
+            <prop name="quantity" type="Integer" />
+          </class-props>
+          <validators />
+          <mapping table="order_item" pk="OID" pk-field="OID" oid-type="string">
+            <prop-map prop="order_id" field="order_id" type="String" />
+            <prop-map prop="item_id" field="item_id" type="String" />
+            <prop-map prop="quantity" field="quantity" type="Integer" />
+          </mapping>
+          <selections />
+        </class>
+        <class base-class="TOrderType" base-class-parent="TtiObject" auto-map="true" auto-create-list="true">
+          <class-props>
+            <prop name="order_type_name" type="String" />
+          </class-props>
+          <validators />
+          <mapping table="order_type" pk="OID" pk-field="OID" oid-type="string">
+            <prop-map prop="order_type_name" field="order_type_name" type="String" />
           </mapping>
           <selections />
         </class>

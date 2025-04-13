@@ -1,7 +1,7 @@
 object frm_add_new_item: Tfrm_add_new_item
-  Left = 313
+  Left = 345
   Height = 250
-  Top = 264
+  Top = 206
   Width = 370
   Caption = 'Add a new Item'
   ClientHeight = 250
@@ -94,7 +94,7 @@ object frm_add_new_item: Tfrm_add_new_item
     Left = 172
     Height = 23
     Top = 154
-    Width = 175
+    Width = 148
     ItemHeight = 15
     TabOrder = 6
   end
@@ -104,5 +104,16 @@ object frm_add_new_item: Tfrm_add_new_item
     Top = 154
     Width = 52
     Caption = 'Item Type'
+  end
+  object SpeedButton1: TSpeedButton
+    Left = 325
+    Height = 22
+    Top = 156
+    Width = 23
+    Action = dmApplicationService.acMaintainItemTypes
+    Images = dmApplicationService.ImageList1
+    ImageIndex = 719
+    ShowCaption = False
+    OnClick = SpeedButton1Click
   end
 end

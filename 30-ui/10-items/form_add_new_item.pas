@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, TiopfManager, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Spin, EditBtn, items, tiobject;
+  Spin, EditBtn, Buttons, items, tiobject;
 
 type
 
@@ -24,10 +24,12 @@ type
     Label5: TLabel;
     seditOnHand: TSpinEdit;
     seRequired: TSpinEdit;
+    SpeedButton1: TSpeedButton;
     teProductionTime: TTimeEdit;
     procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure Label4Click(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
   private
     procedure SaveItem;
 
@@ -40,6 +42,7 @@ var
 
 implementation
 
+uses simcity_facade;
 {$R *.lfm}
 
 { Tfrm_add_new_item }
@@ -57,6 +60,15 @@ end;
 
 procedure Tfrm_add_new_item.Label4Click(Sender: TObject);
 begin
+
+end;
+
+procedure Tfrm_add_new_item.SpeedButton1Click(Sender: TObject);
+var
+  ui : TUI_Facade;
+begin
+  ui := TUI_Facade.create;
+  ui.maintain_item_types;
 
 end;
 

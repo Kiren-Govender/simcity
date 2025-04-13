@@ -23,6 +23,9 @@ type
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    procedure Button1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
   private
          procedure refresh;
          procedure AddNewItemType(aitemtypedescription : string);
@@ -39,11 +42,35 @@ implementation
 
 { Tfrm_maintain_item_types }
 
+procedure Tfrm_maintain_item_types.FormCreate(Sender: TObject);
+begin
+  refresh;
+end;
+
+procedure Tfrm_maintain_item_types.Button1Click(Sender: TObject);
+var
+  ItemType : TItemType;
+begin
+  ItemType := TItemType.create;
+  ItemType.ObjectState:=posCreate;
+  gTiopfManager.DefaultOIDGenerator.AssignNextOID(ItemType.OID);
+  ItemType.item_type_name:=edit1.text;
+  ItemType.save;
+  refresh;
+end;
+
+procedure Tfrm_maintain_item_types.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+    CloseAction:=cafree;
+end;
+
 procedure Tfrm_maintain_item_types.refresh;
 var
   ItemTypeList : TItemTypeList;
   a : integer;
 begin
+  listbox1.clear;
   ItemTypeList := TItemTypeList.create;
   ItemTypeList.read;
   for a := 0 to itemTypelist.count-1 do
@@ -53,14 +80,7 @@ begin
 end;
 
 procedure Tfrm_maintain_item_types.AddNewItemType(aitemtypedescription: string);
-var
-  ItemType : TItemType;
 begin
-  ItemType := TItemType.create;
-  itemtype.ObjectState:=posCreate;
-  gTiopfManager.DefaultOIDGenerator.AssignNextOID(itemtype.OID);
-  itemtype.item_type_name:=edit1.text;
-  itemtype.save;
 end;
 
 end.

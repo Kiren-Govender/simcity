@@ -7,23 +7,19 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
   StdCtrls, Buttons, DBCtrls, ActnList, Grids, Spin, Menus, TAGraph,
-  simcity_facade, items, TIOPFManager;
+  simcity_facade, uConnectionUtil, DMService, app_service,
+  //app_service,
+  items, TIOPFManager;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
-    acAddNewItem: TAction;
-    acAddOrder: TAction;
-    acRemoveOrder: TAction;
-    acMaintainItemTypes: TAction;
-    ActionList1: TActionList;
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
     ComboBox1: TComboBox;
-    ImageList1: TImageList;
     Label1: TLabel;
     Label2: TLabel;
     lblItemName: TLabel;
@@ -97,6 +93,7 @@ type
     procedure acAddOrderExecute(Sender: TObject);
     procedure acMaintainItemTypesExecute(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure ListBox1Click(Sender: TObject);
     procedure ListBox1DblClick(Sender: TObject);
@@ -132,12 +129,16 @@ var
   b: integer;
 begin
   listbox1.Clear;
-  a := TItemList.Create;
-  a.Read;
-  lblItemName.Caption := IntToStr(a.Count);
-  for b := 0 to a.Count - 1 do
-  begin
-    listbox1.Items.Add(a.Items[b].item_name);
+  try
+    a := TItemList.Create;
+    a.Read;
+    lblItemName.Caption := IntToStr(a.Count);
+    for b := 0 to a.Count - 1 do
+    begin
+      listbox1.Items.Add(a.Items[b].item_name);
+    end;
+  finally
+    a.Free;
   end;
 end;
 
@@ -158,11 +159,19 @@ begin
   a := TItemList.Create;
   //a.Read;
 
-  b:= listbox1.GetSelectedText;
+  b := listbox1.GetSelectedText;
   a.FindByName(b);
-  label1.caption:=a.Items[0].item_name;
-  label2.caption:=a.Items[0].OID.AsString;
+  label1.Caption := a.Items[0].item_name;
+  label2.Caption := a.Items[0].OID.AsString;
   self.refresh;
+end;
+
+procedure TfrmMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  ui_face.Free;
+  if IsConnected then disconnect;
+  //dmServiceModule.free;
+  CloseAction := cafree;
 end;
 
 procedure TfrmMain.acAddNewItemExecute(Sender: TObject);
@@ -173,19 +182,20 @@ end;
 
 procedure TfrmMain.acAddOrderExecute(Sender: TObject);
 begin
-    ui_face.add_new_order;
+  ui_face.add_new_order;
   self.refresh;
 end;
 
 procedure TfrmMain.acMaintainItemTypesExecute(Sender: TObject);
 begin
   ui_face.maintain_item_types;
-self.refresh;
+  //Sender.refresh;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   ui_face := TUI_Facade.Create;
+
   self.refresh;
 end;
 
@@ -233,6 +243,7 @@ begin
       ui_face.update_item(a.Items[b].OID.AsString);
   end;
   //a.FindbyName(c);
+  a.free;
   self.refresh;
 end;
 

@@ -10,12 +10,11 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  uConnectionUtil, Forms, mainform, simcity_data_facade, simcity_facade, items,
-  form_add_new_item, form_update_item,
-  uDarkStyleParams,
-  uDarkStyleSchemes,
-  uMetaDarkStyle,
-  { you can add units after this };
+  uConnectionUtil, Forms, tachartlazaruspkg, DMService,
+  app_service, mainform, simcity_data_facade,
+  simcity_facade, items, Orders, form_add_new_item, form_update_item,
+  uDarkStyleParams, uDarkStyleSchemes, uMetaDarkStyle, form_maintain_item_types,
+  form_add_new_order, form_maintain_order_types, abstract_form ;
 
 {$R *.res}
 
@@ -34,9 +33,16 @@ begin
   Application.{%H-}MainFormOnTaskbar:=True;
   ConnectToDatabase('simcity.db','','','');
   Application.Initialize;
+    Application.CreateForm(TdmServiceModule, dmServiceModule);
+  Application.CreateForm(TdmApplicationService, dmApplicationService);
   Application.CreateForm(TfrmMain, frmMain);
+
   Application.CreateForm(Tfrm_add_new_item, frm_add_new_item);
   Application.CreateForm(Tfrm_update_item, frm_update_item);
+  Application.CreateForm(Tfrm_maintain_item_types, frm_maintain_item_types);
+  Application.CreateForm(Tfrm_add_new_order, frm_add_new_order);
+  Application.CreateForm(TfrmMaintainOrderTypes, frmMaintainOrderTypes);
+
   Application.Run;
 end.
 

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Spin,
-  EditBtn, items, tiobject;
+  EditBtn, ExtCtrls, items, tiobject;
 
 type
 
@@ -22,6 +22,7 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Panel1: TPanel;
     seditOnHand: TSpinEdit;
     seRequired: TSpinEdit;
     teProductionTime: TTimeEdit;
@@ -63,18 +64,18 @@ end;
 
 procedure Tfrm_update_item.UpdateItem;
 var
-  a: TItem;
+  item: TItem;
 begin
-  a:=TITem.create;
-    a.ObjectState:=posPK;
-    a.OID.asstring:=loid;
-    a.read;
-    a.ObjectState:=posUpdate;
-    a.item_name:=edtItemName.Text;
-    a.item_onhand:=seditOnHand.Value;
-    a.item_required:=seRequired.Value;
-    a.item_production_time:=teProductionTime.Time;
-    a.save;
+  item:=TITem.create;
+    item.ObjectState:=posPK;
+    item.OID.asstring:=loid;
+    item.read;
+    item.ObjectState:=posUpdate;
+    item.item_name:=edtItemName.Text;
+    item.item_onhand:=seditOnHand.Value;
+    item.item_required:=seRequired.Value;
+    item.item_production_time:=teProductionTime.Time;
+    item.save;
 end;
 
 constructor Tfrm_update_item.create(aoid: string);

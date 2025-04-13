@@ -3,15 +3,15 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="12"/>
-    <BuildModes Active="Default"/>
+    <BuildModes Active="Release"/>
     <Units>
       <Unit>
         <Filename Value="simcity.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="6"/>
-        <CursorPos X="16" Y="11"/>
-        <UsageCount Value="186"/>
+        <TopLine Value="21"/>
+        <CursorPos X="59" Y="36"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="mainform.pas"/>
@@ -19,27 +19,26 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="174"/>
-        <CursorPos X="30" Y="182"/>
-        <UsageCount Value="186"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="37" Y="68"/>
+        <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="simcity_data_facade.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="36" Y="13"/>
-        <UsageCount Value="186"/>
+        <TopLine Value="6"/>
+        <CursorPos Y="6"/>
+        <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="simcity_facade.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="17"/>
-        <CursorPos X="25" Y="61"/>
-        <UsageCount Value="186"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="20"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\10-items\form_add_new_item.pas"/>
@@ -47,12 +46,10 @@
         <ComponentName Value="frm_add_new_item"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="4"/>
-        <CursorPos X="23" Y="66"/>
-        <UsageCount Value="186"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="46"/>
+        <CursorPos X="3" Y="58"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\10-items\form_update_item.pas"/>
@@ -60,22 +57,18 @@
         <ComponentName Value="frm_update_item"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="55"/>
-        <CursorPos X="29" Y="63"/>
-        <UsageCount Value="186"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="61"/>
+        <CursorPos X="26" Y="64"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="data\items.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="73"/>
-        <CursorPos X="10" Y="76"/>
-        <UsageCount Value="186"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="118"/>
+        <CursorPos X="24" Y="80"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\10-items\form_maintain_item_types.pas"/>
@@ -83,11 +76,10 @@
         <ComponentName Value="frm_maintain_item_types"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
-        <CursorPos X="14" Y="58"/>
-        <UsageCount Value="56"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="62"/>
+        <CursorPos X="26" Y="65"/>
+        <UsageCount Value="219"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\40-orders\form_add_new_order.pas"/>
@@ -95,185 +87,171 @@
         <ComponentName Value="frm_add_new_order"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
-        <CursorPos X="63" Y="13"/>
-        <UsageCount Value="48"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="113"/>
+        <CursorPos X="26" Y="128"/>
+        <UsageCount Value="211"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="unit1.pas"/>
-        <ComponentName Value="Form1"/>
+        <Filename Value="30-ui\40-orders\form_maintain_order_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMaintainOrderTypes"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit1"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="4"/>
+        <TopLine Value="22"/>
+        <CursorPos X="26" Y="51"/>
+        <UsageCount Value="201"/>
+      </Unit>
+      <Unit>
+        <Filename Value="data\Orders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="884"/>
+        <CursorPos X="31" Y="891"/>
+        <UsageCount Value="223"/>
+      </Unit>
+      <Unit>
+        <Filename Value="10-abstract\abstract_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="10"/>
+        <UsageCount Value="136"/>
+      </Unit>
+      <Unit>
+        <Filename Value="20-services\app_service.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dmApplicationService"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="131"/>
+        <CursorPos X="23" Y="148"/>
+        <UsageCount Value="100"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="20-services\dmservice.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dmServiceModule"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <ResourceBaseClassname Value=""/>
+        <UnitName Value="DMService"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="56"/>
+        <CursorPos X="3" Y="76"/>
+        <UsageCount Value="92"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="10-abstract\dmservice.pas"/>
+        <ComponentName Value="dmServiceModule"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="DMService"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="52"/>
+        <CursorPos X="19" Y="60"/>
+        <UsageCount Value="48"/>
       </Unit>
       <Unit>
         <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\$KalimaTech.Dev\Projects\KIS\SRC\KISDATA\uConnectionUtil.pas"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="32" Y="6"/>
-        <UsageCount Value="32"/>
+        <CursorPos X="21" Y="19"/>
+        <UsageCount Value="11"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\10-items\form_manage_item_types.pas"/>
         <HasResources Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="23"/>
-        <UsageCount Value="31"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\..\37-3rd-party-repos\tiopf\Core\tiObject.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1283"/>
-        <CursorPos X="33" Y="1451"/>
-        <UsageCount Value="9"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\..\37-3rd-party-repos\tiopfApps\tiOPFMapper\mapper\mapper_project_writer.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="22"/>
-        <CursorPos X="54" Y="24"/>
-        <UsageCount Value="10"/>
-      </Unit>
-      <Unit>
-        <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\$KalimaTech.Dev\Projects\KIS\SRC\CORE\BASE\KaliCore.Utilities.Email.pas"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="46" Y="7"/>
-        <UsageCount Value="10"/>
-      </Unit>
-      <Unit>
-        <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\$KalimaTech.Dev\Projects\KIS\SRC\CORE\BASE\kali.internet.facade.pas"/>
-        <EditorIndex Value="-1"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\37-3rd-party-repos\tiopf\Options\tiQuerySqldb.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="364"/>
-        <CursorPos Y="370"/>
-        <UsageCount Value="6"/>
+        <TopLine Value="137"/>
+        <CursorPos Y="149"/>
+        <UsageCount Value="0"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="451"/>
+        <UsageCount Value="0"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\stdctrls.pp"/>
+        <UnitName Value="StdCtrls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="505"/>
+        <UsageCount Value="0"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="14">
       <Position>
-        <Filename Value="30-ui\10-items\form_maintain_item_types.pas"/>
-        <Caret Line="9" Column="21"/>
+        <Filename Value="20-services\app_service.pas"/>
+        <Caret Line="142" Column="30" TopLine="125"/>
       </Position>
       <Position>
-        <Filename Value="30-ui\10-items\form_maintain_item_types.pas"/>
-        <Caret Line="10" Column="21"/>
+        <Filename Value="20-services\app_service.pas"/>
+        <Caret Line="143" Column="34" TopLine="125"/>
       </Position>
       <Position>
-        <Filename Value="30-ui\10-items\form_maintain_item_types.pas"/>
-        <Caret Line="9" Column="18"/>
+        <Filename Value="20-services\app_service.pas"/>
+        <Caret Line="89" Column="13" TopLine="83"/>
       </Position>
       <Position>
-        <Filename Value="30-ui\10-items\form_maintain_item_types.pas"/>
-        <Caret Line="28" Column="66" TopLine="20"/>
+        <Filename Value="20-services\app_service.pas"/>
+        <Caret Line="111" Column="4" TopLine="100"/>
       </Position>
       <Position>
-        <Filename Value="simcity_facade.pas"/>
-        <Caret Line="23" Column="41" TopLine="13"/>
+        <Filename Value="20-services\app_service.pas"/>
+        <Caret Line="171" Column="18" TopLine="153"/>
       </Position>
       <Position>
-        <Filename Value="simcity_facade.pas"/>
-        <Caret Line="10" Column="21" TopLine="3"/>
+        <Filename Value="20-services\app_service.pas"/>
+        <Caret Line="164" Column="30" TopLine="153"/>
       </Position>
       <Position>
-        <Filename Value="simcity_facade.pas"/>
-        <Caret Line="23" Column="29" TopLine="17"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_add_new_item.pas"/>
-        <Caret Line="50" Column="59" TopLine="35"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_add_new_item.pas"/>
-        <Caret Line="51" Column="59" TopLine="36"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_add_new_item.pas"/>
-        <Caret Line="49" Column="13" TopLine="44"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_add_new_item.pas"/>
-        <Caret Line="65" Column="7" TopLine="57"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <Caret Line="69" Column="3" TopLine="67"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <Caret Line="68" Column="3" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <Caret Line="67" Column="3" TopLine="65"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <Caret Line="66" Column="3" TopLine="64"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <Caret Line="65" Column="3" TopLine="63"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <Caret Line="64" Column="3" TopLine="62"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <Caret Line="63" Column="3" TopLine="61"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <Caret Line="62" Column="3" TopLine="60"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <Caret Line="61" Column="3" TopLine="59"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <Caret Line="60" Column="3" TopLine="58"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <Caret Line="59" Column="3" TopLine="57"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <Caret Line="49" Column="14" TopLine="47"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\40-orders\form_add_new_order.pas"/>
-      </Position>
-      <Position>
-        <Filename Value="simcity_facade.pas"/>
-        <Caret Line="25" Column="35" TopLine="16"/>
+        <Filename Value="20-services\app_service.pas"/>
+        <Caret Line="163" Column="21" TopLine="153"/>
       </Position>
       <Position>
         <Filename Value="mainform.pas"/>
-        <Caret Line="168" Column="17" TopLine="153"/>
+        <Caret Line="12" Column="3"/>
+      </Position>
+      <Position>
+        <Filename Value="20-services\app_service.pas"/>
+        <Caret Line="148" Column="39" TopLine="130"/>
+      </Position>
+      <Position>
+        <Filename Value="20-services\app_service.pas"/>
+        <Caret Line="141" Column="10" TopLine="130"/>
+      </Position>
+      <Position>
+        <Filename Value="20-services\app_service.pas"/>
+        <Caret Line="148" Column="3" TopLine="130"/>
       </Position>
       <Position>
         <Filename Value="mainform.pas"/>
-        <Caret Line="173" Column="26" TopLine="171"/>
+        <Caret Line="173" Column="16" TopLine="161"/>
       </Position>
       <Position>
         <Filename Value="mainform.pas"/>
-        <Caret Line="175" Column="26" TopLine="173"/>
+        <Caret Line="105" Column="5" TopLine="95"/>
       </Position>
       <Position>
         <Filename Value="mainform.pas"/>
-        <Caret Line="181" Column="30" TopLine="173"/>
+        <Caret Line="196" Column="16" TopLine="176"/>
       </Position>
       <Position>
-        <Filename Value="30-ui\40-orders\form_add_new_order.pas"/>
-        <Caret Line="13" Column="63"/>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="172" Column="20" TopLine="154"/>
       </Position>
     </JumpHistory>
     <RunParams>
