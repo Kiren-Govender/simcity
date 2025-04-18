@@ -8,10 +8,12 @@
       <Unit>
         <Filename Value="simcity.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="21"/>
-        <CursorPos X="59" Y="36"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="15"/>
+        <CursorPos X="65" Y="22"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="mainform.pas"/>
@@ -19,12 +21,12 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="61"/>
-        <CursorPos X="19" Y="9"/>
+        <TopLine Value="47"/>
+        <CursorPos X="37" Y="68"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="simcity_data_facade.pas"/>
@@ -88,10 +90,12 @@
         <ComponentName Value="frm_add_new_order"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="125"/>
-        <CursorPos X="26" Y="128"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="29"/>
+        <CursorPos X="88" Y="34"/>
         <UsageCount Value="211"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\40-orders\form_maintain_order_types.pas"/>
@@ -110,97 +114,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="884"/>
         <CursorPos X="31" Y="891"/>
-        <UsageCount Value="197"/>
+        <UsageCount Value="223"/>
       </Unit>
       <Unit>
         <Filename Value="10-abstract\abstract_form.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="10"/>
-        <UsageCount Value="110"/>
-      </Unit>
-      <Unit>
-        <Filename Value="10-abstract\dmservice.pas"/>
-        <ComponentName Value="dmServiceModule"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="DMService"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="52"/>
-        <CursorPos X="19" Y="60"/>
-        <UsageCount Value="51"/>
-      </Unit>
-      <Unit>
-        <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\$KalimaTech.Dev\Projects\KIS\SRC\KISDATA\uConnectionUtil.pas"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="21" Y="19"/>
-        <UsageCount Value="14"/>
-      </Unit>
-      <Unit>
-        <Filename Value="30-ui\10-items\form_manage_item_types.pas"/>
-        <HasResources Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="23"/>
-        <UsageCount Value="13"/>
-      </Unit>
-      <Unit>
-        <Filename Value="..\..\37-3rd-party-repos\tiopf\Options\tiQuerySqldb.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="137"/>
-        <CursorPos Y="149"/>
-        <UsageCount Value="3"/>
-      </Unit>
-      <Unit>
-        <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\Development\_App_Assets\kAppFrameWork\UtilityLayer\uapplicationmodel.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="44"/>
-        <UsageCount Value="1"/>
-      </Unit>
-      <Unit>
-        <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\Development\_App_Assets\kAppFrameWork\UtilityLayer\usessionmodel.pas"/>
-        <UnitName Value="uSessionModel"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="69"/>
-        <UsageCount Value="1"/>
-      </Unit>
-      <Unit>
-        <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\Development\_App_Assets\kAppFrameWork\UtilityLayer\uapplicationsettingsa.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="23"/>
-        <UsageCount Value="1"/>
-      </Unit>
-      <Unit>
-        <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\Development\_App_Assets\kAppFrameWork\UtilityLayer\unapplicationsettings.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="16"/>
-        <UsageCount Value="1"/>
-      </Unit>
-      <Unit>
-        <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\Development\_App_Assets\kAppFrameWork\PresentationLayer\uappmainformdm.pas"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="29" Y="67"/>
-        <UsageCount Value="1"/>
-      </Unit>
-      <Unit>
-        <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\$KalimaTech.Dev\SharedCodeBase\BaseClasses\kalidata.base.uabstractdataset.pas"/>
-        <UnitName Value="KALIDATA.BASE.uabstractdataset"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="55"/>
-        <UsageCount Value="1"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\lazarus\lcl\controls.pp"/>
-        <UnitName Value="Controls"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="451"/>
-        <UsageCount Value="3"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\lazarus\lcl\stdctrls.pp"/>
-        <UnitName Value="StdCtrls"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="505"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="218"/>
       </Unit>
       <Unit>
         <Filename Value="20-services\app_service.pas"/>
@@ -208,10 +129,10 @@
         <ComponentName Value="dmApplicationService"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="131"/>
         <CursorPos X="23" Y="148"/>
-        <UsageCount Value="74"/>
+        <UsageCount Value="184"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -222,11 +143,35 @@
         <ResourceBaseClass Value="DataModule"/>
         <ResourceBaseClassname Value=""/>
         <UnitName Value="DMService"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="56"/>
         <CursorPos X="3" Y="76"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="176"/>
         <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="10-abstract\dmservice.pas"/>
+        <ComponentName Value="dmServiceModule"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="DMService"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="52"/>
+        <CursorPos X="19" Y="60"/>
+        <UsageCount Value="40"/>
+      </Unit>
+      <Unit>
+        <Filename Value="E:\Manual Backup\Crash Backup\Media H Drive\$KalimaTech.Dev\Projects\KIS\SRC\KISDATA\uConnectionUtil.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="21" Y="19"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\10-items\form_manage_item_types.pas"/>
+        <HasResources Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="23"/>
+        <UsageCount Value="2"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="17">
@@ -239,20 +184,12 @@
         <Caret Line="143" Column="34" TopLine="125"/>
       </Position>
       <Position>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="12" Column="53" TopLine="211"/>
-      </Position>
-      <Position>
         <Filename Value="20-services\app_service.pas"/>
         <Caret Line="89" Column="13" TopLine="83"/>
       </Position>
       <Position>
         <Filename Value="20-services\app_service.pas"/>
         <Caret Line="111" Column="4" TopLine="100"/>
-      </Position>
-      <Position>
-        <Filename Value="20-services\app_service.pas"/>
-        <Caret Line="102" TopLine="117"/>
       </Position>
       <Position>
         <Filename Value="20-services\app_service.pas"/>
@@ -269,10 +206,6 @@
       <Position>
         <Filename Value="mainform.pas"/>
         <Caret Line="12" Column="3"/>
-      </Position>
-      <Position>
-        <Filename Value="20-services\app_service.pas"/>
-        <Caret Line="89" Column="6" TopLine="130"/>
       </Position>
       <Position>
         <Filename Value="20-services\app_service.pas"/>
@@ -301,6 +234,18 @@
       <Position>
         <Filename Value="mainform.pas"/>
         <Caret Line="172" Column="20" TopLine="154"/>
+      </Position>
+      <Position>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="68" Column="37"/>
+      </Position>
+      <Position>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="69" Column="37" TopLine="48"/>
+      </Position>
+      <Position>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="68" Column="37" TopLine="47"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -163,6 +163,7 @@ begin
   a.FindByName(b);
   label1.Caption := a.Items[0].item_name;
   label2.Caption := a.Items[0].OID.AsString;
+  a.free;
   self.refresh;
 end;
 
