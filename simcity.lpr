@@ -21,7 +21,7 @@ uses
 begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
-
+  ConnectToDatabase('simcity.db','','','');
   { - DARK MODE START - }
   // By default this is set to pamForceLight
   PreferredAppMode := pamForceDark;
@@ -31,7 +31,7 @@ begin
 
 
   Application.{%H-}MainFormOnTaskbar:=True;
-  ConnectToDatabase('simcity.db','','','');
+
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
 

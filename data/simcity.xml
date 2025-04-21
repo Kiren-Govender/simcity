@@ -65,13 +65,15 @@
             <prop name="order_type_id" type="String" />
             <prop name="time_entered" type="TDateTime" />
             <prop name="order_status" type="String" />
+            <prop name="order_description" type="String" />
           </class-props>
           <validators />
-          <mapping table="order" pk="OID" pk-field="OID" oid-type="string">
+          <mapping table="orders" pk="OID" pk-field="OID" oid-type="string">
             <prop-map prop="time_left" field="time_left" type="TDateTime" />
             <prop-map prop="order_type_id" field="order_type_id" type="String" />
             <prop-map prop="time_entered" field="time_entered" type="TDateTime" />
             <prop-map prop="order_status" field="order_status" type="String" />
+            <prop-map prop="order_description" field="order_description" type="String" />
           </mapping>
           <selections />
         </class>

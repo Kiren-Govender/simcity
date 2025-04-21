@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Spin,
-  EditBtn, ExtCtrls, items, tiobject;
+  EditBtn, ExtCtrls, items, tiObject, tiModelMediator;
 
 type
 
@@ -33,6 +33,7 @@ type
   private
     loid : string;
     procedure UpdateItem;
+    procedure SetupMediators;
   public
         constructor create(aoid : string);
   end;
@@ -44,6 +45,10 @@ implementation
 
 {$R *.lfm}
 
+uses
+  tiMediators
+  ,tiListMediators
+ ;
 { Tfrm_update_item }
 
 procedure Tfrm_update_item.Button1Click(Sender: TObject);
@@ -66,7 +71,7 @@ end;
 
 procedure Tfrm_update_item.FormCreate(Sender: TObject);
 begin
-
+  SetupMediators;
 end;
 
 procedure Tfrm_update_item.UpdateItem;
@@ -85,6 +90,11 @@ begin
     item.save;
 end;
 
+procedure Tfrm_update_item.SetupMediators;
+begin
+
+end;
+
 constructor Tfrm_update_item.create(aoid: string);
 var
   items : TItemList;
@@ -98,6 +108,10 @@ begin
   seRequired.Value:=items.Items[0].item_required;
   teProductionTime.Time:=items.Items[0].item_production_time;
 end;
+
+initialization
+  RegisterFallBackMediators;
+  RegisterFallBackListmediators;
 
 end.
 

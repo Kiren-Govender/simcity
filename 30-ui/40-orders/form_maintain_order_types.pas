@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  DMService;
+  DMService, tiObject, tiModelMediator;
 
 type
 
@@ -25,6 +25,7 @@ type
     procedure FormCreate(Sender: TObject);
   private
     procedure refresh;
+    procedure SetupMediators;
   public
 
   end;
@@ -35,6 +36,11 @@ var
 implementation
 
 {$R *.lfm}
+
+uses
+  tiMediators
+  ,tiListMediators
+ ;
 
 { TfrmMaintainOrderTypes }
 
@@ -54,12 +60,22 @@ end;
 procedure TfrmMaintainOrderTypes.FormCreate(Sender: TObject);
 begin
      refresh;
+     SetupMediators;
 end;
 
 procedure TfrmMaintainOrderTypes.refresh;
 begin
   DMS.OrderTypesToListBox(ListBox1);
 end;
+
+procedure TfrmMaintainOrderTypes.SetupMediators;
+begin
+
+end;
+
+initialization
+  RegisterFallBackMediators;
+  RegisterFallBackListmediators;
 
 end.
 

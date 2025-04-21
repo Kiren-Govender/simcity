@@ -39,10 +39,12 @@ Ftime_left: TDateTime;
 Forder_type_id: String;
 Ftime_entered: TDateTime;
 Forder_status: String;
+Forder_description: String;
 procedure Settime_left(const AValue: TDateTime); virtual;
 procedure Setorder_type_id(const AValue: String); virtual;
 procedure Settime_entered(const AValue: TDateTime); virtual;
 procedure Setorder_status(const AValue: String); virtual;
+procedure Setorder_description(const AValue: String); virtual;
 public
 procedure   Read; override;
 procedure   Save; override;
@@ -51,6 +53,7 @@ property    time_left: TDateTime read Ftime_left write Settime_left;
 property    order_type_id: String read Forder_type_id write Setorder_type_id;
 property    time_entered: TDateTime read Ftime_entered write Settime_entered;
 property    order_status: String read Forder_status write Setorder_status;
+property    order_description: String read Forder_description write Setorder_description;
 end;
 
 { List of TOrder.  TtiMappedFilteredObjectList descendant. }
@@ -335,15 +338,17 @@ procedure RegisterMappings;
 begin
 { Automap registrations for TOrder }
 GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TOrder, 
-'order', 'OID', 'OID', [pktDB]);
+'orders', 'OID', 'OID', [pktDB]);
 GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TOrder,
-'order','time_left', 'time_left');
+'orders','time_left', 'time_left');
 GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TOrder,
-'order','order_type_id', 'order_type_id');
+'orders','order_type_id', 'order_type_id');
 GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TOrder,
-'order','time_entered', 'time_entered');
+'orders','time_entered', 'time_entered');
 GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TOrder,
-'order','order_status', 'order_status');
+'orders','order_status', 'order_status');
+GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TOrder,
+'orders','order_description', 'order_description');
 GTIOPFManager.ClassDBMappingMgr.RegisterCollection(TOrderList, TOrder);
 
 { Automap registrations for TOrderItem }
@@ -422,6 +427,12 @@ procedure TOrder.Setorder_status(const AValue: String);
 begin
 if Forder_status <> AValue then
 Forder_status := AValue;
+end;
+
+procedure TOrder.Setorder_description(const AValue: String);
+begin
+if Forder_description <> AValue then
+Forder_description := AValue;
 end;
 
 procedure TOrder.Read;
@@ -610,18 +621,20 @@ end;
 procedure TOrder_Create.Init;
 begin
 Query.SQLText := 
-'INSERT INTO order(' + 
+'INSERT INTO orders(' + 
 ' OID, ' + 
 ' time_left, ' + 
 ' order_type_id, ' + 
 ' time_entered, ' + 
-' order_status' + 
+' order_status, ' + 
+' order_description' + 
 ') VALUES (' +
 ' :OID, ' +
 ' :time_left, ' + 
 ' :order_type_id, ' + 
 ' :time_entered, ' + 
-' :order_status' + 
+' :order_status, ' + 
+' :order_description' + 
 ') ';
 end;
 
@@ -635,6 +648,7 @@ Query.ParamAsDateTime['time_left'] := lObj.time_left;
 Query.ParamAsString['order_type_id'] := lObj.order_type_id;
 Query.ParamAsDateTime['time_entered'] := lObj.time_entered;
 Query.ParamAsString['order_status'] := lObj.order_status;
+Query.ParamAsString['order_description'] := lObj.order_description;
 end;
 
 { TOrder_Save }
@@ -646,11 +660,12 @@ end;
 procedure TOrder_Save.Init;
 begin
 Query.SQLText := 
-'UPDATE order SET ' +
+'UPDATE orders SET ' +
 ' time_left = :time_left, ' + 
 ' order_type_id = :order_type_id, ' + 
 ' time_entered = :time_entered, ' + 
-' order_status = :order_status ' + 
+' order_status = :order_status, ' + 
+' order_description = :order_description ' + 
 'WHERE OID = :OID' ;
 end;
 
@@ -664,6 +679,7 @@ Query.ParamAsDateTime['time_left'] := lObj.time_left;
 Query.ParamAsString['order_type_id'] := lObj.order_type_id;
 Query.ParamAsDateTime['time_entered'] := lObj.time_entered;
 Query.ParamAsString['order_status'] := lObj.order_status;
+Query.ParamAsString['order_description'] := lObj.order_description;
 end;
 
 { TOrder_Read }
@@ -680,8 +696,9 @@ Query.SQLText :=
 ' time_left, ' + 
 ' order_type_id, ' + 
 ' time_entered, ' + 
-' order_status ' + 
-'FROM  order WHERE OID = :OID' ;
+' order_status, ' + 
+' order_description ' + 
+'FROM  orders WHERE OID = :OID' ;
 end;
 
 procedure TOrder_Read.SetupParams;
@@ -702,6 +719,7 @@ lObj.time_left := Query.FieldAsDatetime['time_left'];
 lObj.order_type_id := Query.FieldAsString['order_type_id'];
 lObj.time_entered := Query.FieldAsDatetime['time_entered'];
 lObj.order_status := Query.FieldAsString['order_status'];
+lObj.order_description := Query.FieldAsString['order_description'];
 end;
 
 { TOrder_Delete }
@@ -713,7 +731,7 @@ end;
 procedure TOrder_Delete.Init;
 begin
 Query.SQLText := 
-'DELETE FROM order ' +
+'DELETE FROM orders ' +
 'WHERE OID = :OID';
 end;
 
@@ -756,8 +774,9 @@ lSQL :=
 ' time_left, ' + 
 ' order_type_id, ' + 
 ' time_entered, ' + 
-' order_status ' + 
-'FROM  order %s %s ;';
+' order_status, ' + 
+' order_description ' + 
+'FROM  orders %s %s ;';
 
 Query.SQLText := gFormatSQL(Format(lSQL, [lWhere, lOrder]), TOrder);
 
@@ -773,6 +792,7 @@ lObj.time_left := Query.FieldAsDatetime['time_left'];
 lObj.order_type_id := Query.FieldAsString['order_type_id'];
 lObj.time_entered := Query.FieldAsDatetime['time_entered'];
 lObj.order_status := Query.FieldAsString['order_status'];
+lObj.order_description := Query.FieldAsString['order_description'];
 lObj.ObjectState := posClean;
 TtiObjectList(Visited).Add(lObj);
 end;
@@ -786,18 +806,20 @@ end;
 procedure TOrderList_Create.Init;
 begin
 Query.SQLText := 
-'INSERT INTO order(' + 
+'INSERT INTO orders(' + 
 ' OID, ' + 
 ' time_left, ' + 
 ' order_type_id, ' + 
 ' time_entered, ' + 
-' order_status' + 
+' order_status, ' + 
+' order_description' + 
 ') VALUES (' +
 ' :OID, ' +
 ' :time_left, ' + 
 ' :order_type_id, ' + 
 ' :time_entered, ' + 
-' :order_status' + 
+' :order_status, ' + 
+' :order_description' + 
 ') ';
 end;
 
@@ -811,6 +833,7 @@ Query.ParamAsDateTime['time_left'] := lObj.time_left;
 Query.ParamAsString['order_type_id'] := lObj.order_type_id;
 Query.ParamAsDateTime['time_entered'] := lObj.time_entered;
 Query.ParamAsString['order_status'] := lObj.order_status;
+Query.ParamAsString['order_description'] := lObj.order_description;
 end;
 
 { TOrderList_Delete }
@@ -822,7 +845,7 @@ end;
 procedure TOrderList_Delete.Init;
 begin
 Query.SQLText := 
-'DELETE FROM order ' +
+'DELETE FROM orders ' +
 'WHERE OID = :OID';
 end;
 
@@ -842,11 +865,12 @@ end;
 procedure TOrderList_Save.Init;
 begin
 Query.SQLText := 
-'UPDATE order SET ' +
+'UPDATE orders SET ' +
 ' time_left = :time_left, ' + 
 ' order_type_id = :order_type_id, ' + 
 ' time_entered = :time_entered, ' + 
-' order_status = :order_status ' + 
+' order_status = :order_status, ' + 
+' order_description = :order_description ' + 
 'WHERE OID = :OID' ;
 end;
 
@@ -860,6 +884,7 @@ Query.ParamAsDateTime['time_left'] := lObj.time_left;
 Query.ParamAsString['order_type_id'] := lObj.order_type_id;
 Query.ParamAsDateTime['time_entered'] := lObj.time_entered;
 Query.ParamAsString['order_status'] := lObj.order_status;
+Query.ParamAsString['order_description'] := lObj.order_description;
 end;
 
 { TOrderItem_Create }

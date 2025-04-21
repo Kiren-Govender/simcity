@@ -24,12 +24,14 @@ type
     acMaintainItemTypes: TAction;
     acRemoveOrder: TAction;
     acMaintainOrderTypes: TAction;
+    acRefreshOrderList: TAction;
     ActionList1: TActionList;
     ImageList1: TImageList;
     procedure acAddNewItemExecute(Sender: TObject);
     procedure acAddOrderExecute(Sender: TObject);
     procedure acMaintainItemTypesExecute(Sender: TObject);
     procedure acMaintainOrderTypesExecute(Sender: TObject);
+    procedure acRefreshOrderListExecute(Sender: TObject);
     procedure acRemoveOrderExecute(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
@@ -92,6 +94,11 @@ begin
 
 end;
 
+procedure TdmApplicationService.acRefreshOrderListExecute(Sender: TObject);
+begin
+
+end;
+
 procedure TdmApplicationService.acRemoveOrderExecute(Sender: TObject);
 begin
   // Todo
@@ -144,6 +151,7 @@ end;
 
 initialization
   dmApplicationService := TdmApplicationService.Create(nil);
+
 finalization
   if dmApplicationService <> nil then dmApplicationService.Free;
 

@@ -7560,5 +7560,11 @@ object dmApplicationService: TdmApplicationService
       ImageIndex = 719
       OnExecute = acMaintainOrderTypesExecute
     end
+    object acRefreshOrderList: TAction
+      Category = 'Order'
+      Caption = 'acRefreshOrderList'
+      ImageIndex = 54
+      OnExecute = acRefreshOrderListExecute
+    end
   end
 end

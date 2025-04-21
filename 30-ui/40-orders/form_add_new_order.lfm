@@ -1,7 +1,7 @@
 object frm_add_new_order: Tfrm_add_new_order
-  Left = 264
+  Left = 549
   Height = 367
-  Top = 227
+  Top = 235
   Width = 654
   Caption = 'Add a new order'
   ClientHeight = 367
@@ -58,6 +58,7 @@ object frm_add_new_order: Tfrm_add_new_order
     ItemHeight = 15
     ReadOnly = True
     TabOrder = 0
+    OnChange = cmbOrderTypesChange
   end
   object Label1: TLabel
     Left = 24
@@ -112,7 +113,6 @@ object frm_add_new_order: Tfrm_add_new_order
       Top = 112
       Width = 75
       Caption = 'Add Item'
-      Enabled = False
       TabOrder = 2
       OnClick = Button1Click
     end
@@ -178,8 +178,8 @@ object frm_add_new_order: Tfrm_add_new_order
     Top = 328
     Width = 75
     Caption = 'Save Order'
-    Enabled = False
     TabOrder = 3
+    OnClick = Button2Click
   end
   object Button3: TButton
     Left = 565

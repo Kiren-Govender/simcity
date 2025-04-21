@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  DMService;
+  DMService, tiObject, tiModelMediator;
 
 type
 
@@ -21,9 +21,11 @@ type
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     procedure Button1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
     procedure refresh;
+    procedure SetupMediators;
   public
 
   end;
@@ -35,6 +37,11 @@ implementation
 
 {$R *.lfm}
 
+uses
+  ,tiMediators
+  ,tiListMediators
+ ;
+
 { TfrmMaintainOrderTypes }
 
 procedure TfrmMaintainOrderTypes.Button1Click(Sender: TObject);
@@ -44,15 +51,31 @@ begin
   refresh;
 end;
 
+procedure TfrmMaintainOrderTypes.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
+begin
+    CloseAction:=cafree;
+end;
+
 procedure TfrmMaintainOrderTypes.FormCreate(Sender: TObject);
 begin
      refresh;
+     SetupMediators;
 end;
 
 procedure TfrmMaintainOrderTypes.refresh;
 begin
   DMS.OrderTypesToListBox(ListBox1);
 end;
+
+procedure TfrmMaintainOrderTypes.SetupMediators;
+begin
+
+end;
+
+initialization
+  RegisterFallBackMediators;
+  RegisterFallBackListmediators;
 
 end.
 

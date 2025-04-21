@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, TiopfManager, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Spin, EditBtn, Buttons, items, tiobject;
+  Spin, EditBtn, Buttons, items, tiObject, tiModelMediator;
 
 type
 
@@ -28,11 +28,12 @@ type
     teProductionTime: TTimeEdit;
     procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
     procedure Label4Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
   private
     procedure SaveItem;
-
+    procedure SetupMediators;
   public
 
   end;
@@ -42,8 +43,13 @@ var
 
 implementation
 
-uses simcity_facade;
 {$R *.lfm}
+
+uses
+  simcity_facade
+  ,tiMediators
+  ,tiListMediators
+ ;
 
 { Tfrm_add_new_item }
 
@@ -56,6 +62,11 @@ procedure Tfrm_add_new_item.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
   CloseAction:=cafree;
+end;
+
+procedure Tfrm_add_new_item.FormCreate(Sender: TObject);
+begin
+  SetupMediators;
 end;
 
 procedure Tfrm_add_new_item.Label4Click(Sender: TObject);
@@ -86,6 +97,15 @@ begin
   item.save;
   self.close;
 end;
+
+procedure Tfrm_add_new_item.SetupMediators;
+begin
+
+end;
+
+initialization
+  RegisterFallBackMediators;
+  RegisterFallBackListmediators;
 
 end.
 

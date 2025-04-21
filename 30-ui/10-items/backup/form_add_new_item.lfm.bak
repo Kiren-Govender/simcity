@@ -9,7 +9,6 @@ object frm_add_new_item: Tfrm_add_new_item
   Position = poMainFormCenter
   LCLVersion = '4.0.0.3'
   OnClose = FormClose
-  OnCreate = FormCreate
   object Button1: TButton
     Left = 172
     Height = 25
@@ -87,7 +86,6 @@ object frm_add_new_item: Tfrm_add_new_item
     NumGlyphs = 1
     MaxLength = 0
     TabOrder = 5
-    TimeFormat = 'hh:mm:ss'
     Text = 'hh:mm:ss'
   end
   object ComboBox1: TComboBox

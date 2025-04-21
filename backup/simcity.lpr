@@ -33,15 +33,8 @@ begin
   Application.{%H-}MainFormOnTaskbar:=True;
   ConnectToDatabase('simcity.db','','','');
   Application.Initialize;
-    Application.CreateForm(TdmServiceModule, dmServiceModule);
-  Application.CreateForm(TdmApplicationService, dmApplicationService);
   Application.CreateForm(TfrmMain, frmMain);
 
-  Application.CreateForm(Tfrm_add_new_item, frm_add_new_item);
-  Application.CreateForm(Tfrm_update_item, frm_update_item);
-  Application.CreateForm(Tfrm_maintain_item_types, frm_maintain_item_types);
-  Application.CreateForm(Tfrm_add_new_order, frm_add_new_order);
-  Application.CreateForm(TfrmMaintainOrderTypes, frmMaintainOrderTypes);
 
   Application.Run;
 end.

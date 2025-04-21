@@ -59,6 +59,12 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="SQLDBLaz"/>
+      </Item>
+      <Item>
+        <PackageName Value="FCL"/>
+      </Item>
+      <Item>
         <PackageName Value="TAChartLazarusPkg"/>
       </Item>
       <Item>
@@ -151,7 +157,6 @@
         <ComponentName Value="dmServiceModule"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <ResourceBaseClassname Value=""/>
         <UnitName Value="DMService"/>
       </Unit>
     </Units>

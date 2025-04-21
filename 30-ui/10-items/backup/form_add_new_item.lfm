@@ -9,6 +9,7 @@ object frm_add_new_item: Tfrm_add_new_item
   Position = poMainFormCenter
   LCLVersion = '4.0.0.3'
   OnClose = FormClose
+  OnCreate = FormCreate
   object Button1: TButton
     Left = 172
     Height = 25
@@ -87,7 +88,6 @@ object frm_add_new_item: Tfrm_add_new_item
     MaxLength = 0
     TabOrder = 5
     TimeFormat = 'hh:mm:ss'
-    TimeSeparator = ':'
     Text = 'hh:mm:ss'
   end
   object ComboBox1: TComboBox
@@ -110,7 +110,10 @@ object frm_add_new_item: Tfrm_add_new_item
     Height = 22
     Top = 156
     Width = 23
+    Action = dmApplicationService.acMaintainItemTypes
+    Images = dmApplicationService.ImageList1
     ImageIndex = 719
+    ShowCaption = False
     OnClick = SpeedButton1Click
   end
 end

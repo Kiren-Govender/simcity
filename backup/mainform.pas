@@ -6,10 +6,11 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  StdCtrls, Buttons, DBCtrls, ActnList, Grids, Spin, Menus, TAGraph,
-  simcity_facade, uConnectionUtil, DMService, app_service,
+  StdCtrls, Buttons, DBCtrls, ActnList, Grids, Spin, Menus, DBGrids, TAGraph,
+  simcity_facade, DB, uConnectionUtil, DMService, app_service, orders,
+  form_add_new_order,
   //app_service,
-  items, TIOPFManager;
+  items, TIOPFManager, tiObject, tiModelMediator;
 
 type
 
@@ -75,7 +76,7 @@ type
     Panel8: TPanel;
     Panel9: TPanel;
     SpeedButton1: TSpeedButton;
-    StringGrid1: TStringGrid;
+    sgOrders: TStringGrid;
     StringGrid2: TStringGrid;
     tbDashboard: TTabSheet;
     tbBuildings: TTabSheet;
@@ -89,6 +90,7 @@ type
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
     procedure acAddNewItemExecute(Sender: TObject);
     procedure acAddOrderExecute(Sender: TObject);
     procedure acMaintainItemTypesExecute(Sender: TObject);
@@ -101,10 +103,17 @@ type
     procedure ScrollBox1Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure TabControl1Change(Sender: TObject);
+    procedure ToolButton5Click(Sender: TObject);
   private
+    FOrderList: TOrderList;
+    FOrderMediator: TtiModelMediator;
     ui_face: TUI_Facade;
     procedure refresh;
     procedure findoidbyname(aname: string);
+    procedure SetupMediators;
+    procedure refreshOrderList;
+  published
+    property OrderList: TOrderList read FOrderList write FOrderList;
   public
 
   end;
@@ -116,11 +125,21 @@ implementation
 
 {$R *.lfm}
 
-{ TfrmMain }
+uses
+  tiMediators
+  , tiListMediators;
+
+  { TfrmMain }
 
 procedure TfrmMain.TabControl1Change(Sender: TObject);
 begin
 
+end;
+
+procedure TfrmMain.ToolButton5Click(Sender: TObject);
+begin
+  OrderList.Clear;
+  OrderList.Read;
 end;
 
 procedure TfrmMain.refresh;
@@ -140,6 +159,8 @@ begin
   finally
     a.Free;
   end;
+  OrderList.Clear;
+  OrderList.Read;
 end;
 
 procedure TfrmMain.findoidbyname(aname: string);
@@ -148,6 +169,24 @@ var
 begin
   sSQL := 'SELECT * from item WHERE oid = ''' + aname + '''';
   GTIOPFManager.ExecSQL(sSQL);
+end;
+
+procedure TfrmMain.SetupMediators;
+begin
+  if not Assigned(FOrderMediator) then
+  begin
+    FOrderMediator := TtiModelMediator.Create(self);
+    FOrderMediator.AddComposite('order_description(600);order_status(150)', sgOrders);
+    //FOrderMediator.AddComposite('', sgOrders);
+  end;
+  FOrderMediator.Subject := OrderList;
+  FOrderMediator.Active := True;
+end;
+
+procedure TfrmMain.refreshOrderList;
+begin
+  self.OrderList.Clear;
+  self.Orderlist.Read;
 end;
 
 procedure TfrmMain.Button3Click(Sender: TObject);
@@ -163,7 +202,7 @@ begin
   a.FindByName(b);
   label1.Caption := a.Items[0].item_name;
   label2.Caption := a.Items[0].OID.AsString;
-  a.free;
+  a.Free;
   self.refresh;
 end;
 
@@ -182,22 +221,28 @@ begin
 end;
 
 procedure TfrmMain.acAddOrderExecute(Sender: TObject);
+var
+  frm: Tfrm_add_new_order;
 begin
-  ui_face.add_new_order;
-  self.refresh;
+  frm := Tfrm_add_new_order.Create(nil);
+  if frm.showmodal then self.refreshOrderList;
 end;
 
 procedure TfrmMain.acMaintainItemTypesExecute(Sender: TObject);
 begin
   ui_face.maintain_item_types;
-  //Sender.refresh;
+  self.refresh;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   ui_face := TUI_Facade.Create;
-
+  // Create the order object for the mediators
+  OrderList := TOrderList.Create;
+  SetupMediators;
+  //FOrderList.Read;
   self.refresh;
+
 end;
 
 procedure TfrmMain.ListBox1Click(Sender: TObject);
@@ -244,7 +289,7 @@ begin
       ui_face.update_item(a.Items[b].OID.AsString);
   end;
   //a.FindbyName(c);
-  a.free;
+  a.Free;
   self.refresh;
 end;
 
@@ -262,5 +307,9 @@ procedure TfrmMain.SpeedButton1Click(Sender: TObject);
 begin
   ui_face.add_new_item;
 end;
+
+initialization
+  RegisterFallBackMediators;
+  RegisterFallBackListmediators;
 
 end.

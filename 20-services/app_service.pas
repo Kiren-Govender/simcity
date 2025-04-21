@@ -24,12 +24,14 @@ type
     acMaintainItemTypes: TAction;
     acRemoveOrder: TAction;
     acMaintainOrderTypes: TAction;
+    acRefreshOrderList: TAction;
     ActionList1: TActionList;
     ImageList1: TImageList;
     procedure acAddNewItemExecute(Sender: TObject);
     procedure acAddOrderExecute(Sender: TObject);
     procedure acMaintainItemTypesExecute(Sender: TObject);
     procedure acMaintainOrderTypesExecute(Sender: TObject);
+    procedure acRefreshOrderListExecute(Sender: TObject);
     procedure acRemoveOrderExecute(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
@@ -38,7 +40,7 @@ type
     procedure add_new_item;
     procedure update_item(aoid : string);
     procedure maintain_item_types;
-    procedure add_new_order;
+    function add_new_order : integer;
     procedure maintain_order_types;
   end;
 
@@ -92,6 +94,11 @@ begin
 
 end;
 
+procedure TdmApplicationService.acRefreshOrderListExecute(Sender: TObject);
+begin
+
+end;
+
 procedure TdmApplicationService.acRemoveOrderExecute(Sender: TObject);
 begin
   // Todo
@@ -126,12 +133,16 @@ begin
    a.showmodal;
 end;
 
-procedure TdmApplicationService.add_new_order;
+function TdmApplicationService.add_new_order: integer;
 var
    frm: Tfrm_add_new_order;
 begin
-   frm:= Tfrm_add_new_order.create(nil);
-   frm.showmodal;
+   try
+      frm:= Tfrm_add_new_order.create(nil);
+   finally
+     result:=frm.showmodal;
+
+   end;
 end;
 
 procedure TdmApplicationService.maintain_order_types;

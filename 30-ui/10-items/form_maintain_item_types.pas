@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  ComCtrls, items, tiObject, tiopfmanager;
+  ComCtrls, items, tiObject, tiModelMediator, tiopfmanager;
 
 type
 
@@ -29,6 +29,7 @@ type
   private
          procedure refresh;
          procedure AddNewItemType(aitemtypedescription : string);
+         procedure SetupMediators;
   public
 
   end;
@@ -40,11 +41,17 @@ implementation
 
 {$R *.lfm}
 
+uses
+  tiMediators
+  ,tiListMediators
+ ;
+
 { Tfrm_maintain_item_types }
 
 procedure Tfrm_maintain_item_types.FormCreate(Sender: TObject);
 begin
   refresh;
+  SetupMediators;
 end;
 
 procedure Tfrm_maintain_item_types.Button1Click(Sender: TObject);
@@ -82,6 +89,15 @@ end;
 procedure Tfrm_maintain_item_types.AddNewItemType(aitemtypedescription: string);
 begin
 end;
+
+procedure Tfrm_maintain_item_types.SetupMediators;
+begin
+
+end;
+
+initialization
+  RegisterFallBackMediators;
+  RegisterFallBackListmediators;
 
 end.
 
