@@ -91,6 +91,7 @@ type
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
     procedure acAddNewItemExecute(Sender: TObject);
     procedure acAddOrderExecute(Sender: TObject);
     procedure acMaintainItemTypesExecute(Sender: TObject);
@@ -104,6 +105,7 @@ type
     procedure SpeedButton1Click(Sender: TObject);
     procedure TabControl1Change(Sender: TObject);
     procedure ToolButton5Click(Sender: TObject);
+    procedure ToolButton6Click(Sender: TObject);
   private
     FOrderList: TOrderList;
     FOrderMediator: TtiModelMediator;
@@ -140,6 +142,12 @@ procedure TfrmMain.ToolButton5Click(Sender: TObject);
 begin
   OrderList.Clear;
   OrderList.Read;
+end;
+
+procedure TfrmMain.ToolButton6Click(Sender: TObject);
+begin
+     Orderlist.Items[sgOrders.Row+1].Deleted:=True;;
+     OrderList.Save;
 end;
 
 procedure TfrmMain.refresh;
@@ -225,7 +233,8 @@ var
   frm: Tfrm_add_new_order;
 begin
   frm := Tfrm_add_new_order.Create(nil);
-  if frm.showmodal then self.refreshOrderList;
+  frm.showmodal;
+  self.refreshOrderList;
 end;
 
 procedure TfrmMain.acMaintainItemTypesExecute(Sender: TObject);

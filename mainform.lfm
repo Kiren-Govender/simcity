@@ -91,6 +91,13 @@ object frmMain: TfrmMain
           ImageIndex = 54
           OnClick = ToolButton5Click
         end
+        object ToolButton6: TToolButton
+          Left = 70
+          Top = 2
+          Caption = 'ToolButton6'
+          ImageIndex = 177
+          OnClick = ToolButton6Click
+        end
       end
       object sgOrders: TStringGrid
         Left = 0
