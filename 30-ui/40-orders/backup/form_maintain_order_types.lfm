@@ -1,0 +1,123 @@
+object frmMaintainOrderTypes: TfrmMaintainOrderTypes
+  Left = 417
+  Height = 343
+  Top = 222
+  Width = 510
+  Caption = 'Maintain Order Types'
+  ClientHeight = 343
+  ClientWidth = 510
+  LCLVersion = '4.0.0.3'
+  OnClose = FormClose
+  OnCreate = FormCreate
+  object ListBox1: TListBox
+    Left = 36
+    Height = 288
+    Top = 26
+    Width = 172
+    ItemHeight = 0
+    PopupMenu = PopupMenu1
+    TabOrder = 0
+  end
+  object SpeedButton1: TSpeedButton
+    Left = 216
+    Height = 22
+    Top = 159
+    Width = 23
+    Action = acMoveDown
+    Images = dmApplicationService.ImageList1
+    ImageIndex = 42
+    ShowCaption = False
+  end
+  object SpeedButton2: TSpeedButton
+    Left = 217
+    Height = 22
+    Top = 136
+    Width = 23
+    Action = acMoveUp
+    Images = dmApplicationService.ImageList1
+    ImageIndex = 59
+    ShowCaption = False
+  end
+  object Edit1: TEdit
+    Left = 320
+    Height = 23
+    Top = 38
+    Width = 160
+    TabOrder = 1
+  end
+  object Label1: TLabel
+    Left = 246
+    Height = 15
+    Top = 44
+    Width = 60
+    Caption = 'Description'
+  end
+  object Button1: TButton
+    Left = 320
+    Height = 25
+    Top = 72
+    Width = 75
+    Caption = '&Save'
+    TabOrder = 2
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 416
+    Height = 25
+    Top = 72
+    Width = 75
+    Caption = '&Cancel'
+    TabOrder = 3
+  end
+  object PopupMenu1: TPopupMenu
+    Images = dmApplicationService.ImageList1
+    Left = 320
+    Top = 163
+    object MenuItem1: TMenuItem
+      Action = acAdd
+    end
+    object MenuItem2: TMenuItem
+      Action = acModify
+    end
+    object Separator1: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem3: TMenuItem
+      Action = acDelete
+    end
+    object Separator2: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem4: TMenuItem
+      Action = acMoveUp
+    end
+    object MenuItem5: TMenuItem
+      Action = acMoveDown
+    end
+  end
+  object ActionList1: TActionList
+    Images = dmApplicationService.ImageList1
+    Left = 394
+    Top = 155
+    object acAdd: TAction
+      Caption = 'Add Order Type'
+      ImageIndex = 1
+    end
+    object acModify: TAction
+      Caption = 'Modify Order Type'
+      ImageIndex = 0
+    end
+    object acDelete: TAction
+      Caption = 'Delete Order Type'
+      ImageIndex = 177
+    end
+    object acMoveUp: TAction
+      Caption = 'Move Up'
+      ImageIndex = 59
+    end
+    object acMoveDown: TAction
+      Caption = 'Move Down'
+      ImageIndex = 42
+    end
+  end
+end

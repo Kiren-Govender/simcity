@@ -10,6 +10,7 @@ uses
   , form_update_item
   , form_maintain_item_types
   , form_add_new_order
+  , form_maintain_order_types
   ;
 
 type
@@ -23,6 +24,7 @@ type
           procedure update_item(aoid : string);
           procedure maintain_item_types;
           procedure add_new_order;
+          procedure maintain_order_types;
   end;
 
 implementation
@@ -58,6 +60,14 @@ var
    frm: Tfrm_add_new_order;
 begin
    frm:= Tfrm_add_new_order.create(nil);
+   frm.showmodal;
+end;
+
+procedure TUI_Facade.maintain_order_types;
+var
+   frm: TfrmMaintainOrderTypes;
+begin
+   frm:= TfrmMaintainOrderTypes.create(nil);
    frm.showmodal;
 end;
 

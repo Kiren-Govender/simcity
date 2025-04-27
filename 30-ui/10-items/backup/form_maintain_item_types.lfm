@@ -45,7 +45,9 @@ object frm_maintain_item_types: Tfrm_maintain_item_types
     0000000000000000000000000000000000000000000000000000000000000000
     0000
   }
+  Position = poMainFormCenter
   LCLVersion = '4.0.0.3'
+  OnCreate = FormCreate
   object ListBox1: TListBox
     Left = 16
     Height = 328
@@ -111,6 +113,7 @@ object frm_maintain_item_types: Tfrm_maintain_item_types
     Width = 75
     Caption = '&Save'
     TabOrder = 3
+    OnClick = Button1Click
   end
   object Button2: TButton
     Left = 413

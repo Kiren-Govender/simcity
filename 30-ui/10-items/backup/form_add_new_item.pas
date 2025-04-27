@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, TiopfManager, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Spin, EditBtn, items, tiobject;
+  Spin, EditBtn, Buttons, items, tiObject, tiModelMediator;
 
 type
 
@@ -24,13 +24,17 @@ type
     Label5: TLabel;
     seditOnHand: TSpinEdit;
     seRequired: TSpinEdit;
+    SpeedButton1: TSpeedButton;
     teProductionTime: TTimeEdit;
+    procedure acMaintainItemTypesExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
     procedure Label4Click(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
   private
     procedure SaveItem;
-
+    procedure SetupMediators;
   public
 
   end;
@@ -42,11 +46,22 @@ implementation
 
 {$R *.lfm}
 
+uses
+  simcity_facade
+  ,tiMediators
+  ,tiListMediators
+ ;
+
 { Tfrm_add_new_item }
 
 procedure Tfrm_add_new_item.Button1Click(Sender: TObject);
 begin
   SaveItem;
+end;
+
+procedure Tfrm_add_new_item.acMaintainItemTypesExecute(Sender: TObject);
+begin
+
 end;
 
 procedure Tfrm_add_new_item.FormClose(Sender: TObject;
@@ -55,8 +70,22 @@ begin
   CloseAction:=cafree;
 end;
 
+procedure Tfrm_add_new_item.FormCreate(Sender: TObject);
+begin
+  SetupMediators;
+end;
+
 procedure Tfrm_add_new_item.Label4Click(Sender: TObject);
 begin
+
+end;
+
+procedure Tfrm_add_new_item.SpeedButton1Click(Sender: TObject);
+//var
+//  ui : TUI_Facade;
+begin
+//  ui := TUI_Facade.create;
+//  ui.maintain_item_types;
 
 end;
 
@@ -74,6 +103,15 @@ begin
   item.save;
   self.close;
 end;
+
+procedure Tfrm_add_new_item.SetupMediators;
+begin
+
+end;
+
+initialization
+  RegisterFallBackMediators;
+  RegisterFallBackListmediators;
 
 end.
 

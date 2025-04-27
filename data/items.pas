@@ -98,6 +98,38 @@ procedure   Save; override;
 function    FindByOID(const AOID: string): integer;
 end;
 
+{ Generated Class: TItemBOM}
+TItemBOM = class(TtiObject)
+protected
+Fitem_id: String;
+Fbom_item_id: String;
+Fbom_item_quantity: Integer;
+procedure Setitem_id(const AValue: String); virtual;
+procedure Setbom_item_id(const AValue: String); virtual;
+procedure Setbom_item_quantity(const AValue: Integer); virtual;
+public
+procedure   Read; override;
+procedure   Save; override;
+published
+property    item_id: String read Fitem_id write Setitem_id;
+property    bom_item_id: String read Fbom_item_id write Setbom_item_id;
+property    bom_item_quantity: Integer read Fbom_item_quantity write Setbom_item_quantity;
+end;
+
+{ List of TItemBOM.  TtiMappedFilteredObjectList descendant. }
+TItemBOMList = class(TtiMappedFilteredObjectList)
+protected
+procedure   SetItems(i: integer; const AValue: TItemBOM); reintroduce;
+function    GetItems(i: integer): TItemBOM; reintroduce;
+public
+property    Items[i:integer] : TItemBOM read GetItems write SetItems;
+procedure   Add(AObject: TItemBOM); reintroduce;
+procedure   Read; override;
+procedure   Save; override;
+{ Return count (1) if successful. }
+function    FindByOID(const AOID: string): integer;
+end;
+
 { Read Visitor for TItem }
 TItem_Read = class(TtiVisitorSelect)
 protected
@@ -236,6 +268,71 @@ procedure   Init; override;
 procedure   SetupParams; override;
 end;
 
+{ Read Visitor for TItemBOM }
+TItemBOM_Read = class(TtiVisitorSelect)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   Init; override;
+procedure   SetupParams; override;
+procedure   MapRowToObject; override;
+end;
+
+{ Create Visitor for TItemBOM }
+TItemBOM_Create = class(TtiVisitorUpdate)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   Init; override;
+procedure   SetupParams; override;
+end;
+
+{ Update Visitor for TItemBOM }
+TItemBOM_Save = class(TtiVisitorUpdate)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   Init; override;
+procedure   SetupParams; override;
+end;
+
+{ Delete Visitor for TItemBOM }
+TItemBOM_Delete = class(TtiVisitorUpdate)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   Init; override;
+procedure   SetupParams; override;
+end;
+
+{ List Read Visitor for TItemBOMList }
+TItemBOMList_Read = class(TtiVisitorSelect)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   Init; override;
+procedure   MapRowToObject; override;
+end;
+
+{ List Create Visitor for TItemBOMList }
+TItemBOMList_Create = class(TtiVisitorUpdate)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   Init; override;
+procedure   SetupParams; override;
+end;
+
+{ List Update Visitor for TItemBOMList }
+TItemBOMList_Save = class(TtiVisitorUpdate)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   Init; override;
+procedure   SetupParams; override;
+end;
+
+{ List Delete Visitor for TItemBOMList }
+TItemBOMList_Delete = class(TtiVisitorUpdate)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   Init; override;
+procedure   SetupParams; override;
+end;
+
 
 { Visitor Manager Registrations }
 procedure RegisterVisitors;
@@ -268,8 +365,19 @@ GTIOPFManager.ClassDBMappingMgr.RegisterCollection(TItemList, TItem);
 GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TItemType, 
 'item_type', 'OID', 'OID', [pktDB]);
 GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TItemType,
-'item_type','item_type_name', 'item_type');
+'item_type','item_type_name', 'item_type_name');
 GTIOPFManager.ClassDBMappingMgr.RegisterCollection(TItemTypeList, TItemType);
+
+{ Automap registrations for TItemBOM }
+GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TItemBOM, 
+'item_bom', 'OID', 'OID', [pktDB]);
+GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TItemBOM,
+'item_bom','item_id', 'item_id');
+GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TItemBOM,
+'item_bom','bom_item_id', 'bom_item_id');
+GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TItemBOM,
+'item_bom','bom_item_quantity', 'bom_item_quantity');
+GTIOPFManager.ClassDBMappingMgr.RegisterCollection(TItemBOMList, TItemBOM);
 
 end;
 
@@ -295,6 +403,16 @@ GTIOPFManager.VisitorManager.RegisterVisitor('TItemTyperead', TItemType_Read);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypesave', TItemType_Save);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypedelete', TItemType_Delete);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypecreate', TItemType_Create);
+
+{ Register Visitors for TItemBOM }
+GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMList_listread', TItemBOMList_Read);
+GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMList_listsave', TItemBOMList_Create);
+GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMList_listsave', TItemBOMList_Save);
+GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMList_listsave', TItemBOMList_Delete);
+GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMread', TItemBOM_Read);
+GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMsave', TItemBOM_Save);
+GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMdelete', TItemBOM_Delete);
+GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMcreate', TItemBOM_Create);
 
 end;
 
@@ -439,6 +557,75 @@ begin
 inherited SetItems(i, AValue);
 end;
 function TItemTypeList.FindByOID(const AOID: string): integer;
+begin
+if self.Count > 0 then
+self.Clear;
+
+Criteria.ClearAll;
+Criteria.AddEqualTo('OID', AOID);
+Read;
+result := Count;
+end;
+
+procedure TItemBOM.Setitem_id(const AValue: String);
+begin
+if Fitem_id <> AValue then
+Fitem_id := AValue;
+end;
+
+procedure TItemBOM.Setbom_item_id(const AValue: String);
+begin
+if Fbom_item_id <> AValue then
+Fbom_item_id := AValue;
+end;
+
+procedure TItemBOM.Setbom_item_quantity(const AValue: Integer);
+begin
+if Fbom_item_quantity <> AValue then
+Fbom_item_quantity := AValue;
+end;
+
+procedure TItemBOM.Read;
+begin
+GTIOPFManager.VisitorManager.Execute(ClassName + 'read', self);
+end;
+
+procedure TItemBOM.Save;
+begin
+Case ObjectState of
+posDelete: GTIOPFManager.VisitorManager.Execute('TItemBOMdelete', self);
+posUpdate: GTIOPFManager.VisitorManager.Execute('TItemBOMsave', self);
+posCreate: GTIOPFManager.VisitorManager.Execute('TItemBOMcreate', self);
+end;
+end;
+
+ {TItemBOMList }
+
+procedure TItemBOMList.Add(AObject: TItemBOM);
+begin
+inherited Add(AObject);
+end;
+
+function TItemBOMList.GetItems(i: integer): TItemBOM;
+begin
+result := inherited GetItems(i) as TItemBOM;
+end;
+
+procedure TItemBOMList.Read;
+begin
+GTIOPFManager.VisitorManager.Execute('TItemBOMList_listread', self);
+end;
+
+procedure TItemBOMList.Save;
+begin
+GTIOPFManager.VisitorManager.Execute('TItemBOMList_listsave', self);
+end;
+
+procedure TItemBOMList.SetItems(i: integer; const AValue: TItemBOM);
+begin
+inherited SetItems(i, AValue);
+end;
+function TItemBOMList.FindByOID(const AOID: string): integer;
 begin
 if self.Count > 0 then
 self.Clear;
@@ -768,10 +955,10 @@ begin
 Query.SQLText := 
 'INSERT INTO item_type(' + 
 ' OID, ' + 
-' item_type' + 
+' item_type_name' + 
 ') VALUES (' +
 ' :OID, ' +
-' :item_type' + 
+' :item_type_name' + 
 ') ';
 end;
 
@@ -781,7 +968,7 @@ lObj: TItemType;
 begin
 lObj := TItemType(Visited);
 lObj.OID.AssignToTIQuery('OID',Query);
-Query.ParamAsString['item_type'] := lObj.item_type_name;
+Query.ParamAsString['item_type_name'] := lObj.item_type_name;
 end;
 
 { TItemType_Save }
@@ -794,7 +981,7 @@ procedure TItemType_Save.Init;
 begin
 Query.SQLText := 
 'UPDATE item_type SET ' +
-' item_type = :item_type ' + 
+' item_type_name = :item_type_name ' + 
 'WHERE OID = :OID' ;
 end;
 
@@ -804,7 +991,7 @@ lObj: TItemType;
 begin
 lObj := TItemType(Visited);
 lObj.OID.AssignToTIQuery('OID',Query);
-Query.ParamAsString['item_type'] := lObj.item_type_name;
+Query.ParamAsString['item_type_name'] := lObj.item_type_name;
 end;
 
 { TItemType_Read }
@@ -818,7 +1005,7 @@ begin
 Query.SQLText := 
 'SELECT ' + 
 ' OID, ' +
-' item_type ' + 
+' item_type_name ' + 
 'FROM  item_type WHERE OID = :OID' ;
 end;
 
@@ -836,7 +1023,7 @@ lObj: TItemType;
 begin
 lObj := TItemType(Visited);
 lObj.OID.AssignFromTIQuery('OID',Query);
-lObj.item_type_name := Query.FieldAsString['item_type'];
+lObj.item_type_name := Query.FieldAsString['item_type_name'];
 end;
 
 { TItemType_Delete }
@@ -888,7 +1075,7 @@ end;
 lSQL := 
 'SELECT ' + 
 ' OID, ' +
-' item_type ' + 
+' item_type_name ' + 
 'FROM  item_type %s %s ;';
 
 Query.SQLText := gFormatSQL(Format(lSQL, [lWhere, lOrder]), TItemType);
@@ -901,7 +1088,7 @@ lObj: TItemType;
 begin
 lObj := TItemType.Create;
 lObj.OID.AssignFromTIQuery('OID',Query);
-lObj.item_type_name := Query.FieldAsString['item_type'];
+lObj.item_type_name := Query.FieldAsString['item_type_name'];
 lObj.ObjectState := posClean;
 TtiObjectList(Visited).Add(lObj);
 end;
@@ -917,10 +1104,10 @@ begin
 Query.SQLText := 
 'INSERT INTO item_type(' + 
 ' OID, ' + 
-' item_type' + 
+' item_type_name' + 
 ') VALUES (' +
 ' :OID, ' +
-' :item_type' + 
+' :item_type_name' + 
 ') ';
 end;
 
@@ -930,7 +1117,7 @@ lObj: TItemType;
 begin
 lObj := TItemType(Visited);
 lObj.OID.AssignToTIQuery('OID',Query);
-Query.ParamAsString['item_type'] := lObj.item_type_name;
+Query.ParamAsString['item_type_name'] := lObj.item_type_name;
 end;
 
 { TItemTypeList_Delete }
@@ -963,7 +1150,7 @@ procedure TItemTypeList_Save.Init;
 begin
 Query.SQLText := 
 'UPDATE item_type SET ' +
-' item_type = :item_type ' + 
+' item_type_name = :item_type_name ' + 
 'WHERE OID = :OID' ;
 end;
 
@@ -973,7 +1160,254 @@ lObj: TItemType;
 begin
 lObj := TItemType(Visited);
 lObj.OID.AssignToTIQuery('OID',Query);
-Query.ParamAsString['item_type'] := lObj.item_type_name;
+Query.ParamAsString['item_type_name'] := lObj.item_type_name;
+end;
+
+{ TItemBOM_Create }
+function TItemBOM_Create.AcceptVisitor: Boolean;
+begin
+result := Visited.ObjectState = posCreate;
+end;
+
+procedure TItemBOM_Create.Init;
+begin
+Query.SQLText := 
+'INSERT INTO item_bom(' + 
+' OID, ' + 
+' item_id, ' + 
+' bom_item_id, ' + 
+' bom_item_quantity' + 
+') VALUES (' +
+' :OID, ' +
+' :item_id, ' + 
+' :bom_item_id, ' + 
+' :bom_item_quantity' + 
+') ';
+end;
+
+procedure TItemBOM_Create.SetupParams;
+var
+lObj: TItemBOM;
+begin
+lObj := TItemBOM(Visited);
+lObj.OID.AssignToTIQuery('OID',Query);
+Query.ParamAsString['item_id'] := lObj.item_id;
+Query.ParamAsString['bom_item_id'] := lObj.bom_item_id;
+Query.ParamAsInteger['bom_item_quantity'] := lObj.bom_item_quantity;
+end;
+
+{ TItemBOM_Save }
+function TItemBOM_Save.AcceptVisitor: Boolean;
+begin
+result := Visited.ObjectState = posUpdate;
+end;
+
+procedure TItemBOM_Save.Init;
+begin
+Query.SQLText := 
+'UPDATE item_bom SET ' +
+' item_id = :item_id, ' + 
+' bom_item_id = :bom_item_id, ' + 
+' bom_item_quantity = :bom_item_quantity ' + 
+'WHERE OID = :OID' ;
+end;
+
+procedure TItemBOM_Save.SetupParams;
+var
+lObj: TItemBOM;
+begin
+lObj := TItemBOM(Visited);
+lObj.OID.AssignToTIQuery('OID',Query);
+Query.ParamAsString['item_id'] := lObj.item_id;
+Query.ParamAsString['bom_item_id'] := lObj.bom_item_id;
+Query.ParamAsInteger['bom_item_quantity'] := lObj.bom_item_quantity;
+end;
+
+{ TItemBOM_Read }
+function TItemBOM_Read.AcceptVisitor: Boolean;
+begin
+result := (Visited.ObjectState = posPK) OR (Visited.ObjectState = posClean);
+end;
+
+procedure TItemBOM_Read.Init;
+begin
+Query.SQLText := 
+'SELECT ' + 
+' OID, ' +
+' item_id, ' + 
+' bom_item_id, ' + 
+' bom_item_quantity ' + 
+'FROM  item_bom WHERE OID = :OID' ;
+end;
+
+procedure TItemBOM_Read.SetupParams;
+var
+lObj: TItemBOM;
+begin
+lObj := TItemBOM(Visited);
+lObj.OID.AssignToTIQuery('OID',Query);
+end;
+
+procedure TItemBOM_Read.MapRowToObject;
+var
+lObj: TItemBOM;
+begin
+lObj := TItemBOM(Visited);
+lObj.OID.AssignFromTIQuery('OID',Query);
+lObj.item_id := Query.FieldAsString['item_id'];
+lObj.bom_item_id := Query.FieldAsString['bom_item_id'];
+lObj.bom_item_quantity := Query.FieldAsInteger['bom_item_quantity'];
+end;
+
+{ TItemBOM_Delete }
+function TItemBOM_Delete.AcceptVisitor: Boolean;
+begin
+result := Visited.ObjectState = posDelete;
+end;
+
+procedure TItemBOM_Delete.Init;
+begin
+Query.SQLText := 
+'DELETE FROM item_bom ' +
+'WHERE OID = :OID';
+end;
+
+procedure TItemBOM_Delete.SetupParams;
+var
+lObj: TItemBOM;
+begin
+lObj := TItemBOM(Visited);
+lObj.OID.AssignToTIQuery('OID',Query);
+end;
+
+{ TItemBOMList_Read }
+function TItemBOMList_Read.AcceptVisitor: Boolean;
+begin
+result := (Visited.ObjectState = posEmpty);
+end;
+
+procedure TItemBOMList_Read.Init;
+var
+lFiltered: ItiFiltered;
+lWhere: string;
+lOrder: string;
+lSQL: string;
+begin
+if Supports(Visited, ItiFiltered, lFiltered) then
+begin
+if lFiltered.GetCriteria.HasCriteria then
+lWhere := ' WHERE ' + tiCriteriaAsSQL(lFiltered.GetCriteria)
+else
+lWhere := '';
+if lFiltered.GetCriteria.hasOrderBy then
+lOrder := tiCriteriaOrderByAsSQL(lFiltered.GetCriteria)
+else
+lOrder := '';
+end;
+
+lSQL := 
+'SELECT ' + 
+' OID, ' +
+' item_id, ' + 
+' bom_item_id, ' + 
+' bom_item_quantity ' + 
+'FROM  item_bom %s %s ;';
+
+Query.SQLText := gFormatSQL(Format(lSQL, [lWhere, lOrder]), TItemBOM);
+
+end;
+
+procedure TItemBOMList_Read.MapRowToObject;
+var
+lObj: TItemBOM;
+begin
+lObj := TItemBOM.Create;
+lObj.OID.AssignFromTIQuery('OID',Query);
+lObj.item_id := Query.FieldAsString['item_id'];
+lObj.bom_item_id := Query.FieldAsString['bom_item_id'];
+lObj.bom_item_quantity := Query.FieldAsInteger['bom_item_quantity'];
+lObj.ObjectState := posClean;
+TtiObjectList(Visited).Add(lObj);
+end;
+
+{ TItemBOMList_Create }
+function TItemBOMList_Create.AcceptVisitor: Boolean;
+begin
+result := Visited.ObjectState = posCreate;
+end;
+
+procedure TItemBOMList_Create.Init;
+begin
+Query.SQLText := 
+'INSERT INTO item_bom(' + 
+' OID, ' + 
+' item_id, ' + 
+' bom_item_id, ' + 
+' bom_item_quantity' + 
+') VALUES (' +
+' :OID, ' +
+' :item_id, ' + 
+' :bom_item_id, ' + 
+' :bom_item_quantity' + 
+') ';
+end;
+
+procedure TItemBOMList_Create.SetupParams;
+var
+lObj: TItemBOM;
+begin
+lObj := TItemBOM(Visited);
+lObj.OID.AssignToTIQuery('OID',Query);
+Query.ParamAsString['item_id'] := lObj.item_id;
+Query.ParamAsString['bom_item_id'] := lObj.bom_item_id;
+Query.ParamAsInteger['bom_item_quantity'] := lObj.bom_item_quantity;
+end;
+
+{ TItemBOMList_Delete }
+function TItemBOMList_Delete.AcceptVisitor: Boolean;
+begin
+result := Visited.ObjectState = posDelete;
+end;
+
+procedure TItemBOMList_Delete.Init;
+begin
+Query.SQLText := 
+'DELETE FROM item_bom ' +
+'WHERE OID = :OID';
+end;
+
+procedure TItemBOMList_Delete.SetupParams;
+var
+lObj: TItemBOM;
+begin
+lObj := TItemBOM(Visited);
+lObj.OID.AssignToTIQuery('OID',Query);
+end;
+{ TItemBOMList_Save }
+function TItemBOMList_Save.AcceptVisitor: Boolean;
+begin
+result := Visited.ObjectState = posUpdate;
+end;
+
+procedure TItemBOMList_Save.Init;
+begin
+Query.SQLText := 
+'UPDATE item_bom SET ' +
+' item_id = :item_id, ' + 
+' bom_item_id = :bom_item_id, ' + 
+' bom_item_quantity = :bom_item_quantity ' + 
+'WHERE OID = :OID' ;
+end;
+
+procedure TItemBOMList_Save.SetupParams;
+var
+lObj: TItemBOM;
+begin
+lObj := TItemBOM(Visited);
+lObj.OID.AssignToTIQuery('OID',Query);
+Query.ParamAsString['item_id'] := lObj.item_id;
+Query.ParamAsString['bom_item_id'] := lObj.bom_item_id;
+Query.ParamAsInteger['bom_item_quantity'] := lObj.bom_item_quantity;
 end;
 
 initialization

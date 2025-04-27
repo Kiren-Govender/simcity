@@ -15,7 +15,40 @@
       <Icon Value="0"/>
     </General>
     <BuildModes>
-      <Item Name="Default" Default="True"/>
+      <Item Name="Debug" Default="True"/>
+      <Item Name="Release">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <PathDelim Value="\"/>
+          <Target>
+            <Filename Value="simcity"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="30-ui\10-items;data;30-ui\40-orders;10-abstract;20-services"/>
+            <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <Optimizations>
+              <OptimizationLevel Value="3"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <RunWithoutDebug Value="True"/>
+              <StripSymbols Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
@@ -25,6 +58,12 @@
       <FormatVersion Value="2"/>
     </RunParams>
     <RequiredPackages>
+      <Item>
+        <PackageName Value="SQLDBLaz"/>
+      </Item>
+      <Item>
+        <PackageName Value="FCL"/>
+      </Item>
       <Item>
         <PackageName Value="TAChartLazarusPkg"/>
       </Item>
@@ -80,6 +119,7 @@
         <Filename Value="30-ui\10-items\form_maintain_item_types.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frm_maintain_item_types"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
@@ -88,6 +128,36 @@
         <ComponentName Value="frm_add_new_order"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\40-orders\form_maintain_order_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMaintainOrderTypes"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="data\Orders.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="10-abstract\abstract_form.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="20-services\app_service.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dmApplicationService"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit>
+      <Unit>
+        <Filename Value="20-services\dmservice.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dmServiceModule"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="DMService"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -99,12 +169,28 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="30-ui\10-items;data;30-ui\40-orders"/>
+      <OtherUnitFiles Value="30-ui\10-items;data;30-ui\40-orders;10-abstract;20-services"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <IncludeAssertionCode Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+      <VerifyObjMethodCallValidity Value="True"/>
+    </CodeGeneration>
     <Linking>
       <Debugging>
         <DebugInfoType Value="dsDwarf3"/>
+        <UseHeaptrc Value="True"/>
+        <TrashVariables Value="True"/>
       </Debugging>
       <Options>
         <Win32>
