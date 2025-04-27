@@ -26,6 +26,7 @@ type
     seRequired: TSpinEdit;
     SpeedButton1: TSpeedButton;
     teProductionTime: TTimeEdit;
+    procedure acMaintainItemTypesExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -46,8 +47,8 @@ implementation
 {$R *.lfm}
 
 uses
-  simcity_facade
-  ,tiMediators
+  {simcity_facade
+  ,}tiMediators
   ,tiListMediators
  ;
 
@@ -56,6 +57,11 @@ uses
 procedure Tfrm_add_new_item.Button1Click(Sender: TObject);
 begin
   SaveItem;
+end;
+
+procedure Tfrm_add_new_item.acMaintainItemTypesExecute(Sender: TObject);
+begin
+
 end;
 
 procedure Tfrm_add_new_item.FormClose(Sender: TObject;
@@ -75,11 +81,7 @@ begin
 end;
 
 procedure Tfrm_add_new_item.SpeedButton1Click(Sender: TObject);
-var
-  ui : TUI_Facade;
 begin
-  ui := TUI_Facade.create;
-  ui.maintain_item_types;
 
 end;
 

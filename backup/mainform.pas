@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
   StdCtrls, Buttons, DBCtrls, ActnList, Grids, Spin, Menus, DBGrids, TAGraph,
-  simcity_facade, DB, uConnectionUtil, DMService, app_service, orders,
+  //simcity_facade,
+  DB, uConnectionUtil, DMService, app_service, orders,
   form_add_new_order,
   //app_service,
   items, TIOPFManager, tiObject, tiModelMediator;
@@ -109,7 +110,7 @@ type
   private
     FOrderList: TOrderList;
     FOrderMediator: TtiModelMediator;
-    ui_face: TUI_Facade;
+    //ui_face: TUI_Facade;
     procedure refresh;
     procedure findoidbyname(aname: string);
     procedure SetupMediators;
@@ -146,7 +147,7 @@ end;
 
 procedure TfrmMain.ToolButton6Click(Sender: TObject);
 begin
-     Orderlist.Items[sgOrders.Row+1].Deleted:=True;;
+     Orderlist.Items[sgOrders.Row-1].Deleted:=True;;
      OrderList.Save;
 end;
 
@@ -216,7 +217,7 @@ end;
 
 procedure TfrmMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  ui_face.Free;
+  //ui_face.Free;
   if IsConnected then disconnect;
   //dmServiceModule.free;
   CloseAction := cafree;
@@ -224,7 +225,7 @@ end;
 
 procedure TfrmMain.acAddNewItemExecute(Sender: TObject);
 begin
-  ui_face.add_new_item;
+  //ui_face.add_new_item;
   self.refresh;
 end;
 
@@ -239,13 +240,13 @@ end;
 
 procedure TfrmMain.acMaintainItemTypesExecute(Sender: TObject);
 begin
-  ui_face.maintain_item_types;
+  //ui_face.maintain_item_types;
   self.refresh;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
-  ui_face := TUI_Facade.Create;
+  //ui_face := TUI_Facade.Create;
   // Create the order object for the mediators
   OrderList := TOrderList.Create;
   SetupMediators;
@@ -295,7 +296,7 @@ begin
   for b := 0 to a.Count - 1 do
   begin
     if a.Items[b].item_name = c then
-      ui_face.update_item(a.Items[b].OID.AsString);
+      // ui_face.update_item(a.Items[b].OID.AsString);
   end;
   //a.FindbyName(c);
   a.Free;
@@ -314,7 +315,7 @@ end;
 
 procedure TfrmMain.SpeedButton1Click(Sender: TObject);
 begin
-  ui_face.add_new_item;
+  //ui_face.add_new_item;
 end;
 
 initialization

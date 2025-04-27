@@ -32,6 +32,7 @@ type
     SpinEdit1: TSpinEdit;
     StringGrid1: TStringGrid;
     TimeEdit1: TTimeEdit;
+    procedure acMaintainOrderTypesExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure cmbOrderTypesChange(Sender: TObject);
@@ -100,19 +101,19 @@ implementation
 {$R *.lfm}
 
 uses
-  simcity_facade
-  ,tiMediators
+  {simcity_facade
+  ,}tiMediators
   ,tiListMediators
  ;
 
 { Tfrm_add_new_order }
 
 procedure Tfrm_add_new_order.SpeedButton1Click(Sender: TObject);
-var
-  ui : TUI_Facade;
+//var
+ // ui : TUI_Facade;
 begin
-  ui:=TUI_Facade.create;
-  ui.maintain_order_types;
+  //ui:=TUI_Facade.create;
+  //ui.maintain_order_types;
   populateOrderTypesCombo;
 end;
 
@@ -188,6 +189,11 @@ begin
   StringGrid1.RowCount := a + 2; // Adjust row count (if FixedRows=0)
   StringGrid1.Cells[0, a+1] := fOrderEntry.FOrderEntryItems[a].itemid;
   StringGrid1.Cells[1, a+1] := IntToStr(fOrderEntry.FOrderEntryItems[a].quantity);
+end;
+
+procedure Tfrm_add_new_order.acMaintainOrderTypesExecute(Sender: TObject);
+begin
+
 end;
 
 procedure Tfrm_add_new_order.cmbOrderTypesChange(Sender: TObject);

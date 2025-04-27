@@ -6,18 +6,32 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  DMService, tiObject, tiModelMediator;
+  Menus, ActnList, DMService, tiObject, tiModelMediator;
 
 type
 
   { TfrmMaintainOrderTypes }
 
   TfrmMaintainOrderTypes = class(TForm)
+    acAdd: TAction;
+    acModify: TAction;
+    acDelete: TAction;
+    acMoveUp: TAction;
+    acMoveDown: TAction;
+    ActionList1: TActionList;
     Button1: TButton;
     Button2: TButton;
     Edit1: TEdit;
     Label1: TLabel;
     ListBox1: TListBox;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
+    PopupMenu1: TPopupMenu;
+    Separator1: TMenuItem;
+    Separator2: TMenuItem;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
     procedure Button1Click(Sender: TObject);
@@ -38,7 +52,7 @@ implementation
 {$R *.lfm}
 
 uses
-  ,tiMediators
+  tiMediators
   ,tiListMediators
  ;
 

@@ -32,6 +32,7 @@ type
     SpinEdit1: TSpinEdit;
     StringGrid1: TStringGrid;
     TimeEdit1: TTimeEdit;
+    procedure acMaintainOrderTypesExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure cmbOrderTypesChange(Sender: TObject);
@@ -100,8 +101,8 @@ implementation
 {$R *.lfm}
 
 uses
-  simcity_facade
-  ,tiMediators
+  {simcity_facade
+  ,}tiMediators
   ,tiListMediators
  ;
 
@@ -109,10 +110,10 @@ uses
 
 procedure Tfrm_add_new_order.SpeedButton1Click(Sender: TObject);
 var
-  ui : TUI_Facade;
+ // ui : TUI_Facade;
 begin
-  ui:=TUI_Facade.create;
-  ui.maintain_order_types;
+  //ui:=TUI_Facade.create;
+  //ui.maintain_order_types;
   populateOrderTypesCombo;
 end;
 
@@ -163,7 +164,7 @@ begin
   gTiopfManager.DefaultOIDGenerator.AssignNextOID(aorder.OID);
   aorder.order_type_id:=self.OrderEntry.ordertype;
   aorder.order_status:='New';
-  aorder.order_description:='epic-challenge-3-wood-4-metal-2-paris-jersey-1-kitchen-utensil';
+  aorder.order_description:=GenerateOrderDescription;
   aorder.time_entered:=now();
   aorder.time_left:=now();
   aorder.save;
@@ -188,6 +189,11 @@ begin
   StringGrid1.RowCount := a + 2; // Adjust row count (if FixedRows=0)
   StringGrid1.Cells[0, a+1] := fOrderEntry.FOrderEntryItems[a].itemid;
   StringGrid1.Cells[1, a+1] := IntToStr(fOrderEntry.FOrderEntryItems[a].quantity);
+end;
+
+procedure Tfrm_add_new_order.acMaintainOrderTypesExecute(Sender: TObject);
+begin
+
 end;
 
 procedure Tfrm_add_new_order.cmbOrderTypesChange(Sender: TObject);

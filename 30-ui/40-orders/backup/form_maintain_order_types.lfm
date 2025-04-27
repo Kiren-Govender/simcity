@@ -7,6 +7,7 @@ object frmMaintainOrderTypes: TfrmMaintainOrderTypes
   ClientHeight = 343
   ClientWidth = 510
   LCLVersion = '4.0.0.3'
+  OnClose = FormClose
   OnCreate = FormCreate
   object ListBox1: TListBox
     Left = 36
@@ -14,6 +15,7 @@ object frmMaintainOrderTypes: TfrmMaintainOrderTypes
     Top = 26
     Width = 172
     ItemHeight = 0
+    PopupMenu = PopupMenu1
     TabOrder = 0
   end
   object SpeedButton1: TSpeedButton
@@ -21,16 +23,20 @@ object frmMaintainOrderTypes: TfrmMaintainOrderTypes
     Height = 22
     Top = 159
     Width = 23
-    Images = frmMain.ImageList1
+    Action = acMoveDown
+    Images = dmApplicationService.ImageList1
     ImageIndex = 42
+    ShowCaption = False
   end
   object SpeedButton2: TSpeedButton
     Left = 217
     Height = 22
     Top = 136
     Width = 23
-    Images = frmMain.ImageList1
+    Action = acMoveUp
+    Images = dmApplicationService.ImageList1
     ImageIndex = 59
+    ShowCaption = False
   end
   object Edit1: TEdit
     Left = 320
@@ -62,5 +68,56 @@ object frmMaintainOrderTypes: TfrmMaintainOrderTypes
     Width = 75
     Caption = '&Cancel'
     TabOrder = 3
+  end
+  object PopupMenu1: TPopupMenu
+    Images = dmApplicationService.ImageList1
+    Left = 320
+    Top = 163
+    object MenuItem1: TMenuItem
+      Action = acAdd
+    end
+    object MenuItem2: TMenuItem
+      Action = acModify
+    end
+    object Separator1: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem3: TMenuItem
+      Action = acDelete
+    end
+    object Separator2: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem4: TMenuItem
+      Action = acMoveUp
+    end
+    object MenuItem5: TMenuItem
+      Action = acMoveDown
+    end
+  end
+  object ActionList1: TActionList
+    Images = dmApplicationService.ImageList1
+    Left = 394
+    Top = 155
+    object acAdd: TAction
+      Caption = 'Add Order Type'
+      ImageIndex = 1
+    end
+    object acModify: TAction
+      Caption = 'Modify Order Type'
+      ImageIndex = 0
+    end
+    object acDelete: TAction
+      Caption = 'Delete Order Type'
+      ImageIndex = 177
+    end
+    object acMoveUp: TAction
+      Caption = 'Move Up'
+      ImageIndex = 59
+    end
+    object acMoveDown: TAction
+      Caption = 'Move Down'
+      ImageIndex = 42
+    end
   end
 end
