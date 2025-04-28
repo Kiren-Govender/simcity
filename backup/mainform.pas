@@ -67,6 +67,8 @@ type
     MenuItem39: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem40: TMenuItem;
+    MenuItem41: TMenuItem;
+    MenuItem42: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;

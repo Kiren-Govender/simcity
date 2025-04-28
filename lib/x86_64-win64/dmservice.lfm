@@ -1,13 +1,34 @@
-object dmApplicationService: TdmApplicationService
+object dmServiceModule: TdmServiceModule
+  OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   OldCreateOrder = False
-  Height = 352
-  HorizontalOffset = 325
-  VerticalOffset = 227
-  Width = 530
+  Height = 405
+  HorizontalOffset = 320
+  VerticalOffset = 202
+  Width = 653
+  object ActionList1: TActionList
+    Left = 48
+    Top = 48
+    object acAddNewItem: TAction
+      Caption = 'Add New Item'
+      ImageIndex = 1
+    end
+    object acAddOrder: TAction
+      Caption = 'Add Order'
+      ImageIndex = 537
+    end
+    object acRemoveOrder: TAction
+      Caption = 'Remove Order'
+      ImageIndex = 538
+    end
+    object acMaintainItemTypes: TAction
+      Caption = 'acMaintainItemTypes'
+      ImageIndex = 719
+    end
+  end
   object ImageList1: TImageList
-    Left = 72
-    Top = 32
+    Left = 128
+    Top = 48
     Bitmap = {
       4C7AE7030000100000001000000041AB03000000000078DAECBD07585557BA3E
       4EC64CFE779E3BBF3B933B25996434D168BA898989D144137BAF208A20BD0948
@@ -7526,45 +7547,64 @@ object dmApplicationService: TdmApplicationService
       7CD4F8FF54FCF07FE4FFB329F29F63FCF0FF0169D92649
     }
   end
-  object ActionList1: TActionList
-    Images = ImageList1
-    Left = 80
-    Top = 96
-    object acAddNewItem: TAction
-      Category = 'Item'
-      Caption = 'Add New Item'
-      ImageIndex = 1
-      OnExecute = acAddNewItemExecute
-    end
-    object acAddOrder: TAction
-      Category = 'Order'
-      Caption = 'Add Order'
-      ImageIndex = 537
-      OnExecute = acAddOrderExecute
-    end
-    object acRemoveOrder: TAction
-      Category = 'Order'
-      Caption = 'Remove Order'
-      ImageIndex = 538
-      OnExecute = acRemoveOrderExecute
-    end
-    object acMaintainItemTypes: TAction
-      Category = 'Item'
-      Caption = 'Maintain Item Types'
-      ImageIndex = 719
-      OnExecute = acMaintainItemTypesExecute
-    end
-    object acMaintainOrderTypes: TAction
-      Category = 'Order'
-      Caption = 'Maintain Order Types'
-      ImageIndex = 719
-      OnExecute = acMaintainOrderTypesExecute
-    end
-    object acRefreshOrderList: TAction
-      Category = 'Order'
-      Caption = 'acRefreshOrderList'
-      ImageIndex = 54
-      OnExecute = acRefreshOrderListExecute
-    end
+  object SQLite3Connection1: TSQLite3Connection
+    Connected = False
+    LoginPrompt = False
+    DatabaseName = 'E:\30-39-development-repos\30-personal-testbed-repos\30.500-simcity\simcity.db'
+    KeepConnection = False
+    Transaction = SQLTransaction1
+    AlwaysUseBigint = False
+    Left = 291
+    Top = 46
+  end
+  object SQLQuery1: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    MaxIndexesCount = 4
+    FieldDefs = <    
+      item
+        Name = 'OID'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'time_left'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'order_type_id'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'time_entered'
+        DataType = ftDateTime
+        Precision = -1
+      end    
+      item
+        Name = 'order_status'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'order_description'
+        DataType = ftMemo
+        Precision = -1
+      end>
+    Database = SQLite3Connection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'SELECT * FROM ''orders'';'
+    )
+    Params = <>
+    Macros = <>
+    Left = 296
+    Top = 114
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = False
+    Database = SQLite3Connection1
+    Left = 294
+    Top = 181
   end
 end
