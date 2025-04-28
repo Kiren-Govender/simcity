@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  Menus, ActnList, DMService, tiObject, tiModelMediator;
+  Menus, ActnList, ComCtrls, DMService, tiObject, tiModelMediator;
 
 type
 
@@ -23,7 +23,7 @@ type
     Button2: TButton;
     Edit1: TEdit;
     Label1: TLabel;
-    ListBox1: TListBox;
+    lstOrderTypes: TListBox;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
@@ -34,10 +34,20 @@ type
     Separator2: TMenuItem;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
+    ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    procedure acAddExecute(Sender: TObject);
+    procedure acDeleteExecute(Sender: TObject);
+    procedure acModifyExecute(Sender: TObject);
+    procedure acMoveDownExecute(Sender: TObject);
+    procedure acMoveUpExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
+    FOrderTypeMediator : TtiModelMediator;
     procedure refresh;
     procedure SetupMediators;
   public
@@ -65,6 +75,31 @@ begin
   refresh;
 end;
 
+procedure TfrmMaintainOrderTypes.acAddExecute(Sender: TObject);
+begin
+
+end;
+
+procedure TfrmMaintainOrderTypes.acDeleteExecute(Sender: TObject);
+begin
+
+end;
+
+procedure TfrmMaintainOrderTypes.acModifyExecute(Sender: TObject);
+begin
+
+end;
+
+procedure TfrmMaintainOrderTypes.acMoveDownExecute(Sender: TObject);
+begin
+
+end;
+
+procedure TfrmMaintainOrderTypes.acMoveUpExecute(Sender: TObject);
+begin
+
+end;
+
 procedure TfrmMaintainOrderTypes.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
@@ -73,18 +108,27 @@ end;
 
 procedure TfrmMaintainOrderTypes.FormCreate(Sender: TObject);
 begin
-     refresh;
+  DMS.OrderTypeList.Read;
+  refresh;
      SetupMediators;
 end;
 
 procedure TfrmMaintainOrderTypes.refresh;
 begin
-  DMS.OrderTypesToListBox(ListBox1);
+  //DMS.OrderTypesToListBox(lstOrderTypes);
 end;
 
 procedure TfrmMaintainOrderTypes.SetupMediators;
 begin
-
+  if not Assigned(FOrderTypeMediator) then
+  begin
+    FOrderTypeMediator := TtiModelMediator.Create(self);
+    FORderTypeMediator.AddProperty('order_type_name', lstOrderTypes);
+    //FOrderTypeMediator.AddComposite('order_description(600);order_status(150)', sgOrders);
+    //FOrderMediator.AddComposite('', sgOrders);
+  end;
+  FOrderTypeMediator.Subject := DMS.OrderTypeList;
+  FOrderTypeMediator.Active := True;
 end;
 
 initialization

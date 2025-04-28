@@ -8,7 +8,8 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
   StdCtrls, Buttons, DBCtrls, ActnList, Grids, Spin, Menus, DBGrids, TAGraph,
   //simcity_facade,
-  DB, uConnectionUtil, DMService, app_service, orders,
+  DB,
+  uConnectionUtil, DMService, app_service, orders,
   form_add_new_order,
   //app_service,
   items, TIOPFManager, tiObject, tiModelMediator;
@@ -111,11 +112,12 @@ type
     FOrderList: TOrderList;
     FOrderMediator: TtiModelMediator;
     //ui_face: TUI_Facade;
-    procedure refresh;
+
     procedure findoidbyname(aname: string);
     procedure SetupMediators;
     procedure refreshOrderList;
   published
+        procedure refresh;
     property OrderList: TOrderList read FOrderList write FOrderList;
   public
 
@@ -147,8 +149,10 @@ end;
 
 procedure TfrmMain.ToolButton6Click(Sender: TObject);
 begin
-     Orderlist.Items[sgOrders.Row-1].Deleted:=True;;
+     Orderlist.Items[sgOrders.Row-1].Deleted:=True;
      OrderList.Save;
+     //self.refresh;
+     Orderlist.NotifyObservers;
 end;
 
 procedure TfrmMain.refresh;
@@ -233,9 +237,20 @@ procedure TfrmMain.acAddOrderExecute(Sender: TObject);
 var
   frm: Tfrm_add_new_order;
 begin
-  frm := Tfrm_add_new_order.Create(nil);
-  frm.showmodal;
-  self.refreshOrderList;
+  frm := Tfrm_add_new_order.Create(self);
+  try
+    if frm.showmodal = mrOK then
+  begin
+  //self.refreshOrderList;
+  OrderList.Clear;
+  OrderList.Read;
+  OrderList.NotifyObservers;
+
+  end;
+
+  finally
+  frm.free;
+  end;
 end;
 
 procedure TfrmMain.acMaintainItemTypesExecute(Sender: TObject);

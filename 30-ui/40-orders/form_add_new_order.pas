@@ -40,7 +40,11 @@ type
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
   private
+    FFormSender: TObject;
+    procedure SetFormSender(AValue: TObject);
+  private
     fOrderEntry : TOrderEntry;
+    property FormSender : TObject read FFormSender write SetFormSender;
     procedure PopulateItemsComboBox;
     procedure populateOrderTypesCombo;
     procedure SetupMediators;
@@ -97,13 +101,13 @@ var
 
 implementation
 
-
 {$R *.lfm}
 
 uses
   {simcity_facade
   ,}tiMediators
   ,tiListMediators
+  ,mainform
  ;
 
 { Tfrm_add_new_order }
@@ -115,6 +119,12 @@ begin
   //ui:=TUI_Facade.create;
   //ui.maintain_order_types;
   populateOrderTypesCombo;
+end;
+
+procedure Tfrm_add_new_order.SetFormSender(AValue: TObject);
+begin
+  if FFormSender=AValue then Exit;
+  FFormSender:=AValue;
 end;
 
 procedure Tfrm_add_new_order.PopulateItemsComboBox;
@@ -137,6 +147,7 @@ begin
   populateOrderTypesCombo;
   self.OrderEntry:=TOrderEntry.Create;
   SetupMediators;
+  self.FormSender:=Sender;
 end;
 
 procedure Tfrm_add_new_order.FormClose(Sender: TObject;
@@ -148,7 +159,7 @@ begin
   for i := 0 to High(fOrderEntry.FOrderEntryItems) do
     fOrderEntry.FOrderEntryItems[i].Free;
   SetLength(fOrderEntry.FOrderEntryItems, 0); // Clear the array
-  CloseAction := caFree;
+  //CloseAction := caFree;
 end;
 
 procedure Tfrm_add_new_order.Button2Click(Sender: TObject);
@@ -170,6 +181,11 @@ begin
   aorder.save;
   aorder.Free;
   self.close;
+  if formSender is TfrmMain then
+  begin
+    (formSender as TfrmMain).Refresh;
+  end;
+
 end;
 
 procedure Tfrm_add_new_order.Button1Click(Sender: TObject);
@@ -208,7 +224,7 @@ var
 begin
   cmbOrderTypes.clear;
   OrderTypeList := TOrderTypeList.create;
-  OrderTypeList.Read;
+  OrderTypeList.GetAllSortedByIndex;
   for a:= 0 to OrderTypeList.Count- 1 do
   begin
        cmbOrderTypes.Items.Add(OrderTypeList.Items[a].order_type_name);

@@ -131,8 +131,6 @@ procedure   Save; override;
 function    FindByOID(const AOID: string): integer;
 { Returns Number of objects retrieved. }
 function    GetLastOrderNumber: integer;
-{ Returns Number of objects retrieved. }
-function    GetAllSortedByIndex: integer;
 end;
 
 { Read Visitor for TOrder }
@@ -338,14 +336,6 @@ procedure   MapRowToObject; override;
 procedure   SetupParams; override;
 end;
 
-{ TOrderTypeList_GetAllSortedByIndexVis }
-TOrderTypeList_GetAllSortedByIndexVis = class(TtiMapParameterListReadVisitor)
-protected
-function    AcceptVisitor: Boolean; override;
-procedure   MapRowToObject; override;
-procedure   SetupParams; override;
-end;
-
 
 { Visitor Manager Registrations }
 procedure RegisterVisitors;
@@ -428,7 +418,6 @@ GTIOPFManager.VisitorManager.RegisterVisitor('TOrderTypesave', TOrderType_Save);
 GTIOPFManager.VisitorManager.RegisterVisitor('TOrderTypedelete', TOrderType_Delete);
 GTIOPFManager.VisitorManager.RegisterVisitor('TOrderTypecreate', TOrderType_Create);
 GTIOPFManager.VisitorManager.RegisterVisitor('TOrderTypeList_GetLastOrderNumberVis', TOrderTypeList_GetLastOrderNumberVis);
-GTIOPFManager.VisitorManager.RegisterVisitor('TOrderTypeList_GetAllSortedByIndexVis', TOrderTypeList_GetAllSortedByIndexVis);
 
 end;
 
@@ -640,7 +629,7 @@ if self.Count > 0 then
 self.Clear;
 
 Criteria.ClearAll;
-Criteria.AddEqualTo('OID', AOID);
+Criteria.AddEqualTo(OID, AOID);
 Read;
 result := Count;
 end;
@@ -652,22 +641,9 @@ self.Clear;
 
 Params.Clear;
 self.SQL := 
-' SELECT * FROM order_type ORDER BY  ' + 
+' SELECT order_type_index FROM order_type ORDER BY  ' + 
 ' order_type_index DESC LIMIT 1'; 
 GTIOPFManager.VisitorManager.Execute('TOrderTypeList_GetLastOrderNumberVis', self);
-result := self.Count;
-end;
-
-function TOrderTypeList.GetAllSortedByIndex: integer;
-begin
-if self.Count > 0 then
-self.Clear;
-
-Params.Clear;
-self.SQL := 
-' SELECT * FROM order_type ORDER BY  ' + 
-' order_type_index ASC'; 
-GTIOPFManager.VisitorManager.Execute('TOrderTypeList_GetAllSortedByIndexVis', self);
 result := self.Count;
 end;
 
@@ -1445,34 +1421,6 @@ TtiObjectList(Visited).Add(lObj);
 end;
 
 procedure TOrderTypeList_GetLastOrderNumberVis.SetupParams;
-var
-lCtr: integer;
-lParam: TSelectParam;
-lList: TtiMappedFilteredObjectList;
-begin
-lList := TtiMappedFilteredObjectList(Visited);
-
-end;
-
-{ TOrderTypeList_GetAllSortedByIndexVis }
-function TOrderTypeList_GetAllSortedByIndexVis.AcceptVisitor: Boolean;
-begin
-result := (Visited.ObjectState = posEmpty);
-end;
-
-procedure TOrderTypeList_GetAllSortedByIndexVis.MapRowToObject;
-var
-lObj: TOrderType;
-begin
-lObj := TOrderType.Create;
-lObj.OID.AssignFromTIQuery('OID',Query);
-lObj.order_type_name := Query.FieldAsString['order_type_name'];
-lObj.order_type_index := Query.FieldAsInteger['order_type_index'];
-lObj.ObjectState := posClean;
-TtiObjectList(Visited).Add(lObj);
-end;
-
-procedure TOrderTypeList_GetAllSortedByIndexVis.SetupParams;
 var
 lCtr: integer;
 lParam: TSelectParam;

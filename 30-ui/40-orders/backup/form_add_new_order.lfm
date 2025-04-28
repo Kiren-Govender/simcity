@@ -178,6 +178,7 @@ object frm_add_new_order: Tfrm_add_new_order
     Top = 328
     Width = 75
     Caption = 'Save Order'
+    ModalResult = 1
     TabOrder = 3
     OnClick = Button2Click
   end
@@ -187,6 +188,7 @@ object frm_add_new_order: Tfrm_add_new_order
     Top = 328
     Width = 75
     Caption = 'Cancel'
+    ModalResult = 2
     TabOrder = 4
   end
   object Label4: TLabel

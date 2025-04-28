@@ -1,4 +1,6 @@
 object dmServiceModule: TdmServiceModule
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 405
   HorizontalOffset = 320
@@ -7546,7 +7548,7 @@ object dmServiceModule: TdmServiceModule
     }
   end
   object SQLite3Connection1: TSQLite3Connection
-    Connected = True
+    Connected = False
     LoginPrompt = False
     DatabaseName = 'E:\30-39-development-repos\30-personal-testbed-repos\30.500-simcity\simcity.db'
     KeepConnection = False
@@ -7589,7 +7591,6 @@ object dmServiceModule: TdmServiceModule
         DataType = ftMemo
         Precision = -1
       end>
-    Active = True
     Database = SQLite3Connection1
     Transaction = SQLTransaction1
     SQL.Strings = (
@@ -7601,7 +7602,7 @@ object dmServiceModule: TdmServiceModule
     Top = 114
   end
   object SQLTransaction1: TSQLTransaction
-    Active = True
+    Active = False
     Database = SQLite3Connection1
     Left = 294
     Top = 181

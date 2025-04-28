@@ -1,4 +1,6 @@
 object dmServiceModule: TdmServiceModule
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 405
   HorizontalOffset = 320

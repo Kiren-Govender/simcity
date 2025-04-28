@@ -94,12 +94,30 @@
         <class base-class="TOrderType" base-class-parent="TtiObject" auto-map="true" auto-create-list="true">
           <class-props>
             <prop name="order_type_name" type="String" />
+            <prop name="order_type_index" type="Integer" />
           </class-props>
           <validators />
           <mapping table="order_type" pk="OID" pk-field="OID" oid-type="string">
             <prop-map prop="order_type_name" field="order_type_name" type="String" />
+            <prop-map prop="order_type_index" field="order_type_index" type="Integer" />
           </mapping>
-          <selections />
+          <selections>
+            <select name="GetLastOrderNumber">
+              <sql>
+                <![CDATA[SELECT * FROM order_type 
+ORDER BY order_type_index DESC
+LIMIT 1]]>
+              </sql>
+              <params />
+            </select>
+            <select name="GetAllSortedByIndex">
+              <sql>
+                <![CDATA[SELECT * FROM order_type 
+ORDER BY order_type_index ASC]]>
+              </sql>
+              <params />
+            </select>
+          </selections>
         </class>
       </classes>
     </unit>
