@@ -103,12 +103,13 @@ end;
 procedure TfrmMaintainOrderTypes.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
+  DMS.RefreshOrderTypeList;
     CloseAction:=cafree;
 end;
 
 procedure TfrmMaintainOrderTypes.FormCreate(Sender: TObject);
 begin
-  DMS.OrderTypeList.Read;
+  DMS.OrderTypeList.GetAllSortedByIndex;
   refresh;
      SetupMediators;
 end;
@@ -120,7 +121,7 @@ end;
 
 procedure TfrmMaintainOrderTypes.SetupMediators;
 begin
-  if not Assigned(FOrderTypeMediator) then
+ { if not Assigned(FOrderTypeMediator) then
   begin
     FOrderTypeMediator := TtiModelMediator.Create(self);
     FORderTypeMediator.AddProperty('order_type_name', lstOrderTypes);
@@ -128,7 +129,7 @@ begin
     //FOrderMediator.AddComposite('', sgOrders);
   end;
   FOrderTypeMediator.Subject := DMS.OrderTypeList;
-  FOrderTypeMediator.Active := True;
+  FOrderTypeMediator.Active := True;}
 end;
 
 initialization

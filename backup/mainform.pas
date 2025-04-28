@@ -174,6 +174,7 @@ begin
   end;
   OrderList.Clear;
   OrderList.Read;
+  OrderList.NotifyObservers;
 end;
 
 procedure TfrmMain.findoidbyname(aname: string);

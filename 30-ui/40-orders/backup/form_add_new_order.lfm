@@ -47,6 +47,7 @@ object frm_add_new_order: Tfrm_add_new_order
   }
   Position = poMainFormCenter
   LCLVersion = '4.0.0.3'
+  Visible = True
   OnClose = FormClose
   OnCreate = FormCreate
   object cmbOrderTypes: TComboBox
@@ -59,6 +60,7 @@ object frm_add_new_order: Tfrm_add_new_order
     ReadOnly = True
     TabOrder = 0
     OnChange = cmbOrderTypesChange
+    OnDropDown = cmbOrderTypesDropDown
   end
   object Label1: TLabel
     Left = 24
@@ -207,6 +209,5 @@ object frm_add_new_order: Tfrm_add_new_order
     Images = dmApplicationService.ImageList1
     ImageIndex = 719
     ShowCaption = False
-    OnClick = SpeedButton1Click
   end
 end

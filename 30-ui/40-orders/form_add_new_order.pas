@@ -32,15 +32,15 @@ type
     SpinEdit1: TSpinEdit;
     StringGrid1: TStringGrid;
     TimeEdit1: TTimeEdit;
-    procedure acMaintainOrderTypesExecute(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure cmbOrderTypesChange(Sender: TObject);
+    procedure cmbOrderTypesDropDown(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
   private
     FFormSender: TObject;
+    //FOrderTypeMediator : TtiModelMediator;
     procedure SetFormSender(AValue: TObject);
   private
     fOrderEntry : TOrderEntry;
@@ -56,7 +56,7 @@ type
 
   { TOrderEntry }
 
-  TOrderEntry = class(TObject)
+  TOrderEntry = class(TtiObject)
   private
     Fdeadline: TDatetime;
     Forderdescription: string;
@@ -85,7 +85,7 @@ type
 
   { TOrderEntryItem }
 
-  TOrderEntryItem = class(TObject)
+  TOrderEntryItem = class(TtiObject)
   private
     Fitemid: string;
     Fquantity: integer;
@@ -112,15 +112,6 @@ uses
 
 { Tfrm_add_new_order }
 
-procedure Tfrm_add_new_order.SpeedButton1Click(Sender: TObject);
-//var
- // ui : TUI_Facade;
-begin
-  //ui:=TUI_Facade.create;
-  //ui.maintain_order_types;
-  populateOrderTypesCombo;
-end;
-
 procedure Tfrm_add_new_order.SetFormSender(AValue: TObject);
 begin
   if FFormSender=AValue then Exit;
@@ -143,11 +134,12 @@ end;
 
 procedure Tfrm_add_new_order.FormCreate(Sender: TObject);
 begin
+  self.Visible:=false;
   PopulateItemsComboBox;
   populateOrderTypesCombo;
   self.OrderEntry:=TOrderEntry.Create;
   SetupMediators;
-  self.FormSender:=Sender;
+  //self.FormSender:=Sender;
 end;
 
 procedure Tfrm_add_new_order.FormClose(Sender: TObject;
@@ -181,10 +173,7 @@ begin
   aorder.save;
   aorder.Free;
   self.close;
-  if formSender is TfrmMain then
-  begin
-    (formSender as TfrmMain).Refresh;
-  end;
+
 
 end;
 
@@ -207,14 +196,14 @@ begin
   StringGrid1.Cells[1, a+1] := IntToStr(fOrderEntry.FOrderEntryItems[a].quantity);
 end;
 
-procedure Tfrm_add_new_order.acMaintainOrderTypesExecute(Sender: TObject);
-begin
-
-end;
-
 procedure Tfrm_add_new_order.cmbOrderTypesChange(Sender: TObject);
 begin
   self.OrderEntry.ordertype:=cmbOrderTypes.text;
+end;
+
+procedure Tfrm_add_new_order.cmbOrderTypesDropDown(Sender: TObject);
+begin
+  populateOrderTypesCombo;
 end;
 
 procedure Tfrm_add_new_order.populateOrderTypesCombo;
@@ -233,7 +222,15 @@ end;
 
 procedure Tfrm_add_new_order.SetupMediators;
 begin
-
+  {if not Assigned(FOrderTypeMediator) then
+  begin
+    FOrderTypeMediator := TtiModelMediator.Create(self);
+    FORderTypeMediator.AddProperty('order_type_name', cmbOrderTypes).ValueList:=DMS.OrderTypeList;
+    //FOrderTypeMediator.AddComposite('order_description(600);order_status(150)', sgOrders);
+    //FOrderMediator.AddComposite('', sgOrders);
+  end;
+  FOrderTypeMediator.Subject := OrderEntry;
+  FOrderTypeMediator.Active := True; }
 end;
 
 function Tfrm_add_new_order.GenerateOrderDescription: string;
