@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 236
+  Left = 303
   Height = 401
-  Top = 129
+  Top = 215
   Width = 780
   Caption = 'SimCity Build-It Planning Tool - version 1.0.0'
   ClientHeight = 401

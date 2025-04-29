@@ -439,6 +439,9 @@ object frmMain: TfrmMain
       object MenuItem42: TMenuItem
         Action = dmApplicationService.acMaintainOrderTypes
       end
+      object MenuItem43: TMenuItem
+        Action = dmApplicationService.acMaintainItemTypes
+      end
     end
     object MenuItem1: TMenuItem
       Caption = '&Window'

@@ -47,7 +47,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
-    FOrderTypeMediator : TtiModelMediator;
+    FOrderTypeMediator: TtiModelMediator;
     procedure refresh;
     procedure SetupMediators;
   public
@@ -63,55 +63,65 @@ implementation
 
 uses
   tiMediators
-  ,tiListMediators
- ;
+  , tiListMediators;
 
-{ TfrmMaintainOrderTypes }
+  { TfrmMaintainOrderTypes }
 
 procedure TfrmMaintainOrderTypes.Button1Click(Sender: TObject);
 begin
   //showmessage('Saving Order Type');
-  DMS.SaveOrderType(edit1.text);
+  DMS.SaveOrderType(edit1.Text);
   refresh;
 end;
 
 procedure TfrmMaintainOrderTypes.acAddExecute(Sender: TObject);
 begin
-
+  if edit1.Text <> '' then
+    DMS.SaveOrderType(edit1.Text)
+  else
+    ShowMessage('YOu need to add a unique Order Type');
+  refresh;
 end;
 
 procedure TfrmMaintainOrderTypes.acDeleteExecute(Sender: TObject);
 begin
+  // get selected index
+  // Find OID of selected item
+  // Delete OID
 
+  DMS.OrderTypeList.Items[lstOrderTypes.ItemIndex].Deleted := True;
+  DMS.OrderTypeList.Save;
+  DMS.RefreshOrderTypeList;
+  DMS.OrderTypeList.NotifyObservers;
 end;
 
 procedure TfrmMaintainOrderTypes.acModifyExecute(Sender: TObject);
 begin
-
 end;
 
 procedure TfrmMaintainOrderTypes.acMoveDownExecute(Sender: TObject);
 begin
 
+  DMS.OrderTypeIndex_down(lstOrderTypes.ItemIndex);
 end;
 
 procedure TfrmMaintainOrderTypes.acMoveUpExecute(Sender: TObject);
 begin
-
+    DMS.OrderTypeIndex_up(lstOrderTypes.ItemIndex);
 end;
 
 procedure TfrmMaintainOrderTypes.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
   DMS.RefreshOrderTypeList;
-    CloseAction:=cafree;
+  CloseAction := cafree;
 end;
 
 procedure TfrmMaintainOrderTypes.FormCreate(Sender: TObject);
 begin
   DMS.OrderTypeList.GetAllSortedByIndex;
   refresh;
-     SetupMediators;
+  SetupMediators;
 end;
 
 procedure TfrmMaintainOrderTypes.refresh;
@@ -121,7 +131,7 @@ end;
 
 procedure TfrmMaintainOrderTypes.SetupMediators;
 begin
- if not Assigned(FOrderTypeMediator) then
+  if not Assigned(FOrderTypeMediator) then
   begin
     FOrderTypeMediator := TtiModelMediator.Create(self);
     FORderTypeMediator.AddProperty('order_type_name', lstOrderTypes);
@@ -137,4 +147,3 @@ initialization
   RegisterFallBackListmediators;
 
 end.
-
