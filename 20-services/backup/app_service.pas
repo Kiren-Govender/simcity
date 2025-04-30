@@ -11,6 +11,8 @@ uses
   , form_maintain_item_types
   , form_add_new_order
   , form_maintain_order_types
+  , form_add_new_order_type
+  , form_modify_order_type
   ;
 
 type
@@ -42,6 +44,8 @@ type
     procedure maintain_item_types;
     function add_new_order : integer;
     procedure maintain_order_types;
+    procedure add_new_order_type;
+    procedure modify_order_type;
   end;
 
 var
@@ -150,6 +154,22 @@ var
    frm: TfrmMaintainOrderTypes;
 begin
    frm:= TfrmMaintainOrderTypes.create(nil);
+   frm.showmodal;
+end;
+
+procedure TdmApplicationService.add_new_order_type;
+var
+   frm: TfrmAddNewOrderType;
+begin
+   frm:= TfrmAddNewOrderType.create(nil);
+   frm.showmodal;
+end;
+
+procedure TdmApplicationService.modify_order_type;
+var
+   frm: TfrmModifyOrderType;
+begin
+   frm:= TfrmModifyOrderType.create(nil);
    frm.showmodal;
 end;
 

@@ -159,6 +159,18 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="DMService"/>
       </Unit>
+      <Unit>
+        <Filename Value="30-ui\40-orders\form_add_new_order_type.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAddNewOrderType"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\40-orders\form_modify_order_type.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmModifyOrderType"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

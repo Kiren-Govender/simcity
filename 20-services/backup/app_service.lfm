@@ -7550,13 +7550,13 @@ object dmApplicationService: TdmApplicationService
     end
     object acMaintainItemTypes: TAction
       Category = 'Item'
-      Caption = 'acMaintainItemTypes'
+      Caption = 'Maintain Item Types'
       ImageIndex = 719
       OnExecute = acMaintainItemTypesExecute
     end
     object acMaintainOrderTypes: TAction
       Category = 'Order'
-      Caption = 'acMaintainOrderTypes'
+      Caption = 'Maintain Order Types'
       ImageIndex = 719
       OnExecute = acMaintainOrderTypesExecute
     end

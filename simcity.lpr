@@ -14,7 +14,8 @@ uses
   app_service, mainform, simcity_data_facade,
   simcity_facade, items, Orders, form_add_new_item, form_update_item,
   uDarkStyleParams, uDarkStyleSchemes, uMetaDarkStyle, form_maintain_item_types,
-  form_add_new_order, form_maintain_order_types, abstract_form ;
+  form_add_new_order, form_maintain_order_types, abstract_form, 
+form_add_new_order_type, form_modify_order_type ;
 
 {$R *.res}
 
@@ -34,8 +35,8 @@ begin
 
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
-
-
+  Application.CreateForm(TfrmAddNewOrderType, frmAddNewOrderType);
+  Application.CreateForm(TfrmModifyOrderType, frmModifyOrderType);
   Application.Run;
 end.
 

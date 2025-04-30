@@ -133,6 +133,8 @@ function    FindByOID(const AOID: string): integer;
 function    GetLastOrderNumber: integer;
 { Returns Number of objects retrieved. }
 function    GetAllSortedByIndex: integer;
+{ Returns Number of objects retrieved. }
+function    FindUniqueItemName( aname: String): integer;
 end;
 
 { Read Visitor for TOrder }
@@ -346,6 +348,14 @@ procedure   MapRowToObject; override;
 procedure   SetupParams; override;
 end;
 
+{ TOrderTypeList_FindUniqueItemNameVis }
+TOrderTypeList_FindUniqueItemNameVis = class(TtiMapParameterListReadVisitor)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   MapRowToObject; override;
+procedure   SetupParams; override;
+end;
+
 
 { Visitor Manager Registrations }
 procedure RegisterVisitors;
@@ -429,6 +439,7 @@ GTIOPFManager.VisitorManager.RegisterVisitor('TOrderTypedelete', TOrderType_Dele
 GTIOPFManager.VisitorManager.RegisterVisitor('TOrderTypecreate', TOrderType_Create);
 GTIOPFManager.VisitorManager.RegisterVisitor('TOrderTypeList_GetLastOrderNumberVis', TOrderTypeList_GetLastOrderNumberVis);
 GTIOPFManager.VisitorManager.RegisterVisitor('TOrderTypeList_GetAllSortedByIndexVis', TOrderTypeList_GetAllSortedByIndexVis);
+GTIOPFManager.VisitorManager.RegisterVisitor('TOrderTypeList_FindUniqueItemNameVis', TOrderTypeList_FindUniqueItemNameVis);
 
 end;
 
@@ -668,6 +679,20 @@ self.SQL :=
 ' SELECT * FROM order_type ORDER BY  ' + 
 ' order_type_index ASC'; 
 GTIOPFManager.VisitorManager.Execute('TOrderTypeList_GetAllSortedByIndexVis', self);
+result := self.Count;
+end;
+
+function TOrderTypeList.FindUniqueItemName( aname: String): integer;
+begin
+if self.Count > 0 then
+self.Clear;
+
+Params.Clear;
+AddParam('aname', 'aname', ptString, aname);
+self.SQL := 
+' SELECT * FROM order_type WHERE order_type_name =  ' + 
+' :aname ORDER BY order_type_index ASC'; 
+GTIOPFManager.VisitorManager.Execute('TOrderTypeList_FindUniqueItemNameVis', self);
 result := self.Count;
 end;
 
@@ -1480,6 +1505,36 @@ lList: TtiMappedFilteredObjectList;
 begin
 lList := TtiMappedFilteredObjectList(Visited);
 
+end;
+
+{ TOrderTypeList_FindUniqueItemNameVis }
+function TOrderTypeList_FindUniqueItemNameVis.AcceptVisitor: Boolean;
+begin
+result := (Visited.ObjectState = posEmpty);
+end;
+
+procedure TOrderTypeList_FindUniqueItemNameVis.MapRowToObject;
+var
+lObj: TOrderType;
+begin
+lObj := TOrderType.Create;
+lObj.OID.AssignFromTIQuery('OID',Query);
+lObj.order_type_name := Query.FieldAsString['order_type_name'];
+lObj.order_type_index := Query.FieldAsInteger['order_type_index'];
+lObj.ObjectState := posClean;
+TtiObjectList(Visited).Add(lObj);
+end;
+
+procedure TOrderTypeList_FindUniqueItemNameVis.SetupParams;
+var
+lCtr: integer;
+lParam: TSelectParam;
+lList: TtiMappedFilteredObjectList;
+begin
+lList := TtiMappedFilteredObjectList(Visited);
+
+lParam := TSelectParam(lList.Params.FindByProps(['ParamName'], ['aname']));
+Query.ParamAsString['aname'] := lParam.Value;
 end;
 
 initialization

@@ -27,10 +27,12 @@ type
   private
     fOrderTypeList: TOrderTypeList;
     // Increments the last order_type_index
-    function GetNextOrderTypeIndex: integer;
+
   published
     property OrderTypeList: TOrderTypeList read fOrderTypeList;
     procedure RefreshOrderTypeList;
+        function GetNextOrderTypeIndex: integer;
+        function IsOrderTypeNameUnique(aname : string): boolean;
   public
     // Order Types
     procedure SaveOrderType(type_name: string);
@@ -84,6 +86,19 @@ begin
     Result := lOrderTypeList.Items[0].order_type_index + 1;
   finally
     lORderTypeList.Free;
+  end;
+end;
+
+function TdmServiceModule.IsOrderTypeNameUnique(aname: string): boolean;
+var
+  fOrder_type_list: TOrderTypeList;
+begin
+  try
+    fOrder_type_list := TOrderTypeList.Create;
+    fOrder_type_list.FindUniqueItemName(aname);
+  finally
+    Result := fOrder_type_list.Count = 0;
+    fOrder_type_list.Free;
   end;
 end;
 
@@ -151,8 +166,10 @@ var
 begin
   a:=OrderTypeList.Items[aindex].order_type_index;
   b:=OrderTypeList.Items[aindex-1].order_type_index;
-  showmessage(inttostr(a)+':'+inttostr(b));
+  //showmessage(inttostr(a)+':'+inttostr(b));
+  OrderTypeList.Items[aindex].ObjectState:=posUpdate;
   ORderTypeList.Items[aindex].order_type_index:=b;
+  OrderTypeList.Items[aindex-1].ObjectState:=posUpdate;
   OrderTypeList.Items[aindex-1].order_type_index:=a;
   OrderTypeList.Save;
   RefreshOrderTypeList;
@@ -165,15 +182,15 @@ var
 begin
   a:=OrderTypeList.Items[aindex].order_type_index;
   b:=OrderTypeList.Items[aindex+1].order_type_index;
-  showmessage(inttostr(a)+':'+inttostr(b));
+  //showmessage(inttostr(a)+':'+inttostr(b));
+    OrderTypeList.Items[aindex].ObjectState:=posUpdate;
   ORderTypeList.Items[aindex].order_type_index:=b;
+    OrderTypeList.Items[aindex+1].ObjectState:=posUpdate;
   OrderTypeList.Items[aindex+1].order_type_index:=a;
   OrderTypeList.Save;
   RefreshOrderTypeList;
   OrderTypeList.NotifyObservers;
 end;
-
-
 
 procedure TdmServiceModule.OrderTypesToListBox(listbox: TListBox);
 var

@@ -117,6 +117,16 @@ ORDER BY order_type_index ASC]]>
               </sql>
               <params />
             </select>
+            <select name="FindUniqueItemName">
+              <sql>
+                <![CDATA[SELECT * FROM order_type
+WHERE order_type_name = :aname 
+ORDER BY order_type_index ASC]]>
+              </sql>
+              <params>
+                <param name="aname" pass-by="" sql-param="aname" type="String" />
+              </params>
+            </select>
           </selections>
         </class>
       </classes>

@@ -1,7 +1,7 @@
 object frmMaintainOrderTypes: TfrmMaintainOrderTypes
-  Left = 399
+  Left = 386
   Height = 343
-  Top = 273
+  Top = 214
   Width = 457
   Caption = 'Maintain Order Types'
   ClientHeight = 343
@@ -9,6 +9,7 @@ object frmMaintainOrderTypes: TfrmMaintainOrderTypes
   LCLVersion = '4.0.0.3'
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   object lstOrderTypes: TListBox
     Left = 0
     Height = 319
@@ -17,6 +18,7 @@ object frmMaintainOrderTypes: TfrmMaintainOrderTypes
     ItemHeight = 0
     PopupMenu = PopupMenu1
     TabOrder = 0
+    OnClick = lstOrderTypesClick
   end
   object SpeedButton1: TSpeedButton
     Left = 176
@@ -38,7 +40,7 @@ object frmMaintainOrderTypes: TfrmMaintainOrderTypes
     ImageIndex = 59
     ShowCaption = False
   end
-  object Edit1: TEdit
+  object edtDescription: TEdit
     Left = 266
     Height = 23
     Top = 40
@@ -52,21 +54,23 @@ object frmMaintainOrderTypes: TfrmMaintainOrderTypes
     Width = 60
     Caption = 'Description'
   end
-  object Button1: TButton
+  object btnSave: TButton
     Left = 266
     Height = 25
     Top = 74
     Width = 75
     Caption = '&Save'
+    ModalResult = 1
     TabOrder = 2
-    OnClick = Button1Click
+    OnClick = btnSaveClick
   end
-  object Button2: TButton
+  object btnCancel: TButton
     Left = 364
     Height = 25
     Top = 74
     Width = 75
     Caption = '&Cancel'
+    ModalResult = 2
     TabOrder = 3
   end
   object ToolBar1: TToolBar

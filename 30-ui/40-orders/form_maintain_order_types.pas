@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  Menus, ActnList, ComCtrls, DMService, tiObject, tiModelMediator;
+  Menus, ActnList, ComCtrls, DMService, tiObject, tiModelMediator, Orders, TIOPFManager;
 
 type
 
@@ -19,9 +19,9 @@ type
     acMoveUp: TAction;
     acMoveDown: TAction;
     ActionList1: TActionList;
-    Button1: TButton;
-    Button2: TButton;
-    Edit1: TEdit;
+    btnSave: TButton;
+    btnCancel: TButton;
+    edtDescription: TEdit;
     Label1: TLabel;
     lstOrderTypes: TListBox;
     MenuItem1: TMenuItem;
@@ -43,11 +43,15 @@ type
     procedure acModifyExecute(Sender: TObject);
     procedure acMoveDownExecute(Sender: TObject);
     procedure acMoveUpExecute(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnSaveClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure lstOrderTypesClick(Sender: TObject);
   private
     FOrderTypeMediator: TtiModelMediator;
+    FOrderTypeNameMEdiator: TtiModelMediator;
+    fOrderType: TOrderType;
     procedure refresh;
     procedure SetupMediators;
   public
@@ -63,32 +67,57 @@ implementation
 
 uses
   tiMediators
+  , app_service
   , tiListMediators;
 
   { TfrmMaintainOrderTypes }
 
-procedure TfrmMaintainOrderTypes.Button1Click(Sender: TObject);
+procedure TfrmMaintainOrderTypes.btnSaveClick(Sender: TObject);
 begin
-  //showmessage('Saving Order Type');
-  DMS.SaveOrderType(edit1.Text);
-  refresh;
+  fOrderType.objectstate := posUpdate;
+  fOrderType.order_type_name := edtDescription.Text;
+  fOrderType.save;
+
+  //if fOrderType.order_type_name = edtDescription.Text;
+  DMS.RefreshOrderTypeList;
+  DMS.OrderTypeList.NotifyObservers;
 end;
 
 procedure TfrmMaintainOrderTypes.acAddExecute(Sender: TObject);
+var
+  a : integer;
 begin
-  if edit1.Text <> '' then
-    DMS.SaveOrderType(edit1.Text)
-  else
-    ShowMessage('YOu need to add a unique Order Type');
-  refresh;
+
+  a:= lstOrderTypes.ItemIndex;
+  try
+      DMAPP.add_new_order_type;
+  finally
+    DMS.RefreshOrderTypeList;
+    lstOrderTypes.ItemIndex:=a;
+    self.lstOrderTypesClick(self);
+  end;
+
+
+
+
+
+  // There is an error in the logic where the uniqueness of the order_type_name is not checked
+  {if assigned(fOrderType) then
+    fOrderType.Free;
+  fOrderType := TOrderType.Create;
+  edtDescription.Clear;
+  edtDescription.SetFocus;
+  fOrderType.objectstate := posCreate;
+  gTiopfManager.DefaultOIDGenerator.AssignNextOID(fOrderType.OID);
+  fOrderType.order_type_name := edtDescription.Text;
+  fOrderType.save;
+
+  DMS.RefreshOrderTypeList;
+  DMS.OrderTypeList.NotifyObservers; }
 end;
 
 procedure TfrmMaintainOrderTypes.acDeleteExecute(Sender: TObject);
 begin
-  // get selected index
-  // Find OID of selected item
-  // Delete OID
-
   DMS.OrderTypeList.Items[lstOrderTypes.ItemIndex].Deleted := True;
   DMS.OrderTypeList.Save;
   DMS.RefreshOrderTypeList;
@@ -96,37 +125,85 @@ begin
 end;
 
 procedure TfrmMaintainOrderTypes.acModifyExecute(Sender: TObject);
+var
+  a : integer;
 begin
+  {fOrderType.objectstate := posUpdate;
+  fOrderType.order_type_name := edtDescription.Text;
+  fOrderType.save;
+  DMS.RefreshOrderTypeList;
+  DMS.OrderTypeList.NotifyObservers;}
+  a:= lstOrderTypes.ItemIndex;
+  try
+    DMAPP.modify_order_type(DMS.OrderTypeList.Items[
+      lstOrderTypes.ItemIndex].OID.AsString);
+  finally
+    DMS.RefreshOrderTypeList;
+    lstOrderTypes.ItemIndex:=a;
+    self.lstOrderTypesClick(self);
+  end;
 end;
 
 procedure TfrmMaintainOrderTypes.acMoveDownExecute(Sender: TObject);
+var
+  a : integer;
 begin
-
-  DMS.OrderTypeIndex_down(lstOrderTypes.ItemIndex);
+  a:=lstOrderTypes.ItemIndex;
+  try
+    DMS.OrderTypeIndex_down(a);
+  finally
+    lstOrderTypes.ItemIndex:=a+1;
+  end;
 end;
 
 procedure TfrmMaintainOrderTypes.acMoveUpExecute(Sender: TObject);
+var
+  a : integer;
 begin
-    DMS.OrderTypeIndex_up(lstOrderTypes.ItemIndex);
+  a:=lstOrderTypes.ItemIndex;
+  try
+    DMS.OrderTypeIndex_up(a);
+  finally
+    lstOrderTypes.ItemIndex:=a-1;
+  end;
 end;
 
 procedure TfrmMaintainOrderTypes.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
   DMS.RefreshOrderTypeList;
+  fOrderType.Free;
   CloseAction := cafree;
 end;
 
 procedure TfrmMaintainOrderTypes.FormCreate(Sender: TObject);
 begin
   DMS.OrderTypeList.GetAllSortedByIndex;
-  refresh;
+  fOrderType := TOrderType.Create;
   SetupMediators;
+  DMS.RefreshOrderTypeList;
+  DMS.OrderTypeList.NotifyObservers;
+  lstORderTypes.ItemIndex := 0;
+  self.lstOrderTypesClick(self);
+end;
+
+procedure TfrmMaintainOrderTypes.FormShow(Sender: TObject);
+begin
+  edtDescription.SetFocus;
+end;
+
+procedure TfrmMaintainOrderTypes.lstOrderTypesClick(Sender: TObject);
+begin
+  fOrderType.ObjectState := posPK;
+  fOrderType.OID.AsString :=
+    DMS.OrderTypeList.Items[lstordertypes.ItemIndex].OID.AsString;
+  fOrderType.Read;
 end;
 
 procedure TfrmMaintainOrderTypes.refresh;
 begin
-  //DMS.OrderTypesToListBox(lstOrderTypes);
+  DMS.RefreshOrderTypeList;
+  DMS.OrderTypeList.NotifyObservers;
 end;
 
 procedure TfrmMaintainOrderTypes.SetupMediators;
@@ -135,11 +212,22 @@ begin
   begin
     FOrderTypeMediator := TtiModelMediator.Create(self);
     FORderTypeMediator.AddProperty('order_type_name', lstOrderTypes);
+    //FOrderTypeMediator.AddProperty('order_type_name', edtDescription);
     //FOrderTypeMediator.AddComposite('order_description(600);order_status(150)', sgOrders);
     //FOrderMediator.AddComposite('', sgOrders);
   end;
   FOrderTypeMediator.Subject := DMS.OrderTypeList;
   FOrderTypeMediator.Active := True;
+
+  if not Assigned(FOrderTypeNameMEdiator) then
+  begin
+    FOrderTypeNameMEdiator := TtiModelMediator.Create(self);
+    FOrderTypeNameMEdiator.AddProperty('order_type_name', edtDescription);
+    //FOrderTypeMediator.AddComposite('order_description(600);order_status(150)', sgOrders);
+    //FOrderMediator.AddComposite('', sgOrders);
+  end;
+  FOrderTypeNameMEdiator.Subject := fOrderType;
+  FOrderTypeNameMEdiator.Active := True;
 end;
 
 initialization

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, StdCtrls, ActnList, Controls, Orders, tiobject,
-  TiopfManager, SQLite3Conn, SQLDB, dialogs;
+  TiopfManager, SQLite3Conn, SQLDB, Dialogs;
 
 type
 
@@ -27,18 +27,20 @@ type
   private
     fOrderTypeList: TOrderTypeList;
     // Increments the last order_type_index
-    function GetNextOrderTypeIndex: integer;
+
   published
     property OrderTypeList: TOrderTypeList read fOrderTypeList;
     procedure RefreshOrderTypeList;
+    function GetNextOrderTypeIndex: integer;
+    function IsOrderTypeNameUnique(aname: string): boolean;
   public
     // Order Types
     procedure SaveOrderType(type_name: string);
     procedure ModifyOrderType(aoid: string; type_name: string);
     procedure DeleteOrderType(aoid: string);
     procedure ChangeOrderIndex(aoid: string; index_change: integer);
-    procedure OrderTypeIndex_up(aindex : integer);
-    procedure OrderTypeIndex_down(aindex : integer);
+    procedure OrderTypeIndex_up(aindex: integer);
+    procedure OrderTypeIndex_down(aindex: integer);
     procedure OrderTypesToListBox(listbox: TListBox);
     // Order
     procedure SaveOrder(order_type, description: string);
@@ -87,6 +89,19 @@ begin
   end;
 end;
 
+function TdmServiceModule.IsOrderTypeNameUnique(aname: string): boolean;
+var
+  fOrder_type_list: TOrderTypeList;
+begin
+  try
+    fOrder_type_list := TOrderTypeList.Create;
+    fOrder_type_list.FindUniqueItemName(aname);
+  finally
+    Result := fOrder_type_list.Count = 0;
+    fOrder_type_list.Free;
+  end;
+end;
+
 procedure TdmServiceModule.RefreshOrderTypeList;
 begin
   self.OrderTypeList.GetAllSortedByIndex;
@@ -117,9 +132,9 @@ begin
   ordertype := TOrderType.Create;
   try
     ordertype.ObjectState := posPK;
-    ordertype.OID.AsString:=aoid;
+    ordertype.OID.AsString := aoid;
     ordertype.Read;
-    ordertype.ObjectState:=posUpdate;
+    ordertype.ObjectState := posUpdate;
     ordertype.order_type_name := type_name;
     ordertype.Save;
   finally
@@ -147,15 +162,15 @@ end;
 
 procedure TdmServiceModule.OrderTypeIndex_up(aindex: integer);
 var
-   a, b: integer;
+  a, b: integer;
 begin
-  a:=OrderTypeList.Items[aindex].order_type_index;
-  b:=OrderTypeList.Items[aindex-1].order_type_index;
-  showmessage(inttostr(a)+':'+inttostr(b));
-  OrderTypeList.Items[aindex].ObjectState:=posUpdate;
-  ORderTypeList.Items[aindex].order_type_index:=b;
-  OrderTypeList.Items[aindex-1].ObjectState:=posUpdate;
-  OrderTypeList.Items[aindex-1].order_type_index:=a;
+  a := OrderTypeList.Items[aindex].order_type_index;
+  b := OrderTypeList.Items[aindex - 1].order_type_index;
+  //showmessage(inttostr(a)+':'+inttostr(b));
+  OrderTypeList.Items[aindex].ObjectState := posUpdate;
+  ORderTypeList.Items[aindex].order_type_index := b;
+  OrderTypeList.Items[aindex - 1].ObjectState := posUpdate;
+  OrderTypeList.Items[aindex - 1].order_type_index := a;
   OrderTypeList.Save;
   RefreshOrderTypeList;
   OrderTypeList.NotifyObservers;
@@ -163,21 +178,19 @@ end;
 
 procedure TdmServiceModule.OrderTypeIndex_down(aindex: integer);
 var
-   a, b: integer;
+  a, b: integer;
 begin
-  a:=OrderTypeList.Items[aindex].order_type_index;
-  b:=OrderTypeList.Items[aindex+1].order_type_index;
-  showmessage(inttostr(a)+':'+inttostr(b));
-    OrderTypeList.Items[aindex].ObjectState:=posUpdate;
-  ORderTypeList.Items[aindex].order_type_index:=b;
-    OrderTypeList.Items[aindex+1].ObjectState:=posUpdate;
-  OrderTypeList.Items[aindex+1].order_type_index:=a;
+  a := OrderTypeList.Items[aindex].order_type_index;
+  b := OrderTypeList.Items[aindex + 1].order_type_index;
+  //showmessage(inttostr(a)+':'+inttostr(b));
+  OrderTypeList.Items[aindex].ObjectState := posUpdate;
+  ORderTypeList.Items[aindex].order_type_index := b;
+  OrderTypeList.Items[aindex + 1].ObjectState := posUpdate;
+  OrderTypeList.Items[aindex + 1].order_type_index := a;
   OrderTypeList.Save;
   RefreshOrderTypeList;
   OrderTypeList.NotifyObservers;
 end;
-
-
 
 procedure TdmServiceModule.OrderTypesToListBox(listbox: TListBox);
 var
@@ -186,7 +199,7 @@ begin
   listbox.Clear;
   if fOrderTypeList <> nil then
     fOrderTypeList := TOrderTypeList.Create;
-    RefreshOrderTypeList;
+  RefreshOrderTypeList;
   for a := 0 to fOrderTypeList.Count - 1 do
   begin
     listbox.Items.Add(fOrderTypeList.Items[a].order_type_name);
