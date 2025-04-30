@@ -50,10 +50,11 @@ object frm_maintain_item_types: Tfrm_maintain_item_types
   OnClose = FormClose
   OnCreate = FormCreate
   object ListBox1: TListBox
-    Left = 16
-    Height = 328
-    Top = 40
+    Left = 0
+    Height = 368
+    Top = 26
     Width = 208
+    Align = alLeft
     ItemHeight = 0
     TabOrder = 0
   end
@@ -77,17 +78,22 @@ object frm_maintain_item_types: Tfrm_maintain_item_types
     Top = 0
     Width = 532
     Caption = 'ToolBar1'
+    Images = dmApplicationService.ImageList1
     TabOrder = 1
     object ToolButton1: TToolButton
       Left = 1
       Top = 2
-      Caption = 'ToolButton1'
-      ImageIndex = 601
+      Action = acAdd
     end
     object ToolButton2: TToolButton
       Left = 24
       Top = 2
-      Caption = 'ToolButton2'
+      Action = acModify
+    end
+    object ToolButton3: TToolButton
+      Left = 47
+      Top = 2
+      Action = acDelete
     end
   end
   object Edit1: TEdit
@@ -120,5 +126,22 @@ object frm_maintain_item_types: Tfrm_maintain_item_types
     Width = 75
     Caption = '&Cancel'
     TabOrder = 4
+  end
+  object ActionList1: TActionList
+    Images = dmApplicationService.ImageList1
+    Left = 455
+    Top = 203
+    object acAdd: TAction
+      Caption = 'acAdd'
+      ImageIndex = 720
+    end
+    object acModify: TAction
+      Caption = 'acModify'
+      ImageIndex = 723
+    end
+    object acDelete: TAction
+      Caption = 'acDelete'
+      ImageIndex = 721
+    end
   end
 end

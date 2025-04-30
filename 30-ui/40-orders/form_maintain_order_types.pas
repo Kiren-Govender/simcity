@@ -87,7 +87,6 @@ procedure TfrmMaintainOrderTypes.acAddExecute(Sender: TObject);
 var
   a : integer;
 begin
-
   a:= lstOrderTypes.ItemIndex;
   try
       DMAPP.add_new_order_type;
@@ -96,11 +95,6 @@ begin
     lstOrderTypes.ItemIndex:=a;
     self.lstOrderTypesClick(self);
   end;
-
-
-
-
-
   // There is an error in the logic where the uniqueness of the order_type_name is not checked
   {if assigned(fOrderType) then
     fOrderType.Free;

@@ -70,6 +70,7 @@ type
     MenuItem41: TMenuItem;
     MenuItem42: TMenuItem;
     MenuItem43: TMenuItem;
+    MenuItem44: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
@@ -105,10 +106,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure ListBox1Click(Sender: TObject);
     procedure ListBox1DblClick(Sender: TObject);
-    procedure Panel4Click(Sender: TObject);
-    procedure ScrollBox1Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
-    procedure TabControl1Change(Sender: TObject);
     procedure ToolButton5Click(Sender: TObject);
     procedure ToolButton6Click(Sender: TObject);
   private
@@ -138,11 +136,6 @@ uses
   , tiListMediators;
 
   { TfrmMain }
-
-procedure TfrmMain.TabControl1Change(Sender: TObject);
-begin
-
-end;
 
 procedure TfrmMain.ToolButton5Click(Sender: TObject);
 begin
@@ -322,15 +315,6 @@ begin
   self.refresh;
 end;
 
-procedure TfrmMain.Panel4Click(Sender: TObject);
-begin
-
-end;
-
-procedure TfrmMain.ScrollBox1Click(Sender: TObject);
-begin
-
-end;
 
 procedure TfrmMain.SpeedButton1Click(Sender: TObject);
 begin

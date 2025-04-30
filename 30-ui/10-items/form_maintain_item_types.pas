@@ -6,13 +6,17 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  ComCtrls, items, tiObject, tiModelMediator, tiopfmanager;
+  ComCtrls, ActnList, items, tiObject, tiModelMediator, tiopfmanager;
 
 type
 
   { Tfrm_maintain_item_types }
 
   Tfrm_maintain_item_types = class(TForm)
+    acAdd: TAction;
+    acModify: TAction;
+    acDelete: TAction;
+    ActionList1: TActionList;
     Button1: TButton;
     Button2: TButton;
     Edit1: TEdit;
@@ -23,6 +27,7 @@ type
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
     procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);

@@ -358,7 +358,7 @@ object frmMain: TfrmMain
   end
   object MainMenu1: TMainMenu
     Images = dmApplicationService.ImageList1
-    Left = 431
+    Left = 432
     Top = 64
     object MenuItem15: TMenuItem
       Caption = '&File'
@@ -441,6 +441,9 @@ object frmMain: TfrmMain
       end
       object MenuItem43: TMenuItem
         Action = dmApplicationService.acMaintainItemTypes
+      end
+      object MenuItem44: TMenuItem
+        Action = dmApplicationService.acTestAbstractForm
       end
     end
     object MenuItem1: TMenuItem

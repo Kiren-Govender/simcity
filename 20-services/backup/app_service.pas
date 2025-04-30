@@ -13,6 +13,7 @@ uses
   , form_maintain_order_types
   , form_add_new_order_type
   , form_modify_order_type
+  , test_abstract_type_maintenance_form
   ;
 
 type
@@ -27,6 +28,7 @@ type
     acRemoveOrder: TAction;
     acMaintainOrderTypes: TAction;
     acRefreshOrderList: TAction;
+    acTestAbstractForm: TAction;
     ActionList1: TActionList;
     ImageList1: TImageList;
     procedure acAddNewItemExecute(Sender: TObject);
@@ -35,6 +37,7 @@ type
     procedure acMaintainOrderTypesExecute(Sender: TObject);
     procedure acRefreshOrderListExecute(Sender: TObject);
     procedure acRemoveOrderExecute(Sender: TObject);
+    procedure acTestAbstractFormExecute(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
 
@@ -45,7 +48,8 @@ type
     function add_new_order : integer;
     procedure maintain_order_types;
     procedure add_new_order_type;
-    procedure modify_order_type;
+    procedure modify_order_type(aoid : string);
+    procedure test_abstract_maintenance_form;
   end;
 
 var
@@ -108,6 +112,11 @@ begin
   // Todo
 end;
 
+procedure TdmApplicationService.acTestAbstractFormExecute(Sender: TObject);
+begin
+   maintain_order_types;
+end;
+
 procedure TdmApplicationService.DataModuleDestroy(Sender: TObject);
 begin
 
@@ -165,11 +174,20 @@ begin
    frm.showmodal;
 end;
 
-procedure TdmApplicationService.modify_order_type;
+procedure TdmApplicationService.modify_order_type(aoid: string);
 var
    frm: TfrmModifyOrderType;
 begin
-   frm:= TfrmModifyOrderType.create(nil);
+   frm:= TfrmModifyOrderType.create(nil, aoid);
+   frm.showmodal;
+end;
+
+procedure TdmApplicationService.test_abstract_maintenance_form;
+var
+   frm: TfrmTestAbstractMaintenanceForm;
+   aoid : string;
+begin
+   frm:= TfrmTestAbstractMaintenanceForm.create(nil, aoid);
    frm.showmodal;
 end;
 

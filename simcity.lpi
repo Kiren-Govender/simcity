@@ -171,6 +171,20 @@
         <ComponentName Value="frmModifyOrderType"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="10-abstract\abstract_type_maintenance_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAbstractTypeMaintenance"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="10-abstract\test_abstract_type_maintenance_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmTestAbstractMaintenanceForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

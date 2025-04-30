@@ -7566,5 +7566,9 @@ object dmApplicationService: TdmApplicationService
       ImageIndex = 54
       OnExecute = acRefreshOrderListExecute
     end
+    object acTestAbstractForm: TAction
+      Caption = 'acTestAbstractForm'
+      OnExecute = acTestAbstractFormExecute
+    end
   end
 end

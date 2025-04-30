@@ -5,8 +5,8 @@ unit DMService;
 interface
 
 uses
-  Classes, SysUtils, StdCtrls, ActnList, Controls, Orders, tiobject,
-  TiopfManager, SQLite3Conn, SQLDB, dialogs;
+  Classes, SysUtils, StdCtrls, ActnList, Controls, Orders, Items, tiobject,
+  TiopfManager, SQLite3Conn, SQLDB, Dialogs;
 
 type
 
@@ -25,25 +25,53 @@ type
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
+    fItemTypeList: TItemTypeList;
     fOrderTypeList: TOrderTypeList;
     // Increments the last order_type_index
 
   published
     property OrderTypeList: TOrderTypeList read fOrderTypeList;
+    property ItemTypeList: TItemTypeList read fItemTypeList;
     procedure RefreshOrderTypeList;
-        function GetNextOrderTypeIndex: integer;
-        function IsOrderTypeNameUnique(aname : string): boolean;
+    function GetNextOrderTypeIndex: integer;
+    function IsOrderTypeNameUnique(aname: string): boolean;
   public
     // Order Types
     procedure SaveOrderType(type_name: string);
     procedure ModifyOrderType(aoid: string; type_name: string);
     procedure DeleteOrderType(aoid: string);
     procedure ChangeOrderIndex(aoid: string; index_change: integer);
-    procedure OrderTypeIndex_up(aindex : integer);
-    procedure OrderTypeIndex_down(aindex : integer);
+    procedure OrderTypeIndex_up(aindex: integer);
+    procedure OrderTypeIndex_down(aindex: integer);
     procedure OrderTypesToListBox(listbox: TListBox);
     // Order
     procedure SaveOrder(order_type, description: string);
+  end;
+
+  { TOrderManager }
+
+  TOrderManager = class(TTiObject)
+  private
+    FItemBOMs: TItemBOMList;
+    FItems: TItemList;
+    FItemTypes: TItemTypeList;
+    FOrderItems: TOrderItemList;
+    FOrders: TOrderList;
+    FOrderTypes: TOrderTypeList;
+  published
+    property OrderTypes: TOrderTypeList read FOrderTypes;
+    property ItemTypes: TItemTypeList read FItemTypes;
+    property Orders: TOrderList read FOrders;
+    property OrderItems: TOrderItemList read FOrderItems;
+    property Items: TItemList read FItems;
+    property ItemBOMs: TItemBOMList read FItemBOMs;
+  public
+    constructor Create;
+    destructor Destroy;
+    procedure SelectOrdersByOrderType(aorder_type_name : string);
+    procedure SelectItemsByItemType(aitem_type_name : string);
+    procedure SelectItemBOMsByItem(aitem_name : string);
+
   end;
 
 var
@@ -68,12 +96,14 @@ end;
 procedure TdmServiceModule.DataModuleCreate(Sender: TObject);
 begin
   fOrderTypeList := TOrderTypeList.Create;
+  fItemTypeList := TItemTypeList.Create;
   //fORderTypeList.Read;
 end;
 
 procedure TdmServiceModule.DataModuleDestroy(Sender: TObject);
 begin
   fOrderTypeList.Free;
+  fItemTypeList.Free;
 end;
 
 function TdmServiceModule.GetNextOrderTypeIndex: integer;
@@ -132,9 +162,9 @@ begin
   ordertype := TOrderType.Create;
   try
     ordertype.ObjectState := posPK;
-    ordertype.OID.AsString:=aoid;
+    ordertype.OID.AsString := aoid;
     ordertype.Read;
-    ordertype.ObjectState:=posUpdate;
+    ordertype.ObjectState := posUpdate;
     ordertype.order_type_name := type_name;
     ordertype.Save;
   finally
@@ -162,15 +192,15 @@ end;
 
 procedure TdmServiceModule.OrderTypeIndex_up(aindex: integer);
 var
-   a, b: integer;
+  a, b: integer;
 begin
-  a:=OrderTypeList.Items[aindex].order_type_index;
-  b:=OrderTypeList.Items[aindex-1].order_type_index;
+  a := OrderTypeList.Items[aindex].order_type_index;
+  b := OrderTypeList.Items[aindex - 1].order_type_index;
   //showmessage(inttostr(a)+':'+inttostr(b));
-  OrderTypeList.Items[aindex].ObjectState:=posUpdate;
-  ORderTypeList.Items[aindex].order_type_index:=b;
-  OrderTypeList.Items[aindex-1].ObjectState:=posUpdate;
-  OrderTypeList.Items[aindex-1].order_type_index:=a;
+  OrderTypeList.Items[aindex].ObjectState := posUpdate;
+  ORderTypeList.Items[aindex].order_type_index := b;
+  OrderTypeList.Items[aindex - 1].ObjectState := posUpdate;
+  OrderTypeList.Items[aindex - 1].order_type_index := a;
   OrderTypeList.Save;
   RefreshOrderTypeList;
   OrderTypeList.NotifyObservers;
@@ -178,15 +208,15 @@ end;
 
 procedure TdmServiceModule.OrderTypeIndex_down(aindex: integer);
 var
-   a, b: integer;
+  a, b: integer;
 begin
-  a:=OrderTypeList.Items[aindex].order_type_index;
-  b:=OrderTypeList.Items[aindex+1].order_type_index;
+  a := OrderTypeList.Items[aindex].order_type_index;
+  b := OrderTypeList.Items[aindex + 1].order_type_index;
   //showmessage(inttostr(a)+':'+inttostr(b));
-    OrderTypeList.Items[aindex].ObjectState:=posUpdate;
-  ORderTypeList.Items[aindex].order_type_index:=b;
-    OrderTypeList.Items[aindex+1].ObjectState:=posUpdate;
-  OrderTypeList.Items[aindex+1].order_type_index:=a;
+  OrderTypeList.Items[aindex].ObjectState := posUpdate;
+  ORderTypeList.Items[aindex].order_type_index := b;
+  OrderTypeList.Items[aindex + 1].ObjectState := posUpdate;
+  OrderTypeList.Items[aindex + 1].order_type_index := a;
   OrderTypeList.Save;
   RefreshOrderTypeList;
   OrderTypeList.NotifyObservers;
@@ -199,7 +229,7 @@ begin
   listbox.Clear;
   if fOrderTypeList <> nil then
     fOrderTypeList := TOrderTypeList.Create;
-    RefreshOrderTypeList;
+  RefreshOrderTypeList;
   for a := 0 to fOrderTypeList.Count - 1 do
   begin
     listbox.Items.Add(fOrderTypeList.Items[a].order_type_name);
@@ -221,6 +251,19 @@ begin
   order.time_left := now();
   order.save;
   order.Free;
+end;
+
+{ TOrderManager }
+
+
+constructor TOrderManager.Create;
+begin
+  inherited Create;
+end;
+
+destructor TOrderManager.Destroy;
+begin
+  inherited Destroy;
 end;
 
 initialization

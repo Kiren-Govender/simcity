@@ -70,6 +70,7 @@ type
     MenuItem41: TMenuItem;
     MenuItem42: TMenuItem;
     MenuItem43: TMenuItem;
+    MenuItem44: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
@@ -100,6 +101,7 @@ type
     procedure acAddNewItemExecute(Sender: TObject);
     procedure acAddOrderExecute(Sender: TObject);
     procedure acMaintainItemTypesExecute(Sender: TObject);
+    procedure acTestAbstractFormExecute(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -263,6 +265,11 @@ begin
   self.refresh;
 end;
 
+procedure TfrmMain.acTestAbstractFormExecute(Sender: TObject);
+begin
+
+end;
+
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   //ui_face := TUI_Facade.Create;
@@ -321,6 +328,7 @@ begin
   a.Free;
   self.refresh;
 end;
+
 
 procedure TfrmMain.Panel4Click(Sender: TObject);
 begin
