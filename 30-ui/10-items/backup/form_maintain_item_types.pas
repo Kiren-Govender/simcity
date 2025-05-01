@@ -42,8 +42,9 @@ procedure Tfrm_maintain_item_types.ShowAddForm;
 begin
   // Create the form
 
-    { #todo : Create Add form for "form_maintain_item_types" }
-  Showmessage('Still to create the form');
+    { #Important : Create Add form for "form_maintain_item_types" }
+  // Showmessage('Still to create the form');
+  DMAPP.add_new_item_type;
 end;
 
 procedure Tfrm_maintain_item_types.ShowModifyForm(aoid: string);
@@ -57,7 +58,7 @@ procedure Tfrm_maintain_item_types.SetTypeIndex(atypeindex: integer;
   avalue: integer);
 begin
   TItemTypeList(fList).Items[atypeindex].item_type_index:=avalue;
-  showmessage(inttostr(atypeindex)+':'+inttostr(avalue));
+  //showmessage(inttostr(atypeindex)+':'+inttostr(avalue));
   //showmessage(inttostr(TItemTypeList(fList).Items[atypeindex].item_type_index));
 end;
 

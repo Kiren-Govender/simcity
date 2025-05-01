@@ -1,9 +1,9 @@
-object frmAddNewOrderType: TfrmAddNewOrderType
-  Left = 197
+object frmAbstractAddNewType: TfrmAbstractAddNewType
+  Left = 811
   Height = 240
-  Top = 266
+  Top = 284
   Width = 320
-  Caption = 'Add New Order Type'
+  Caption = 'Add a New Type'
   ClientHeight = 240
   ClientWidth = 320
   Icon.Data = {
@@ -59,7 +59,6 @@ object frmAddNewOrderType: TfrmAddNewOrderType
     Top = 88
     Width = 184
     TabOrder = 0
-    OnChange = edtDescriptionChange
   end
   object btnSave: TButton
     Left = 128
@@ -80,5 +79,6 @@ object frmAddNewOrderType: TfrmAddNewOrderType
     Caption = 'Cancel'
     ModalResult = 2
     TabOrder = 2
+    OnClick = btnCancelClick
   end
 end

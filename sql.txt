@@ -1,1 +1,1 @@
- SELECT * FROM order_type ORDER BY   order_type_index ASC
+ SELECT * FROM item_type ORDER BY item_type_index   ASC

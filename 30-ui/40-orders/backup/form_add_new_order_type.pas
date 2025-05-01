@@ -58,7 +58,7 @@ begin
   end;
 end;
 
-procedure TfrmAddNewOrderType.Create(TheOwner: TComponent);
+Constructor TfrmAddNewOrderType.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
 

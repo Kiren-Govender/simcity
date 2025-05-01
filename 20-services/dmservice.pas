@@ -34,6 +34,7 @@ type
     property ItemTypeList: TItemTypeList read fItemTypeList;
     procedure RefreshOrderTypeList;
     function GetNextOrderTypeIndex: integer;
+    function GetNextItemTypeIndex : integer;
     function IsOrderTypeNameUnique(aname: string): boolean;
   public
     // Order Types
@@ -116,6 +117,19 @@ begin
     Result := lOrderTypeList.Items[0].order_type_index + 1;
   finally
     lORderTypeList.Free;
+  end;
+end;
+
+function TdmServiceModule.GetNextItemTypeIndex: integer;
+var
+  lItemTypeList: TItemTypeList;
+begin
+  lItemTypeList := TItemTypeList.Create;
+  try
+    lItemTypeList.GetLastItemTypeIndex;
+    Result := lItemTypeList.Items[0].item_type_index + 1;
+  finally
+    lItemTypeList.Free;
   end;
 end;
 

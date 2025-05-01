@@ -48,6 +48,14 @@ ORDER BY item_type_index ASC]]>
               </sql>
               <params />
             </select>
+            <select name="GetLastItemTypeIndex">
+              <sql>
+                <![CDATA[SELECT * FROM item_type 
+ORDER BY item_type_index DESC
+LIMIT 1]]>
+              </sql>
+              <params />
+            </select>
           </selections>
         </class>
         <class base-class="TItemBOM" base-class-parent="TtiObject" auto-map="true" auto-create-list="true">

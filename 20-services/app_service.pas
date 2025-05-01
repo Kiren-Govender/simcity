@@ -14,6 +14,7 @@ uses
   , form_add_new_order_type
   , form_modify_order_type
   , test_abstract_type_maintenance_form
+  , form_add_new_item_type
   ;
 
 type
@@ -50,6 +51,7 @@ type
     procedure add_new_order_type;
     procedure modify_order_type(aoid : string);
     procedure test_abstract_maintenance_form;
+    procedure add_new_item_type;
   end;
 
 var
@@ -190,6 +192,14 @@ var
    aoid : string;
 begin
    frm:= TfrmTestAbstractMaintenanceForm.create(nil, aoid);
+   frm.showmodal;
+end;
+
+procedure TdmApplicationService.add_new_item_type;
+var
+   frm: TfrmAddNewItemType;
+begin
+   frm:= TfrmAddNewItemType.create(nil);
    frm.showmodal;
 end;
 

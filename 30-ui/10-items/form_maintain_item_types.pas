@@ -40,10 +40,7 @@ uses app_service;
 
 procedure Tfrm_maintain_item_types.ShowAddForm;
 begin
-  // Create the form
-
-    { #todo : Create Add form for "form_maintain_item_types" }
-  Showmessage('Still to create the form');
+  DMAPP.add_new_item_type;
 end;
 
 procedure Tfrm_maintain_item_types.ShowModifyForm(aoid: string);

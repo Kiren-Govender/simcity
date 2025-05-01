@@ -101,6 +101,8 @@ procedure   Save; override;
 function    FindByOID(const AOID: string): integer;
 { Returns Number of objects retrieved. }
 function    GetAllSortedByIndex: integer;
+{ Returns Number of objects retrieved. }
+function    GetLastItemTypeIndex: integer;
 end;
 
 { Generated Class: TItemBOM}
@@ -281,6 +283,14 @@ procedure   MapRowToObject; override;
 procedure   SetupParams; override;
 end;
 
+{ TItemTypeList_GetLastItemTypeIndexVis }
+TItemTypeList_GetLastItemTypeIndexVis = class(TtiMapParameterListReadVisitor)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   MapRowToObject; override;
+procedure   SetupParams; override;
+end;
+
 { Read Visitor for TItemBOM }
 TItemBOM_Read = class(TtiVisitorSelect)
 protected
@@ -419,6 +429,7 @@ GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypesave', TItemType_Save);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypedelete', TItemType_Delete);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypecreate', TItemType_Create);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypeList_GetAllSortedByIndexVis', TItemTypeList_GetAllSortedByIndexVis);
+GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypeList_GetLastItemTypeIndexVis', TItemTypeList_GetLastItemTypeIndexVis);
 
 { Register Visitors for TItemBOM }
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMList_listread', TItemBOMList_Read);
@@ -599,6 +610,19 @@ self.SQL :=
 ' SELECT * FROM item_type ORDER BY item_type_index  ' + 
 ' ASC'; 
 GTIOPFManager.VisitorManager.Execute('TItemTypeList_GetAllSortedByIndexVis', self);
+result := self.Count;
+end;
+
+function TItemTypeList.GetLastItemTypeIndex: integer;
+begin
+if self.Count > 0 then
+self.Clear;
+
+Params.Clear;
+self.SQL := 
+' SELECT * FROM item_type ORDER BY item_type_index  ' + 
+' DESC LIMIT 1'; 
+GTIOPFManager.VisitorManager.Execute('TItemTypeList_GetLastItemTypeIndexVis', self);
 result := self.Count;
 end;
 
@@ -1231,6 +1255,34 @@ TtiObjectList(Visited).Add(lObj);
 end;
 
 procedure TItemTypeList_GetAllSortedByIndexVis.SetupParams;
+var
+lCtr: integer;
+lParam: TSelectParam;
+lList: TtiMappedFilteredObjectList;
+begin
+lList := TtiMappedFilteredObjectList(Visited);
+
+end;
+
+{ TItemTypeList_GetLastItemTypeIndexVis }
+function TItemTypeList_GetLastItemTypeIndexVis.AcceptVisitor: Boolean;
+begin
+result := (Visited.ObjectState = posEmpty);
+end;
+
+procedure TItemTypeList_GetLastItemTypeIndexVis.MapRowToObject;
+var
+lObj: TItemType;
+begin
+lObj := TItemType.Create;
+lObj.OID.AssignFromTIQuery('OID',Query);
+lObj.item_type_name := Query.FieldAsString['item_type_name'];
+lObj.item_type_index := Query.FieldAsInteger['item_type_index'];
+lObj.ObjectState := posClean;
+TtiObjectList(Visited).Add(lObj);
+end;
+
+procedure TItemTypeList_GetLastItemTypeIndexVis.SetupParams;
 var
 lCtr: integer;
 lParam: TSelectParam;

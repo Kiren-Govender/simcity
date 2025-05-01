@@ -14,6 +14,7 @@ uses
   , form_add_new_order_type
   , form_modify_order_type
   , test_abstract_type_maintenance_form
+  , form_add_new_item_type
   ;
 
 type
@@ -44,7 +45,7 @@ type
   public
     procedure add_new_item;
     procedure update_item(aoid : string);
-    procedure maintain_item_types;
+    procedure maintain_item_types(aoid : string);
     function add_new_order : integer;
     procedure maintain_order_types;
     procedure add_new_order_type;
@@ -140,11 +141,11 @@ begin
    a.showmodal;
 end;
 
-procedure TdmApplicationService.maintain_item_types;
+procedure TdmApplicationService.maintain_item_types(aoid: string);
 var
    a: Tfrm_maintain_item_types;
 begin
-   a:= Tfrm_maintain_item_types.create(nil);
+   a:= Tfrm_maintain_item_types.create(nil, aoid);
    a.showmodal;
 end;
 
