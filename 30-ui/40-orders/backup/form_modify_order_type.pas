@@ -23,6 +23,7 @@ type
     forder_type : TOrderType;
   public
     constructor Create(TheOwner: TComponent; aoid: string);
+    destructor Destroy;
     property loid: string read foid;
     procedure LoadOrderType;
   end;
@@ -56,6 +57,12 @@ begin
   inherited Create(TheOwner);
   foid:=aoid;
   LoadOrderType;
+end;
+
+destructor TfrmModifyOrderType.Destroy;
+begin
+  forder_type.free;
+  inherited Destroy;
 end;
 
 procedure TfrmModifyOrderType.LoadOrderType;

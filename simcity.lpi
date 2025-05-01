@@ -170,6 +170,7 @@
         <Filename Value="30-ui\40-orders\form_modify_order_type.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmModifyOrderType"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
@@ -197,6 +198,19 @@
         <Filename Value="30-ui\10-items\form_add_new_item_type.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmAddNewItemType"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="10-abstract\abstract_type_maintenance_modifytype_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAbstractModifyType"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\10-items\form_modify_item_type.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmModifyItemType"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>

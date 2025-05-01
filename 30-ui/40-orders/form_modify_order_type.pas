@@ -26,6 +26,7 @@ type
     destructor Destroy;
     property loid: string read foid;
     procedure LoadOrderType;
+
   end;
 
 var

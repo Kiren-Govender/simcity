@@ -18,6 +18,7 @@ type
     Label1: TLabel;
     procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
+    procedure edtDescriptionChange(Sender: TObject);
   private
   protected
     procedure SaveType; virtual; abstract;
@@ -43,6 +44,11 @@ begin
   if IsValid then
   SaveType else
     showmessage('The type is not valid.');
+end;
+
+procedure TfrmAbstractAddNewType.edtDescriptionChange(Sender: TObject);
+begin
+  btnSave.Enabled:=true;
 end;
 
 procedure TfrmAbstractAddNewType.btnCancelClick(Sender: TObject);

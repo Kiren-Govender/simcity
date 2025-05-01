@@ -17,7 +17,8 @@ uses
   form_add_new_order, form_maintain_order_types, abstract_form, 
 form_add_new_order_type, form_modify_order_type, 
 abstract_type_maintenance_form, test_abstract_type_maintenance_form, 
-abstract_type_maintenance_addtype_form, form_add_new_item_type ;
+abstract_type_maintenance_addtype_form, form_add_new_item_type, 
+abstract_type_maintenance_modifytype_form, form_modify_item_type ;
 
 {$R *.res}
 
@@ -45,6 +46,8 @@ begin
     frmTestAbstractMaintenanceForm);
   Application.CreateForm(TfrmAbstractAddNewType, frmAbstractAddNewType);
   Application.CreateForm(TfrmAddNewItemType, frmAddNewItemType);
+  Application.CreateForm(TfrmAbstractModifyType, frmAbstractModifyType);
+  Application.CreateForm(TfrmModifyItemType, frmModifyItemType);
   Application.Run;
 end.
 

@@ -12,7 +12,6 @@ type
   { TfrmAddNewItemType }
 
   TfrmAddNewItemType = class(TfrmAbstractAddNewType)
-    procedure FormCreate(Sender: TObject);
   private
   protected
     procedure SaveType; override;
@@ -31,10 +30,7 @@ implementation
 
 { TfrmAddNewItemType }
 
-procedure TfrmAddNewItemType.FormCreate(Sender: TObject);
-begin
 
-end;
 
 procedure TfrmAddNewItemType.SaveType;
 var

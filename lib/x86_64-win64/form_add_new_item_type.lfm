@@ -1,5 +1,0 @@
-inherited frmAddNewItemType: TfrmAddNewItemType
-  Left = 865
-  Top = 153
-  Caption = 'frmAddNewItemType'
-end

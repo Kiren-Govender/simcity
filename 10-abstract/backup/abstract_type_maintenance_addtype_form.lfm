@@ -59,6 +59,7 @@ object frmAbstractAddNewType: TfrmAbstractAddNewType
     Top = 88
     Width = 184
     TabOrder = 0
+    OnChange = edtDescriptionChange
   end
   object btnSave: TButton
     Left = 128
