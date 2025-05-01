@@ -76,12 +76,15 @@ end;
 TItemType = class(TtiObject)
 protected
 Fitem_type_name: String;
+Fitem_type_index: Integer;
 procedure Setitem_type_name(const AValue: String); virtual;
+procedure Setitem_type_index(const AValue: Integer); virtual;
 public
 procedure   Read; override;
 procedure   Save; override;
 published
 property    item_type_name: String read Fitem_type_name write Setitem_type_name;
+property    item_type_index: Integer read Fitem_type_index write Setitem_type_index;
 end;
 
 { List of TItemType.  TtiMappedFilteredObjectList descendant. }
@@ -96,6 +99,8 @@ procedure   Read; override;
 procedure   Save; override;
 { Return count (1) if successful. }
 function    FindByOID(const AOID: string): integer;
+{ Returns Number of objects retrieved. }
+function    GetAllSortedByIndex: integer;
 end;
 
 { Generated Class: TItemBOM}
@@ -268,6 +273,14 @@ procedure   Init; override;
 procedure   SetupParams; override;
 end;
 
+{ TItemTypeList_GetAllSortedByIndexVis }
+TItemTypeList_GetAllSortedByIndexVis = class(TtiMapParameterListReadVisitor)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   MapRowToObject; override;
+procedure   SetupParams; override;
+end;
+
 { Read Visitor for TItemBOM }
 TItemBOM_Read = class(TtiVisitorSelect)
 protected
@@ -366,6 +379,8 @@ GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TItemType,
 'item_type', 'OID', 'OID', [pktDB]);
 GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TItemType,
 'item_type','item_type_name', 'item_type_name');
+GTIOPFManager.ClassDBMappingMgr.RegisterMapping(TItemType,
+'item_type','item_type_index', 'item_type_index');
 GTIOPFManager.ClassDBMappingMgr.RegisterCollection(TItemTypeList, TItemType);
 
 { Automap registrations for TItemBOM }
@@ -403,6 +418,7 @@ GTIOPFManager.VisitorManager.RegisterVisitor('TItemTyperead', TItemType_Read);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypesave', TItemType_Save);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypedelete', TItemType_Delete);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypecreate', TItemType_Create);
+GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypeList_GetAllSortedByIndexVis', TItemTypeList_GetAllSortedByIndexVis);
 
 { Register Visitors for TItemBOM }
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMList_listread', TItemBOMList_Read);
@@ -516,6 +532,12 @@ if Fitem_type_name <> AValue then
 Fitem_type_name := AValue;
 end;
 
+procedure TItemType.Setitem_type_index(const AValue: Integer);
+begin
+if Fitem_type_index <> AValue then
+Fitem_type_index := AValue;
+end;
+
 procedure TItemType.Read;
 begin
 GTIOPFManager.VisitorManager.Execute(ClassName + 'read', self);
@@ -565,6 +587,19 @@ Criteria.ClearAll;
 Criteria.AddEqualTo('OID', AOID);
 Read;
 result := Count;
+end;
+
+function TItemTypeList.GetAllSortedByIndex: integer;
+begin
+if self.Count > 0 then
+self.Clear;
+
+Params.Clear;
+self.SQL := 
+' SELECT * FROM item_type ORDER BY item_type_index  ' + 
+' ASC'; 
+GTIOPFManager.VisitorManager.Execute('TItemTypeList_GetAllSortedByIndexVis', self);
+result := self.Count;
 end;
 
 procedure TItemBOM.Setitem_id(const AValue: String);
@@ -955,10 +990,12 @@ begin
 Query.SQLText := 
 'INSERT INTO item_type(' + 
 ' OID, ' + 
-' item_type_name' + 
+' item_type_name, ' + 
+' item_type_index' + 
 ') VALUES (' +
 ' :OID, ' +
-' :item_type_name' + 
+' :item_type_name, ' + 
+' :item_type_index' + 
 ') ';
 end;
 
@@ -969,6 +1006,7 @@ begin
 lObj := TItemType(Visited);
 lObj.OID.AssignToTIQuery('OID',Query);
 Query.ParamAsString['item_type_name'] := lObj.item_type_name;
+Query.ParamAsInteger['item_type_index'] := lObj.item_type_index;
 end;
 
 { TItemType_Save }
@@ -981,7 +1019,8 @@ procedure TItemType_Save.Init;
 begin
 Query.SQLText := 
 'UPDATE item_type SET ' +
-' item_type_name = :item_type_name ' + 
+' item_type_name = :item_type_name, ' + 
+' item_type_index = :item_type_index ' + 
 'WHERE OID = :OID' ;
 end;
 
@@ -992,6 +1031,7 @@ begin
 lObj := TItemType(Visited);
 lObj.OID.AssignToTIQuery('OID',Query);
 Query.ParamAsString['item_type_name'] := lObj.item_type_name;
+Query.ParamAsInteger['item_type_index'] := lObj.item_type_index;
 end;
 
 { TItemType_Read }
@@ -1005,7 +1045,8 @@ begin
 Query.SQLText := 
 'SELECT ' + 
 ' OID, ' +
-' item_type_name ' + 
+' item_type_name, ' + 
+' item_type_index ' + 
 'FROM  item_type WHERE OID = :OID' ;
 end;
 
@@ -1024,6 +1065,7 @@ begin
 lObj := TItemType(Visited);
 lObj.OID.AssignFromTIQuery('OID',Query);
 lObj.item_type_name := Query.FieldAsString['item_type_name'];
+lObj.item_type_index := Query.FieldAsInteger['item_type_index'];
 end;
 
 { TItemType_Delete }
@@ -1075,7 +1117,8 @@ end;
 lSQL := 
 'SELECT ' + 
 ' OID, ' +
-' item_type_name ' + 
+' item_type_name, ' + 
+' item_type_index ' + 
 'FROM  item_type %s %s ;';
 
 Query.SQLText := gFormatSQL(Format(lSQL, [lWhere, lOrder]), TItemType);
@@ -1089,6 +1132,7 @@ begin
 lObj := TItemType.Create;
 lObj.OID.AssignFromTIQuery('OID',Query);
 lObj.item_type_name := Query.FieldAsString['item_type_name'];
+lObj.item_type_index := Query.FieldAsInteger['item_type_index'];
 lObj.ObjectState := posClean;
 TtiObjectList(Visited).Add(lObj);
 end;
@@ -1104,10 +1148,12 @@ begin
 Query.SQLText := 
 'INSERT INTO item_type(' + 
 ' OID, ' + 
-' item_type_name' + 
+' item_type_name, ' + 
+' item_type_index' + 
 ') VALUES (' +
 ' :OID, ' +
-' :item_type_name' + 
+' :item_type_name, ' + 
+' :item_type_index' + 
 ') ';
 end;
 
@@ -1118,6 +1164,7 @@ begin
 lObj := TItemType(Visited);
 lObj.OID.AssignToTIQuery('OID',Query);
 Query.ParamAsString['item_type_name'] := lObj.item_type_name;
+Query.ParamAsInteger['item_type_index'] := lObj.item_type_index;
 end;
 
 { TItemTypeList_Delete }
@@ -1150,7 +1197,8 @@ procedure TItemTypeList_Save.Init;
 begin
 Query.SQLText := 
 'UPDATE item_type SET ' +
-' item_type_name = :item_type_name ' + 
+' item_type_name = :item_type_name, ' + 
+' item_type_index = :item_type_index ' + 
 'WHERE OID = :OID' ;
 end;
 
@@ -1161,6 +1209,35 @@ begin
 lObj := TItemType(Visited);
 lObj.OID.AssignToTIQuery('OID',Query);
 Query.ParamAsString['item_type_name'] := lObj.item_type_name;
+Query.ParamAsInteger['item_type_index'] := lObj.item_type_index;
+end;
+
+{ TItemTypeList_GetAllSortedByIndexVis }
+function TItemTypeList_GetAllSortedByIndexVis.AcceptVisitor: Boolean;
+begin
+result := (Visited.ObjectState = posEmpty);
+end;
+
+procedure TItemTypeList_GetAllSortedByIndexVis.MapRowToObject;
+var
+lObj: TItemType;
+begin
+lObj := TItemType.Create;
+lObj.OID.AssignFromTIQuery('OID',Query);
+lObj.item_type_name := Query.FieldAsString['item_type_name'];
+lObj.item_type_index := Query.FieldAsInteger['item_type_index'];
+lObj.ObjectState := posClean;
+TtiObjectList(Visited).Add(lObj);
+end;
+
+procedure TItemTypeList_GetAllSortedByIndexVis.SetupParams;
+var
+lCtr: integer;
+lParam: TSelectParam;
+lList: TtiMappedFilteredObjectList;
+begin
+lList := TtiMappedFilteredObjectList(Visited);
+
 end;
 
 { TItemBOM_Create }

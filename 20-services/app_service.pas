@@ -44,7 +44,7 @@ type
   public
     procedure add_new_item;
     procedure update_item(aoid : string);
-    procedure maintain_item_types;
+    procedure maintain_item_types(aoid : string);
     function add_new_order : integer;
     procedure maintain_order_types;
     procedure add_new_order_type;
@@ -87,8 +87,10 @@ end;
 procedure TdmApplicationService.acMaintainItemTypesExecute(Sender: TObject);
 var
    a: Tfrm_maintain_item_types;
+   aoid : string;
+     { #todo : Update the aoid to get from the user" }
 begin
-   a:= Tfrm_maintain_item_types.create(nil);
+   a:= Tfrm_maintain_item_types.create(nil, aoid);
    a.showmodal;
 
 end;
@@ -138,11 +140,11 @@ begin
    a.showmodal;
 end;
 
-procedure TdmApplicationService.maintain_item_types;
+procedure TdmApplicationService.maintain_item_types(aoid: string);
 var
    a: Tfrm_maintain_item_types;
 begin
-   a:= Tfrm_maintain_item_types.create(nil);
+   a:= Tfrm_maintain_item_types.create(nil, aoid);
    a.showmodal;
 end;
 

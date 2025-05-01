@@ -87,8 +87,10 @@ end;
 procedure TdmApplicationService.acMaintainItemTypesExecute(Sender: TObject);
 var
    a: Tfrm_maintain_item_types;
+   aoid : string;
+     { #todo : Update the aoid to get from the user" }
 begin
-   a:= Tfrm_maintain_item_types.create(nil);
+   a:= Tfrm_maintain_item_types.create(nil, aoid);
    a.showmodal;
 
 end;
@@ -114,7 +116,7 @@ end;
 
 procedure TdmApplicationService.acTestAbstractFormExecute(Sender: TObject);
 begin
-   maintain_order_types;
+   test_abstract_maintenance_form;
 end;
 
 procedure TdmApplicationService.DataModuleDestroy(Sender: TObject);

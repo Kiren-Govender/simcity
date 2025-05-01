@@ -7568,7 +7568,7 @@ object dmApplicationService: TdmApplicationService
     end
     object acTestAbstractForm: TAction
       Caption = 'acTestAbstractForm'
-      OnExecute = acTestAbstractFormExecute
+      OnExecute = nil
     end
   end
 end

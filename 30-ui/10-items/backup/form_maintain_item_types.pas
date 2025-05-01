@@ -6,37 +6,25 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  ComCtrls, ActnList, items, tiObject, tiModelMediator, tiopfmanager;
+  ComCtrls, ActnList,abstract_type_maintenance_form, Items, mapper, DMService;
 
 type
 
   { Tfrm_maintain_item_types }
 
-  Tfrm_maintain_item_types = class(TForm)
-    acAdd: TAction;
-    acModify: TAction;
-    acDelete: TAction;
-    ActionList1: TActionList;
-    Button1: TButton;
-    Button2: TButton;
-    Edit1: TEdit;
-    Label1: TLabel;
-    ListBox1: TListBox;
-    SpeedButton1: TSpeedButton;
-    SpeedButton2: TSpeedButton;
-    ToolBar1: TToolBar;
-    ToolButton1: TToolButton;
-    ToolButton2: TToolButton;
-    ToolButton3: TToolButton;
-    procedure Button1Click(Sender: TObject);
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
-    procedure FormCreate(Sender: TObject);
-  private
-         procedure refresh;
-         procedure AddNewItemType(aitemtypedescription : string);
-         procedure SetupMediators;
-  public
-
+  Tfrm_maintain_item_types = class(TfrmAbstractTypeMaintenance)
+  protected
+    procedure ShowAddForm; override;
+    procedure ShowModifyForm(aoid: string); override;
+    procedure SetTypeIndex(atypeindex : integer; avalue : integer); override;
+    function GetTypeIndex(atypeindex : integer): integer; override;
+    procedure listsave(aList: TtiMappedFilteredObjectList); override;
+   public
+     procedure refresh; override;
+     procedure AddMediatorProperties; override;
+     procedure AddMediatorSubject; override;
+         procedure ConfigureForm;override;
+         procedure CreateList; override;
   end;
 
 var
@@ -46,63 +34,69 @@ implementation
 
 {$R *.lfm}
 
-uses
-  tiMediators
-  ,tiListMediators
- ;
+uses app_service;
 
 { Tfrm_maintain_item_types }
 
-procedure Tfrm_maintain_item_types.FormCreate(Sender: TObject);
+procedure Tfrm_maintain_item_types.ShowAddForm;
 begin
-  refresh;
-  SetupMediators;
+  // Create the form
+
+    { #todo : Create Add form for "form_maintain_item_types" }
+  Showmessage('Still to create the form');
 end;
 
-procedure Tfrm_maintain_item_types.Button1Click(Sender: TObject);
-var
-  ItemType : TItemType;
+procedure Tfrm_maintain_item_types.ShowModifyForm(aoid: string);
 begin
-  ItemType := TItemType.create;
-  ItemType.ObjectState:=posCreate;
-  gTiopfManager.DefaultOIDGenerator.AssignNextOID(ItemType.OID);
-  ItemType.item_type_name:=edit1.text;
-  ItemType.save;
-  refresh;
+  // Create the form
+  { #todo : Create Modify form for "form_maintain_item_types" }
+    Showmessage('Still to create the form');
 end;
 
-procedure Tfrm_maintain_item_types.FormClose(Sender: TObject;
-  var CloseAction: TCloseAction);
+procedure Tfrm_maintain_item_types.SetTypeIndex(atypeindex: integer;
+  avalue: integer);
 begin
-    CloseAction:=cafree;
+  TItemTypeList(fList).Items[atypeindex].item_type_index:=avalue;
+  showmessage(inttostr(atypeindex)+':'+inttostr(avalue));
+  //showmessage(inttostr(TItemTypeList(fList).Items[atypeindex].item_type_index));
+end;
+
+function Tfrm_maintain_item_types.GetTypeIndex(atypeindex: integer): integer;
+begin
+  result:=TItemTypeList(FList).Items[atypeindex].item_type_index;
+end;
+
+procedure Tfrm_maintain_item_types.listsave(aList: TtiMappedFilteredObjectList);
+begin
+  TItemTypeList(aList).Save;
 end;
 
 procedure Tfrm_maintain_item_types.refresh;
-var
-  ItemTypeList : TItemTypeList;
-  a : integer;
 begin
-  listbox1.clear;
-  ItemTypeList := TItemTypeList.create;
-  ItemTypeList.read;
-  for a := 0 to itemTypelist.count-1 do
-  begin
-    listbox1.Items.Add(itemTypelist.Items[a].item_type_name);
-  end;
+  TItemTypeList(FList).GetAllSortedByIndex;
+  TItemTypeList(FList).NotifyObservers;
 end;
 
-procedure Tfrm_maintain_item_types.AddNewItemType(aitemtypedescription: string);
+procedure Tfrm_maintain_item_types.AddMediatorProperties;
 begin
+  FMediator.AddProperty('item_type_name', lstTypes);
 end;
 
-procedure Tfrm_maintain_item_types.SetupMediators;
+procedure Tfrm_maintain_item_types.AddMediatorSubject;
 begin
-
+  FMediator.Subject := TItemTypeList(flist);
 end;
 
-initialization
-  RegisterFallBackMediators;
-  RegisterFallBackListmediators;
+procedure Tfrm_maintain_item_types.ConfigureForm;
+begin
+  self.Caption:='Maintain Item Types';
+end;
+
+procedure Tfrm_maintain_item_types.CreateList;
+begin
+  TItemTypeList(flist):=TItemTypeList.Create;
+  TItemTypeList(flist).GetAllSortedByIndex;
+end;
 
 end.
 

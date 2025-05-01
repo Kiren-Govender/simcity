@@ -57,6 +57,7 @@ type
     procedure refresh; virtual; abstract;
     procedure CreateList; virtual; abstract;
     procedure SetupMediators;
+    procedure ConfigureForm; virtual; abstract;
     procedure AddMediatorProperties; virtual; abstract;
     procedure AddMediatorSubject; virtual; abstract;
     constructor create(TheOwner: TComponent; aoid : string);
@@ -186,6 +187,7 @@ begin
   inherited create(TheOwner);
   self.foid :=aoid;
   CreateList;
+  ConfigureForm;
   SetupMediators;
 end;
 

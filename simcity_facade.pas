@@ -22,7 +22,7 @@ type
     public
           procedure add_new_item;
           procedure update_item(aoid : string);
-          procedure maintain_item_types;
+          procedure maintain_item_types(aoid : string);
           procedure add_new_order;
           procedure maintain_order_types;
   end;
@@ -47,11 +47,11 @@ begin
    a.showmodal;
 end;
 
-procedure TUI_Facade.maintain_item_types;
+procedure TUI_Facade.maintain_item_types(aoid: string);
 var
    a: Tfrm_maintain_item_types;
 begin
-   a:= Tfrm_maintain_item_types.create(nil);
+   a:= Tfrm_maintain_item_types.create(nil, aoid);
    a.showmodal;
 end;
 
