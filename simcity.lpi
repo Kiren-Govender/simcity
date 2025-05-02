@@ -112,10 +112,6 @@
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
-        <Filename Value="data\items.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
         <Filename Value="30-ui\10-items\form_maintain_item_types.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frm_maintain_item_types"/>
@@ -135,10 +131,6 @@
         <ComponentName Value="frmMaintainOrderTypes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="data\Orders.pas"/>
-        <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="10-abstract\abstract_form.pas"/>
@@ -213,6 +205,14 @@
         <ComponentName Value="frmModifyItemType"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="40-data\items.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="40-data\Orders.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
   </ProjectOptions>

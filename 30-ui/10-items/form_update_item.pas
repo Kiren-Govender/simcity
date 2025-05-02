@@ -13,8 +13,8 @@ type
   { Tfrm_update_item }
 
   Tfrm_update_item = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
+    btnSave: TButton;
+    btnCancel: TButton;
     ComboBox1: TComboBox;
     edtItemName: TEdit;
     Label1: TLabel;
@@ -26,14 +26,13 @@ type
     seditOnHand: TSpinEdit;
     seRequired: TSpinEdit;
     teProductionTime: TTimeEdit;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure btnCancelClick(Sender: TObject);
+    procedure btnSaveClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
     loid : string;
     procedure UpdateItem;
-    procedure SetupMediators;
   public
         constructor create(aoid : string);
   end;
@@ -51,16 +50,16 @@ uses
  ;
 { Tfrm_update_item }
 
-procedure Tfrm_update_item.Button1Click(Sender: TObject);
+procedure Tfrm_update_item.btnSaveClick(Sender: TObject);
 begin
   UpdateItem;
   showmessage('Item Saved');
   self.close;
 end;
 
-procedure Tfrm_update_item.Button2Click(Sender: TObject);
+procedure Tfrm_update_item.btnCancelClick(Sender: TObject);
 begin
-  self.close;
+    self.close;
 end;
 
 procedure Tfrm_update_item.FormClose(Sender: TObject;
@@ -88,11 +87,6 @@ begin
     item.item_required:=seRequired.Value;
     item.item_production_time:=teProductionTime.Time;
     item.save;
-end;
-
-procedure Tfrm_update_item.SetupMediators;
-begin
-
 end;
 
 constructor Tfrm_update_item.create(aoid: string);

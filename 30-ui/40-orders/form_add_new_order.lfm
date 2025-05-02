@@ -1,7 +1,7 @@
 object frm_add_new_order: Tfrm_add_new_order
-  Left = 324
+  Left = 24
   Height = 367
-  Top = 203
+  Top = 234
   Width = 654
   ActiveControl = cmbOrderTypes
   Caption = 'Add a new order'
@@ -89,7 +89,7 @@ object frm_add_new_order: Tfrm_add_new_order
       ReadOnly = True
       TabOrder = 0
     end
-    object SpinEdit1: TSpinEdit
+    object seQuantity: TSpinEdit
       Left = 80
       Height = 23
       Top = 80
@@ -110,14 +110,14 @@ object frm_add_new_order: Tfrm_add_new_order
       Width = 46
       Caption = 'Quantity'
     end
-    object Button1: TButton
+    object btnAddItem: TButton
       Left = 149
       Height = 25
       Top = 112
       Width = 75
       Caption = 'Add Item'
       TabOrder = 2
-      OnClick = Button1Click
+      OnClick = btnAddItemClick
     end
     object StringGrid1: TStringGrid
       Left = 260
@@ -164,7 +164,7 @@ object frm_add_new_order: Tfrm_add_new_order
       Caption = 'Item Type'
     end
   end
-  object TimeEdit1: TTimeEdit
+  object teTimeLeft: TTimeEdit
     Left = 100
     Height = 23
     Top = 55
@@ -175,7 +175,7 @@ object frm_add_new_order: Tfrm_add_new_order
     TabOrder = 2
     Text = 'hh:mm:ss'
   end
-  object Button2: TButton
+  object btnSave: TButton
     Left = 464
     Height = 25
     Top = 328
@@ -183,9 +183,9 @@ object frm_add_new_order: Tfrm_add_new_order
     Caption = 'Save Order'
     ModalResult = 1
     TabOrder = 3
-    OnClick = Button2Click
+    OnClick = btnSaveClick
   end
-  object Button3: TButton
+  object btnCancel: TButton
     Left = 565
     Height = 25
     Top = 328

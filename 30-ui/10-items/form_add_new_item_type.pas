@@ -5,7 +5,8 @@ unit form_add_new_item_type;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, tiopfmanager, dmservice, tiobject, Dialogs, items, abstract_type_maintenance_addtype_form;
+  Classes, SysUtils, Forms, Controls, Graphics, tiopfmanager,
+  dmservice, tiobject, Dialogs, items, abstract_type_maintenance_addtype_form;
 
 type
 

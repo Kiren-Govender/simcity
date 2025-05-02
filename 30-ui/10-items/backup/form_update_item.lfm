@@ -8,23 +8,26 @@ object frm_update_item: Tfrm_update_item
   ClientWidth = 370
   Position = poMainFormCenter
   LCLVersion = '4.0.0.3'
+  OnClose = FormClose
   OnCreate = FormCreate
-  object Button1: TButton
+  object btnSave: TButton
     Left = 172
     Height = 25
     Top = 208
     Width = 75
     Caption = 'Save'
+    ModalResult = 1
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = btnSaveClick
   end
-  object Button2: TButton
+  object btnCancel: TButton
     Left = 272
     Height = 25
     Top = 208
     Width = 75
     Cancel = True
     Caption = 'Cancel'
+    ModalResult = 2
     TabOrder = 1
   end
   object Label1: TLabel

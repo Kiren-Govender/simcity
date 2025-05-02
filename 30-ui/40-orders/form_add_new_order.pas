@@ -15,9 +15,9 @@ type
   TOrderEntryItem = class;
 
   Tfrm_add_new_order = class(TBaseForm)
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
+    btnAddItem: TButton;
+    btnSave: TButton;
+    btnCancel: TButton;
     cmbOrderTypes: TComboBox;
     cmbItems: TComboBox;
     cmbItemTypes: TComboBox;
@@ -29,11 +29,11 @@ type
     Label5: TLabel;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
-    SpinEdit1: TSpinEdit;
+    seQuantity: TSpinEdit;
     StringGrid1: TStringGrid;
-    TimeEdit1: TTimeEdit;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    teTimeLeft: TTimeEdit;
+    procedure btnAddItemClick(Sender: TObject);
+    procedure btnSaveClick(Sender: TObject);
     procedure cmbOrderTypesChange(Sender: TObject);
     procedure cmbOrderTypesDropDown(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -154,7 +154,7 @@ begin
   //CloseAction := caFree;
 end;
 
-procedure Tfrm_add_new_order.Button2Click(Sender: TObject);
+procedure Tfrm_add_new_order.btnSaveClick(Sender: TObject);
 var
 aorder : TOrder;
 begin
@@ -177,7 +177,7 @@ begin
 
 end;
 
-procedure Tfrm_add_new_order.Button1Click(Sender: TObject);
+procedure Tfrm_add_new_order.btnAddItemClick(Sender: TObject);
 var
   a : integer;
 begin
@@ -188,7 +188,7 @@ begin
   // Create and assign the new item
   fOrderEntry.FOrderEntryItems[a] := TOrderEntryItem.Create;
   fOrderEntry.FOrderEntryItems[a].itemid := cmbItems.Text;
-  fOrderEntry.FOrderEntryItems[a].quantity := SpinEdit1.Value;
+  fOrderEntry.FOrderEntryItems[a].quantity := seQuantity.Value;
 
     // Update the StringGrid
   StringGrid1.RowCount := a + 2; // Adjust row count (if FixedRows=0)

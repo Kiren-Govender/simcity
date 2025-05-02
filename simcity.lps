@@ -19,25 +19,25 @@
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="258"/>
-        <CursorPos X="50" Y="263"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="56"/>
+        <CursorPos X="35" Y="122"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="simcity_data_facade.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="6"/>
-        <CursorPos Y="6"/>
+        <TopLine Value="12"/>
+        <CursorPos X="31" Y="24"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="simcity_facade.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="29"/>
-        <CursorPos X="23" Y="60"/>
+        <CursorPos X="41" Y="27"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
@@ -46,11 +46,9 @@
         <ComponentName Value="frm_add_new_item"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="65"/>
-        <CursorPos X="59" Y="98"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="20" Y="38"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\10-items\form_update_item.pas"/>
@@ -59,17 +57,16 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="40"/>
-        <CursorPos Y="51"/>
+        <TopLine Value="27"/>
+        <CursorPos X="45" Y="29"/>
         <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="data\items.pas"/>
-        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="67"/>
         <CursorPos X="10" Y="76"/>
-        <UsageCount Value="200"/>
+        <UsageCount Value="199"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\10-items\form_maintain_item_types.pas"/>
@@ -78,9 +75,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <WindowIndex Value="1"/>
-        <TopLine Value="39"/>
-        <CursorPos X="30" Y="48"/>
+        <TopLine Value="13"/>
+        <CursorPos X="47" Y="24"/>
         <UsageCount Value="219"/>
       </Unit>
       <Unit>
@@ -90,8 +86,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="132"/>
-        <CursorPos X="8" Y="132"/>
+        <TopLine Value="82"/>
+        <CursorPos X="22" Y="96"/>
         <UsageCount Value="211"/>
       </Unit>
       <Unit>
@@ -100,26 +96,23 @@
         <ComponentName Value="frmMaintainOrderTypes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="-1"/>
-        <WindowIndex Value="1"/>
-        <TopLine Value="166"/>
-        <CursorPos X="3" Y="175"/>
+        <TopLine Value="4"/>
+        <CursorPos X="71" Y="47"/>
         <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="data\Orders.pas"/>
-        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="100"/>
         <CursorPos X="15" Y="121"/>
-        <UsageCount Value="223"/>
+        <UsageCount Value="222"/>
       </Unit>
       <Unit>
         <Filename Value="10-abstract\abstract_form.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="21" Y="18"/>
+        <CursorPos X="46" Y="18"/>
         <UsageCount Value="218"/>
       </Unit>
       <Unit>
@@ -128,11 +121,9 @@
         <ComponentName Value="dmApplicationService"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="200"/>
-        <CursorPos X="28" Y="212"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="21" Y="58"/>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="20-services\dmservice.pas"/>
@@ -142,9 +133,8 @@
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="DMService"/>
         <EditorIndex Value="-1"/>
-        <WindowIndex Value="1"/>
-        <TopLine Value="119"/>
-        <CursorPos X="25" Y="132"/>
+        <TopLine Value="76"/>
+        <CursorPos X="30" Y="81"/>
         <UsageCount Value="201"/>
       </Unit>
       <Unit>
@@ -154,10 +144,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <WindowIndex Value="1"/>
-        <TopLine Value="43"/>
-        <CursorPos X="27" Y="47"/>
-        <UsageCount Value="77"/>
+        <TopLine Value="13"/>
+        <CursorPos X="44" Y="25"/>
+        <UsageCount Value="99"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\40-orders\form_modify_order_type.pas"/>
@@ -165,11 +154,10 @@
         <ComponentName Value="frmModifyOrderType"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="39"/>
-        <CursorPos Y="51"/>
-        <UsageCount Value="77"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="10"/>
+        <CursorPos X="58" Y="25"/>
+        <UsageCount Value="99"/>
       </Unit>
       <Unit>
         <Filename Value="10-abstract\abstract_type_maintenance_form.pas"/>
@@ -178,9 +166,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="113"/>
-        <CursorPos X="25" Y="119"/>
-        <UsageCount Value="58"/>
+        <CursorPos X="25" Y="75"/>
+        <UsageCount Value="80"/>
       </Unit>
       <Unit>
         <Filename Value="10-abstract\test_abstract_type_maintenance_form.pas"/>
@@ -189,9 +176,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <WindowIndex Value="1"/>
-        <CursorPos X="46" Y="5"/>
-        <UsageCount Value="40"/>
+        <TopLine Value="13"/>
+        <CursorPos X="30" Y="26"/>
+        <UsageCount Value="62"/>
       </Unit>
       <Unit>
         <Filename Value="10-abstract\dmservice.pas"/>
@@ -202,14 +189,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="52"/>
         <CursorPos X="19" Y="60"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\37-3rd-party-repos\tiopf\Core\tiObject.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="35"/>
         <CursorPos X="23" Y="42"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\controls.pp"/>
@@ -217,21 +204,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="46"/>
         <CursorPos X="11" Y="53"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="1"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\37-3rd-party-repos\tiopf\Options\tiQueryDataset.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="158"/>
         <CursorPos Y="167"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="..\..\37-3rd-party-repos\tiopfApps\tiOPFMapper\mapper\mapper.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="569"/>
         <CursorPos X="3" Y="582"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="10-abstract\abstract_type_maintenance_addtype_form.pas"/>
@@ -240,8 +227,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="14" Y="14"/>
-        <UsageCount Value="26"/>
+        <TopLine Value="17"/>
+        <CursorPos X="23" Y="30"/>
+        <UsageCount Value="48"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\10-items\form_add_new_item_type.pas"/>
@@ -249,24 +237,19 @@
         <ComponentName Value="frmAddNewItemType"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="31"/>
-        <CursorPos X="24" Y="37"/>
-        <UsageCount Value="25"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="7"/>
+        <CursorPos X="27" Y="21"/>
+        <UsageCount Value="46"/>
       </Unit>
       <Unit>
         <Filename Value="10-abstract\abstract_type_maintenance_modifytype_form.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmAbstractModifyType"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="60"/>
-        <CursorPos X="40" Y="75"/>
-        <UsageCount Value="21"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="32" Y="6"/>
+        <UsageCount Value="43"/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\10-items\form_modify_item_type.pas"/>
@@ -274,55 +257,29 @@
         <ComponentName Value="frmModifyItemType"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="37"/>
-        <CursorPos X="30" Y="41"/>
-        <UsageCount Value="21"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="25"/>
+        <CursorPos X="31" Y="23"/>
+        <UsageCount Value="42"/>
+      </Unit>
+      <Unit>
+        <Filename Value="40-data\items.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="124"/>
+        <CursorPos X="51" Y="137"/>
+        <UsageCount Value="34"/>
+      </Unit>
+      <Unit>
+        <Filename Value="40-data\Orders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="135"/>
+        <CursorPos X="56" Y="137"/>
+        <UsageCount Value="34"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="9">
-      <Position>
-        <Filename Value="10-abstract\abstract_type_maintenance_modifytype_form.pas"/>
-        <Caret Line="13" Column="16"/>
-      </Position>
-      <Position>
-        <Filename Value="10-abstract\abstract_type_maintenance_modifytype_form.pas"/>
-        <Caret Line="26" Column="18" TopLine="20"/>
-      </Position>
-      <Position>
-        <Filename Value="10-abstract\abstract_type_maintenance_modifytype_form.pas"/>
-        <Caret Line="27" Column="19" TopLine="17"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_modify_item_type.pas"/>
-        <Caret Line="23" Column="42" TopLine="13"/>
-      </Position>
-      <Position>
-        <Filename Value="10-abstract\abstract_type_maintenance_modifytype_form.pas"/>
-        <Caret Line="28" Column="19" TopLine="28"/>
-      </Position>
-      <Position>
-        <Filename Value="10-abstract\abstract_type_maintenance_modifytype_form.pas"/>
-        <Caret Line="57" Column="16" TopLine="57"/>
-      </Position>
-      <Position>
-        <Filename Value="20-services\app_service.pas"/>
-        <Caret Line="56" Column="32" TopLine="41"/>
-      </Position>
-      <Position>
-        <Filename Value="20-services\app_service.pas"/>
-        <Caret Line="210" Column="3" TopLine="203"/>
-      </Position>
-      <Position>
-        <Filename Value="20-services\app_service.pas"/>
-        <Caret Line="56" Column="45" TopLine="49"/>
-      </Position>
-      <Position>
-        <Filename Value="30-ui\10-items\form_add_new_item_type.pas"/>
-        <Caret Line="12" Column="29" TopLine="7"/>
-      </Position>
-    </JumpHistory>
+    <JumpHistory HistoryIndex="-1"/>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>

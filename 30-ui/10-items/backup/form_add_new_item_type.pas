@@ -12,6 +12,7 @@ type
   { TfrmAddNewItemType }
 
   TfrmAddNewItemType = class(TfrmAbstractAddNewType)
+    procedure edtDescriptionChange(Sender: TObject);
   private
   protected
     procedure SaveType; override;
@@ -31,6 +32,10 @@ implementation
 { TfrmAddNewItemType }
 
 
+procedure TfrmAddNewItemType.edtDescriptionChange(Sender: TObject);
+begin
+  btnSave.Enabled:=true;
+end;
 
 procedure TfrmAddNewItemType.SaveType;
 var

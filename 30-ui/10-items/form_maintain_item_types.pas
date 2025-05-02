@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  ComCtrls, ActnList,abstract_type_maintenance_form, Items, mapper, DMService;
+  ComCtrls, ActnList, abstract_type_maintenance_form, Items, mapper, DMService;
 
 type
 
@@ -16,15 +16,15 @@ type
   protected
     procedure ShowAddForm; override;
     procedure ShowModifyForm(aoid: string); override;
-    procedure SetTypeIndex(atypeindex : integer; avalue : integer); override;
-    function GetTypeIndex(atypeindex : integer): integer; override;
+    procedure SetTypeIndex(atypeindex: integer; avalue: integer); override;
+    function GetTypeIndex(atypeindex: integer): integer; override;
     procedure listsave(aList: TtiMappedFilteredObjectList); override;
-   public
-     procedure refresh; override;
-     procedure AddMediatorProperties; override;
-     procedure AddMediatorSubject; override;
-         procedure ConfigureForm;override;
-         procedure CreateList; override;
+  public
+    procedure refresh; override;
+    procedure AddMediatorProperties; override;
+    procedure AddMediatorSubject; override;
+    procedure ConfigureForm; override;
+    procedure CreateList; override;
   end;
 
 var
@@ -36,7 +36,7 @@ implementation
 
 uses app_service;
 
-{ Tfrm_maintain_item_types }
+  { Tfrm_maintain_item_types }
 
 procedure Tfrm_maintain_item_types.ShowAddForm;
 begin
@@ -48,17 +48,16 @@ begin
   DMAPP.modify_item_type(aoid);
 end;
 
-procedure Tfrm_maintain_item_types.SetTypeIndex(atypeindex: integer;
-  avalue: integer);
+procedure Tfrm_maintain_item_types.SetTypeIndex(atypeindex: integer; avalue: integer);
 begin
-  TItemTypeList(fList).Items[atypeindex].item_type_index:=avalue;
+  TItemTypeList(fList).Items[atypeindex].item_type_index := avalue;
   //showmessage(inttostr(atypeindex)+':'+inttostr(avalue));
   //showmessage(inttostr(TItemTypeList(fList).Items[atypeindex].item_type_index));
 end;
 
 function Tfrm_maintain_item_types.GetTypeIndex(atypeindex: integer): integer;
 begin
-  result:=TItemTypeList(FList).Items[atypeindex].item_type_index;
+  Result := TItemTypeList(FList).Items[atypeindex].item_type_index;
 end;
 
 procedure Tfrm_maintain_item_types.listsave(aList: TtiMappedFilteredObjectList);
@@ -84,14 +83,13 @@ end;
 
 procedure Tfrm_maintain_item_types.ConfigureForm;
 begin
-  self.Caption:='Maintain Item Types';
+  self.Caption := 'Maintain Item Types';
 end;
 
 procedure Tfrm_maintain_item_types.CreateList;
 begin
-  TItemTypeList(flist):=TItemTypeList.Create;
+  TItemTypeList(flist) := TItemTypeList.Create;
   TItemTypeList(flist).GetAllSortedByIndex;
 end;
 
 end.
-
