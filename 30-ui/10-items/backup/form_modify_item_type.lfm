@@ -1,5 +1,0 @@
-inherited frmModifyItemType: TfrmModifyItemType
-  Left = 815
-  Top = 240
-  Caption = 'frmModifyItemType'
-end

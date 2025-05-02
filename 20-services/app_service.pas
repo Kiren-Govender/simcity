@@ -6,7 +6,10 @@ interface
 
 uses
   Classes, SysUtils, items, ActnList, Controls
-  , form_add_new_item
+  //, form_add_new_item
+  , form_add_new_item_new
+
+
   , form_update_item
   , form_maintain_item_types
   , form_add_new_order
@@ -74,9 +77,9 @@ begin
 
 procedure TdmApplicationService.acAddNewItemExecute(Sender: TObject);
 var
-   a: Tfrm_add_new_item;
+   a: TfrmAddNewItemNew;
 begin
-   a:=Tfrm_add_new_item.create(nil);
+   a:=TfrmAddNewItemNew.create(nil);
    a.showmodal;
 end;
 
@@ -130,9 +133,9 @@ end;
 
 procedure TdmApplicationService.add_new_item;
 var
-   a: Tfrm_add_new_item;
+   a: TfrmAddNewItemNew;
 begin
-   a:=Tfrm_add_new_item.create(nil);
+   a:=TfrmAddNewItemNew.create(nil);
    a.showmodal;
 end;
 

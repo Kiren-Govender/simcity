@@ -25,7 +25,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="30-ui\10-items;data;30-ui\40-orders;10-abstract;20-services"/>
+            <OtherUnitFiles Value="30-ui\40-orders;10-abstract;20-services;40-data;30-ui\30-items;30-ui\30-items\20-item-types;10-abstract\30-type-maintenance;30-ui\10-mainform;30-ui\40-orders\20-order-types"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -83,52 +83,9 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="mainform.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmMain"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="simcity_data_facade.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="simcity_facade.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="30-ui\10-items\form_add_new_item.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frm_add_new_item"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="30-ui\10-items\form_update_item.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frm_update_item"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="30-ui\10-items\form_maintain_item_types.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frm_maintain_item_types"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
         <Filename Value="30-ui\40-orders\form_add_new_order.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frm_add_new_order"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="30-ui\40-orders\form_maintain_order_types.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmMaintainOrderTypes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
@@ -152,67 +109,121 @@
         <UnitName Value="DMService"/>
       </Unit>
       <Unit>
-        <Filename Value="30-ui\40-orders\form_add_new_order_type.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmAddNewOrderType"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="30-ui\40-orders\form_modify_order_type.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmModifyOrderType"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="10-abstract\abstract_type_maintenance_form.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmAbstractTypeMaintenance"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="10-abstract\test_abstract_type_maintenance_form.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmTestAbstractMaintenanceForm"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="10-abstract\abstract_type_maintenance_addtype_form.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmAbstractAddNewType"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="30-ui\10-items\form_add_new_item_type.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmAddNewItemType"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="10-abstract\abstract_type_maintenance_modifytype_form.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmAbstractModifyType"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="30-ui\10-items\form_modify_item_type.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmModifyItemType"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
         <Filename Value="40-data\items.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="40-data\Orders.pas"/>
         <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="10-abstract\30-type-maintenance\abstract_type_maintenance_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAbstractTypeMaintenance"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <ResourceBaseClassname Value=""/>
+      </Unit>
+      <Unit>
+        <Filename Value="10-abstract\30-type-maintenance\abstract_type_maintenance_addtype_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAbstractAddNewType"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <ResourceBaseClassname Value=""/>
+      </Unit>
+      <Unit>
+        <Filename Value="10-abstract\30-type-maintenance\abstract_type_maintenance_modifytype_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAbstractModifyType"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <ResourceBaseClassname Value=""/>
+      </Unit>
+      <Unit>
+        <Filename Value="10-abstract\30-type-maintenance\test_abstract_type_maintenance_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmTestAbstractMaintenanceForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <ResourceBaseClassname Value=""/>
+      </Unit>
+      <Unit>
+        <Filename Value="20-services\simcity_facade.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="20-services\simcity_data_facade.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\10-mainform\mainform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMain"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\30-items\form_update_item.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_update_item"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <ResourceBaseClassname Value=""/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\30-items\20-item-types\form_maintain_item_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_maintain_item_types"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <ResourceBaseClassname Value=""/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\30-items\20-item-types\form_add_new_item_type.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAddNewItemType"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <ResourceBaseClassname Value=""/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\30-items\20-item-types\form_modify_item_type.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmModifyItemType"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <ResourceBaseClassname Value=""/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\40-orders\20-order-types\form_maintain_order_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMaintainOrderTypes"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <ResourceBaseClassname Value=""/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\40-orders\20-order-types\form_add_new_order_type.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAddNewOrderType"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <ResourceBaseClassname Value=""/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\40-orders\20-order-types\form_modify_order_type.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmModifyOrderType"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <ResourceBaseClassname Value=""/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\30-items\form_add_new_item_new.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAddNewItemNew"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -224,7 +235,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="30-ui\10-items;data;30-ui\40-orders;10-abstract;20-services"/>
+      <OtherUnitFiles Value="data;30-ui\40-orders;10-abstract;20-services;40-data;30-ui\30-items;30-ui\30-items\20-item-types;10-abstract\30-type-maintenance;30-ui\10-mainform;30-ui\40-orders\20-order-types"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

@@ -1,7 +1,7 @@
 object frm_add_new_item: Tfrm_add_new_item
-  Left = 345
+  Left = 569
   Height = 250
-  Top = 206
+  Top = 217
   Width = 370
   Caption = 'Add a new Item'
   ClientHeight = 250
@@ -9,24 +9,7 @@ object frm_add_new_item: Tfrm_add_new_item
   Position = poMainFormCenter
   LCLVersion = '4.0.0.3'
   OnClose = FormClose
-  object Button1: TButton
-    Left = 172
-    Height = 25
-    Top = 208
-    Width = 75
-    Caption = 'Save'
-    TabOrder = 0
-    OnClick = Button1Click
-  end
-  object Button2: TButton
-    Left = 272
-    Height = 25
-    Top = 208
-    Width = 75
-    Cancel = True
-    Caption = 'Cancel'
-    TabOrder = 1
-  end
+  OnCreate = FormCreate
   object Label1: TLabel
     Left = 24
     Height = 15
@@ -39,7 +22,7 @@ object frm_add_new_item: Tfrm_add_new_item
     Height = 23
     Top = 25
     Width = 175
-    TabOrder = 2
+    TabOrder = 0
   end
   object Label2: TLabel
     Left = 24
@@ -61,21 +44,20 @@ object frm_add_new_item: Tfrm_add_new_item
     Top = 120
     Width = 89
     Caption = 'Production Time'
-    OnClick = Label4Click
   end
   object seditOnHand: TSpinEdit
     Left = 272
     Height = 23
     Top = 56
     Width = 75
-    TabOrder = 3
+    TabOrder = 1
   end
   object seRequired: TSpinEdit
     Left = 272
     Height = 23
     Top = 88
     Width = 75
-    TabOrder = 4
+    TabOrder = 2
   end
   object teProductionTime: TTimeEdit
     Left = 172
@@ -85,16 +67,18 @@ object frm_add_new_item: Tfrm_add_new_item
     ButtonWidth = 23
     NumGlyphs = 1
     MaxLength = 0
-    TabOrder = 5
+    TabOrder = 3
+    TimeFormat = 'hh:mm:ss'
     Text = 'hh:mm:ss'
   end
-  object ComboBox1: TComboBox
+  object cmbItemTypes: TComboBox
     Left = 172
     Height = 23
     Top = 154
     Width = 148
     ItemHeight = 15
-    TabOrder = 6
+    ReadOnly = True
+    TabOrder = 4
   end
   object Label5: TLabel
     Left = 24
@@ -112,6 +96,23 @@ object frm_add_new_item: Tfrm_add_new_item
     Images = dmApplicationService.ImageList1
     ImageIndex = 719
     ShowCaption = False
-    OnClick = SpeedButton1Click
+  end
+  object Button1: TButton
+    Left = 168
+    Height = 25
+    Top = 208
+    Width = 75
+    Caption = 'Button1'
+    TabOrder = 5
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 282
+    Height = 25
+    Top = 205
+    Width = 75
+    Caption = 'Button2'
+    TabOrder = 6
+    OnClick = Button2Click
   end
 end

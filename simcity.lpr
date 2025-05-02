@@ -10,15 +10,15 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  uConnectionUtil, Forms, tachartlazaruspkg, DMService,
-  app_service, mainform, simcity_data_facade,
-  simcity_facade, items, Orders, form_add_new_item, form_update_item,
-  uDarkStyleParams, uDarkStyleSchemes, uMetaDarkStyle, form_maintain_item_types,
-  form_add_new_order, form_maintain_order_types, abstract_form, 
-form_add_new_order_type, form_modify_order_type, 
-abstract_type_maintenance_form, test_abstract_type_maintenance_form, 
-abstract_type_maintenance_addtype_form, form_add_new_item_type, 
-abstract_type_maintenance_modifytype_form, form_modify_item_type ;
+  uConnectionUtil, Forms, tachartlazaruspkg, DMService, app_service,
+  simcity_data_facade, simcity_facade, items, form_update_item,
+  uDarkStyleParams, uDarkStyleSchemes, uMetaDarkStyle,
+  form_add_new_order, form_maintain_order_types, mainform,
+  form_maintain_item_types, abstract_form, abstract_type_maintenance_form,
+  form_add_new_order_type, form_modify_order_type,
+  test_abstract_type_maintenance_form, abstract_type_maintenance_addtype_form,
+  form_add_new_item_type, abstract_type_maintenance_modifytype_form,
+  form_modify_item_type, Orders, form_add_new_item_new ;
 
 {$R *.res}
 
@@ -38,16 +38,6 @@ begin
 
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TfrmAddNewOrderType, frmAddNewOrderType);
-  Application.CreateForm(TfrmModifyOrderType, frmModifyOrderType);
-  Application.CreateForm(TfrmAbstractTypeMaintenance, frmAbstractTypeMaintenance
-    );
-  Application.CreateForm(TfrmTestAbstractMaintenanceForm, 
-    frmTestAbstractMaintenanceForm);
-  Application.CreateForm(TfrmAbstractAddNewType, frmAbstractAddNewType);
-  Application.CreateForm(TfrmAddNewItemType, frmAddNewItemType);
-  Application.CreateForm(TfrmAbstractModifyType, frmAbstractModifyType);
-  Application.CreateForm(TfrmModifyItemType, frmModifyItemType);
   Application.Run;
 end.
 

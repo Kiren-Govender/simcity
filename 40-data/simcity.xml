@@ -56,6 +56,14 @@ LIMIT 1]]>
               </sql>
               <params />
             </select>
+            <select name="GetItemTypeIDFromName">
+              <sql>
+                <![CDATA[SELECT * FROM item_type where item_type_name = :aname]]>
+              </sql>
+              <params>
+                <param name="aname" pass-by="" sql-param="aname" type="String" />
+              </params>
+            </select>
           </selections>
         </class>
         <class base-class="TItemBOM" base-class-parent="TtiObject" auto-map="true" auto-create-list="true">

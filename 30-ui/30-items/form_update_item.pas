@@ -26,6 +26,7 @@ type
     seditOnHand: TSpinEdit;
     seRequired: TSpinEdit;
     teProductionTime: TTimeEdit;
+    procedure btnCancelClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -56,6 +57,11 @@ begin
   self.close;
 end;
 
+procedure Tfrm_update_item.btnCancelClick(Sender: TObject);
+begin
+    self.close;
+end;
+
 procedure Tfrm_update_item.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
@@ -64,7 +70,7 @@ end;
 
 procedure Tfrm_update_item.FormCreate(Sender: TObject);
 begin
-  SetupMediators;
+  // SetupMediators;
 end;
 
 procedure Tfrm_update_item.UpdateItem;

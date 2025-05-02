@@ -1,8 +1,0 @@
-inherited frmAddNewItemType: TfrmAddNewItemType
-  Left = 457
-  Top = 157
-  Caption = 'frmAddNewItemType'
-  inherited edtDescription: TEdit
-    OnChange = edtDescriptionChange
-  end
-end

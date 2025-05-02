@@ -13,9 +13,9 @@ type
   { Tfrm_add_new_item }
 
   Tfrm_add_new_item = class(TForm)
-    btnSave: TButton;
-    btnCancel: TButton;
-    ComboBox1: TComboBox;
+    Button1: TButton;
+    Button2: TButton;
+    cmbItemTypes: TComboBox;
     edtItemName: TEdit;
     Label1: TLabel;
     Label2: TLabel;
@@ -26,15 +26,17 @@ type
     seRequired: TSpinEdit;
     SpeedButton1: TSpeedButton;
     teProductionTime: TTimeEdit;
-    procedure btnCancelClick(Sender: TObject);
-    procedure btnSaveClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
     procedure SaveItem;
+    procedure populateItemTypes;
   public
 
   end;
+  { #todo : Add a routine to populate the item types }
 
 var
   frm_add_new_item: Tfrm_add_new_item;
@@ -51,15 +53,18 @@ uses
 
 { Tfrm_add_new_item }
 
-procedure Tfrm_add_new_item.btnSaveClick(Sender: TObject);
+
+
+procedure Tfrm_add_new_item.Button1Click(Sender: TObject);
 begin
-  SaveItem;
+    SaveItem;
 end;
 
-procedure Tfrm_add_new_item.btnCancelClick(Sender: TObject);
+procedure Tfrm_add_new_item.Button2Click(Sender: TObject);
 begin
-  self.close;
+    self.close;
 end;
+
 
 procedure Tfrm_add_new_item.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
@@ -69,7 +74,10 @@ end;
 
 procedure Tfrm_add_new_item.FormCreate(Sender: TObject);
 begin
-  SetupMediators;
+  // SetupMediators;
+  inherited create(nil);
+  showmessage('Populating Item Types');
+  //populateItemTypes;
 end;
 
 procedure Tfrm_add_new_item.SaveItem;
@@ -85,6 +93,23 @@ begin
   item.item_production_time:=teProductionTime.Time;
   item.save;
   self.close;
+end;
+
+procedure Tfrm_add_new_item.populateItemTypes;
+var
+  aItemTypes : TItemTypeList;
+  count : integer;
+begin
+  aItemTypes := TItemTypeList.Create;
+  try
+  aItemTypes.read;
+  for count:=0 to aItemTypes.Count-1 do
+  begin
+    self.cmbItemTypes.Items.Add(aItemTypes.Items[count].item_type_name);
+  end;
+  finally
+    aItemTypes.free;
+  end;
 end;
 
 initialization
