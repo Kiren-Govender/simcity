@@ -1,7 +1,7 @@
 object frmMaintainOrderTypes: TfrmMaintainOrderTypes
-  Left = 433
+  Left = 227
   Height = 343
-  Top = 203
+  Top = 104
   Width = 457
   Caption = 'Maintain Order Types'
   ClientHeight = 343

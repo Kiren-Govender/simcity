@@ -19,6 +19,8 @@ uses
   , test_abstract_type_maintenance_form
   , form_add_new_item_type
   , form_modify_item_type
+  , form_add_item_bom
+  , form_modify_item_bom
   ;
 
 type
@@ -57,6 +59,8 @@ type
     procedure test_abstract_maintenance_form;
     procedure add_new_item_type;
     procedure modify_item_type(aoid : string);
+    procedure add_item_bom(itemoid: string);
+    procedure modify_item_bom(itemoid : string);
   end;
 
 var
@@ -214,6 +218,19 @@ var
 begin
    frm:= TfrmModifyItemType.create(nil, aoid);
    frm.showmodal;
+end;
+
+procedure TdmApplicationService.add_item_bom(itemoid: string);
+var
+   frm: TfrmAddItemBom;
+begin
+   frm:= TfrmAddItemBom.create(nil, itemoid);
+   frm.showmodal;
+end;
+
+procedure TdmApplicationService.modify_item_bom(itemoid: string);
+begin
+
 end;
 
 initialization

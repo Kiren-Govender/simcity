@@ -1,0 +1,84 @@
+object frmAddItemBom: TfrmAddItemBom
+  Left = 337
+  Height = 240
+  Top = 258
+  Width = 612
+  Caption = 'Add the Bill of Materials for an item'
+  ClientHeight = 240
+  ClientWidth = 612
+  LCLVersion = '4.0.0.3'
+  object cmbItems: TComboBox
+    Left = 216
+    Height = 23
+    Top = 24
+    Width = 124
+    ItemHeight = 15
+    ReadOnly = True
+    TabOrder = 0
+  end
+  object lstItemTypes: TListBox
+    Left = 8
+    Height = 195
+    Top = 24
+    Width = 133
+    ItemHeight = 0
+    TabOrder = 1
+    OnClick = lstItemTypesClick
+  end
+  object Label1: TLabel
+    Left = 152
+    Height = 15
+    Top = 24
+    Width = 24
+    Caption = 'Item'
+  end
+  object Label2: TLabel
+    Left = 152
+    Height = 15
+    Top = 64
+    Width = 46
+    Caption = 'Quantity'
+  end
+  object seQuantity: TSpinEdit
+    Left = 216
+    Height = 23
+    Top = 64
+    Width = 124
+    MinValue = 50
+    TabOrder = 2
+  end
+  object btnAddItemtoBOM: TButton
+    Left = 264
+    Height = 25
+    Top = 157
+    Width = 75
+    Caption = 'Add Item'
+    TabOrder = 3
+    OnClick = btnAddItemtoBOMClick
+  end
+  object btnSaveBOM: TButton
+    Left = 424
+    Height = 25
+    Top = 194
+    Width = 75
+    Caption = 'Save BOM'
+    TabOrder = 4
+    OnClick = btnSaveBOMClick
+  end
+  object sgBOM: TStringGrid
+    Left = 350
+    Height = 158
+    Top = 24
+    Width = 250
+    ColCount = 2
+    TabOrder = 5
+  end
+  object btnCancel: TButton
+    Left = 525
+    Height = 25
+    Top = 194
+    Width = 75
+    Caption = 'Cancel'
+    TabOrder = 6
+  end
+end

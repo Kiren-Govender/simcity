@@ -1,1 +1,1 @@
- SELECT * FROM item WHERE item_name = :aname
+ SELECT * FROM order_type ORDER BY   order_type_index ASC

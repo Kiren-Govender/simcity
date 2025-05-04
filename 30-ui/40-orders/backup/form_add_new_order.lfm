@@ -1,7 +1,7 @@
 object frm_add_new_order: Tfrm_add_new_order
-  Left = 324
+  Left = 274
   Height = 367
-  Top = 203
+  Top = 183
   Width = 654
   ActiveControl = cmbOrderTypes
   Caption = 'Add a new order'
@@ -155,6 +155,7 @@ object frm_add_new_order: Tfrm_add_new_order
       ItemHeight = 15
       ReadOnly = True
       TabOrder = 4
+      OnSelect = cmbItemTypesSelect
     end
     object Label5: TLabel
       Left = 16

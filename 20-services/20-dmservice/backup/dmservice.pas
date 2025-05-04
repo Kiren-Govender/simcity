@@ -47,6 +47,8 @@ type
     procedure OrderTypesToListBox(listbox: TListBox);
     // Order
     procedure SaveOrder(order_type, description: string);
+    function GetOrderTypes : TStringList;
+    function GetItemTypes : TStringlist;
   end;
 
   { TOrderManager }
@@ -265,6 +267,42 @@ begin
   order.time_left := now();
   order.save;
   order.Free;
+end;
+
+function TdmServiceModule.GetOrderTypes: TStringList;
+var
+  lOrderTypeList : TOrderTypeList;
+  a : integer;
+begin
+  result:=TStringList.Create;
+  lOrderTypeList := TOrderTypeList.create;
+  try
+  lOrderTypeList.GetAllSortedByIndex;
+  for a:= 0 to lOrderTypeList.Count-1 do
+  begin
+       result.Add(lOrderTypeList.Items[a].order_type_name);
+  end;
+  finally
+    lOrderTypeList.free;
+  end;
+end;
+
+function TdmServiceModule.GetItemTypes: TStringlist;
+var
+  lItemTypeList : TItemTypeList;
+  a : integer;
+begin
+  result:=TStringList.Create;
+  lItemTypeList := TItemTypeList.create;
+  try
+  lItemTypeList.GetAllSortedByIndex;
+  for a:= 0 to lItemTypeList.Count-1 do
+  begin
+       result.Add(lItemTypeList.Items[a].item_type_name);
+  end;
+  finally
+    lItemTypeList.free;
+  end;
 end;
 
 { TOrderManager }

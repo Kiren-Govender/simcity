@@ -34,6 +34,7 @@ type
     teTimeLeft: TTimeEdit;
     procedure btnAddItemClick(Sender: TObject);
     procedure btnSaveClick(Sender: TObject);
+    procedure cmbItemTypesSelect(Sender: TObject);
     procedure cmbOrderTypesChange(Sender: TObject);
     procedure cmbOrderTypesDropDown(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -46,6 +47,7 @@ type
     fOrderEntry : TOrderEntry;
     property FormSender : TObject read FFormSender write SetFormSender;
     procedure PopulateItemsComboBox;
+    procedure PopulateItemTypesCombo;
     procedure populateOrderTypesCombo;
     procedure SetupMediators;
     function GenerateOrderDescription: string;
@@ -132,10 +134,17 @@ begin
    end;
 end;
 
+procedure Tfrm_add_new_order.PopulateItemTypesCombo;
+begin
+  cmbItemTypes.clear;
+  cmbItemTypes.Items:=DMS.GetItemTypes;
+end;
+
 procedure Tfrm_add_new_order.FormCreate(Sender: TObject);
 begin
   self.Visible:=false;
-  PopulateItemsComboBox;
+  PopulateItemTypesCombo;
+
   populateOrderTypesCombo;
   self.OrderEntry:=TOrderEntry.Create;
   SetupMediators;
@@ -177,6 +186,11 @@ begin
 
 end;
 
+procedure Tfrm_add_new_order.cmbItemTypesSelect(Sender: TObject);
+begin
+    PopulateItemsComboBox;
+end;
+
 procedure Tfrm_add_new_order.btnAddItemClick(Sender: TObject);
 var
   a : integer;
@@ -207,17 +221,9 @@ begin
 end;
 
 procedure Tfrm_add_new_order.populateOrderTypesCombo;
-var
-  OrderTypeList : TOrderTypeList;
-  a : integer;
 begin
-  cmbOrderTypes.clear;
-  OrderTypeList := TOrderTypeList.create;
-  OrderTypeList.GetAllSortedByIndex;
-  for a:= 0 to OrderTypeList.Count- 1 do
-  begin
-       cmbOrderTypes.Items.Add(OrderTypeList.Items[a].order_type_name);
-  end;
+  cmbORderTypes.clear;
+  cmbORderTypes.Items:=DMS.GetOrderTypes;
 end;
 
 procedure Tfrm_add_new_order.SetupMediators;

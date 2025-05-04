@@ -28,6 +28,14 @@
                 <param name="aname" pass-by="" sql-param="aname" type="String" />
               </params>
             </select>
+            <select name="FindByTypeID">
+              <sql>
+                <![CDATA[SELECT * FROM item where item_type_id = :typeid]]>
+              </sql>
+              <params>
+                <param name="typeid" pass-by="" sql-param="typeid" type="String" />
+              </params>
+            </select>
           </selections>
         </class>
         <class base-class="TItemType" base-class-parent="TtiObject" auto-map="true" auto-create-list="true">
@@ -78,7 +86,16 @@ LIMIT 1]]>
             <prop-map prop="bom_item_id" field="bom_item_id" type="String" />
             <prop-map prop="bom_item_quantity" field="bom_item_quantity" type="Integer" />
           </mapping>
-          <selections />
+          <selections>
+            <select name="FindbyItemOID">
+              <sql>
+                <![CDATA[SELECT * FROM item_bom where item_id = :itemid]]>
+              </sql>
+              <params>
+                <param name="itemid" pass-by="" sql-param="itemid" type="String" />
+              </params>
+            </select>
+          </selections>
         </class>
       </classes>
     </unit>

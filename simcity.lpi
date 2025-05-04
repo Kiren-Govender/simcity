@@ -14,6 +14,13 @@
       </XPManifest>
       <Icon Value="0"/>
     </General>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MinorVersionNr Value="1"/>
+      <RevisionNr Value="1"/>
+      <Attributes pvaPreRelease="True"/>
+    </VersionInfo>
     <BuildModes>
       <Item Name="Debug" Default="True"/>
       <Item Name="Release">
@@ -25,7 +32,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="30-ui\40-orders;10-abstract;20-services;40-data;30-ui\30-items;30-ui\30-items\20-item-types;10-abstract\30-type-maintenance;30-ui\10-mainform;30-ui\40-orders\20-order-types"/>
+            <OtherUnitFiles Value="30-ui\40-orders;10-abstract;20-services;40-data;30-ui\30-items;30-ui\30-items\20-item-types;10-abstract\30-type-maintenance;30-ui\10-mainform;30-ui\40-orders\20-order-types;30-ui\30-items\30-item-boms;20-services\20-dmservice;20-services\10-appservice;20-services\30-txservice\20-txsaveorder;10-abstract\40-txscript"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -94,21 +101,6 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="20-services\app_service.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="dmApplicationService"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="DataModule"/>
-      </Unit>
-      <Unit>
-        <Filename Value="20-services\dmservice.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="dmServiceModule"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="DataModule"/>
-        <UnitName Value="DMService"/>
-      </Unit>
-      <Unit>
         <Filename Value="40-data\items.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
@@ -169,7 +161,6 @@
         <ComponentName Value="frm_update_item"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <ResourceBaseClassname Value=""/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\30-items\20-item-types\form_maintain_item_types.pas"/>
@@ -201,7 +192,6 @@
         <ComponentName Value="frmMaintainOrderTypes"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <ResourceBaseClassname Value=""/>
       </Unit>
       <Unit>
         <Filename Value="30-ui\40-orders\20-order-types\form_add_new_order_type.pas"/>
@@ -225,6 +215,45 @@
         <ComponentName Value="frmAddNewItemNew"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="30-ui\30-items\30-item-boms\form_add_item_bom.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmAddItemBom"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="30-ui\30-items\30-item-boms\form_modify_item_bom.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmModifyItemBom"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="20-services\20-dmservice\dmservice.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dmServiceModule"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <ResourceBaseClassname Value=""/>
+        <UnitName Value="DMService"/>
+      </Unit>
+      <Unit>
+        <Filename Value="20-services\10-appservice\app_service.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="dmApplicationService"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit>
+      <Unit>
+        <Filename Value="20-services\30-txservice\20-txsaveorder\txsaveorder.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="txSaveOrder"/>
+      </Unit>
+      <Unit>
+        <Filename Value="10-abstract\40-txscript\abstracttxscript.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -235,7 +264,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="data;30-ui\40-orders;10-abstract;20-services;40-data;30-ui\30-items;30-ui\30-items\20-item-types;10-abstract\30-type-maintenance;30-ui\10-mainform;30-ui\40-orders\20-order-types"/>
+      <OtherUnitFiles Value="data;30-ui\40-orders;10-abstract;20-services;40-data;30-ui\30-items;30-ui\30-items\20-item-types;10-abstract\30-type-maintenance;30-ui\10-mainform;30-ui\40-orders\20-order-types;30-ui\30-items\30-item-boms;20-services\20-dmservice;20-services\10-appservice;20-services\30-txservice\20-txsaveorder;10-abstract\40-txscript"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

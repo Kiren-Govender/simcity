@@ -98,6 +98,7 @@ type
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
     procedure acAddNewItemExecute(Sender: TObject);
     procedure acAddOrderExecute(Sender: TObject);
     procedure acMaintainItemTypesExecute(Sender: TObject);
@@ -109,6 +110,7 @@ type
     procedure SpeedButton1Click(Sender: TObject);
     procedure ToolButton5Click(Sender: TObject);
     procedure ToolButton6Click(Sender: TObject);
+    procedure ToolButton7Click(Sender: TObject);
   private
     FOrderList: TOrderList;
     FOrderMediator: TtiModelMediator;
@@ -151,6 +153,25 @@ begin
      Orderlist.NotifyObservers;
 end;
 
+procedure TfrmMain.ToolButton7Click(Sender: TObject);
+var
+  simitems: TItemList;
+  itemtypes : TItemTypeList;
+  listboxtext: string;
+begin
+  //listbox1.Clear;
+  //itemtypes := TItemTypeList.create;
+  simitems := TItemList.Create;
+  //a.Read;
+  { #todo : Refactor this code and abstract to the DMService layer. }
+  listboxtext := listbox1.GetSelectedText;
+  //itemtypes.GetItemTypeIDFromName(listboxtext);
+  simitems.FindByName(listboxtext);
+  DMAPP.add_item_bom(simitems.Items[0].OID.AsString);
+  simitems.Free;
+  self.refresh;
+end;
+
 procedure TfrmMain.refresh;
 var
   a: TItemList;
@@ -171,6 +192,7 @@ begin
   OrderList.Clear;
   OrderList.Read;
   OrderList.NotifyObservers;
+  listbox1.ItemIndex:=0;
 end;
 
 procedure TfrmMain.findoidbyname(aname: string);

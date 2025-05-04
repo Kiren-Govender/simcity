@@ -70,6 +70,8 @@ procedure   Save; override;
 function    FindByOID(const AOID: string): integer;
 { Returns Number of objects retrieved. }
 function    FindByName( aname: String): integer;
+{ Returns Number of objects retrieved. }
+function    FindByTypeID( typeid: String): integer;
 end;
 
 { Generated Class: TItemType}
@@ -137,6 +139,8 @@ procedure   Read; override;
 procedure   Save; override;
 { Return count (1) if successful. }
 function    FindByOID(const AOID: string): integer;
+{ Returns Number of objects retrieved. }
+function    FindbyItemOID( itemid: String): integer;
 end;
 
 { Read Visitor for TItem }
@@ -206,6 +210,14 @@ end;
 
 { TItemList_FindByNameVis }
 TItemList_FindByNameVis = class(TtiMapParameterListReadVisitor)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   MapRowToObject; override;
+procedure   SetupParams; override;
+end;
+
+{ TItemList_FindByTypeIDVis }
+TItemList_FindByTypeIDVis = class(TtiMapParameterListReadVisitor)
 protected
 function    AcceptVisitor: Boolean; override;
 procedure   MapRowToObject; override;
@@ -366,6 +378,14 @@ procedure   Init; override;
 procedure   SetupParams; override;
 end;
 
+{ TItemBOMList_FindbyItemOIDVis }
+TItemBOMList_FindbyItemOIDVis = class(TtiMapParameterListReadVisitor)
+protected
+function    AcceptVisitor: Boolean; override;
+procedure   MapRowToObject; override;
+procedure   SetupParams; override;
+end;
+
 
 { Visitor Manager Registrations }
 procedure RegisterVisitors;
@@ -428,6 +448,7 @@ GTIOPFManager.VisitorManager.RegisterVisitor('TItemsave', TItem_Save);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemdelete', TItem_Delete);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemcreate', TItem_Create);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemList_FindByNameVis', TItemList_FindByNameVis);
+GTIOPFManager.VisitorManager.RegisterVisitor('TItemList_FindByTypeIDVis', TItemList_FindByTypeIDVis);
 
 { Register Visitors for TItemType }
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemTypeList_listread', TItemTypeList_Read);
@@ -451,6 +472,7 @@ GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMread', TItemBOM_Read);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMsave', TItemBOM_Save);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMdelete', TItemBOM_Delete);
 GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMcreate', TItemBOM_Create);
+GTIOPFManager.VisitorManager.RegisterVisitor('TItemBOMList_FindbyItemOIDVis', TItemBOMList_FindbyItemOIDVis);
 
 end;
 
@@ -545,6 +567,19 @@ AddParam('aname', 'aname', ptString, aname);
 self.SQL := 
 ' SELECT * FROM item WHERE item_name = :aname'; 
 GTIOPFManager.VisitorManager.Execute('TItemList_FindByNameVis', self);
+result := self.Count;
+end;
+
+function TItemList.FindByTypeID( typeid: String): integer;
+begin
+if self.Count > 0 then
+self.Clear;
+
+Params.Clear;
+AddParam('typeid', 'typeid', ptString, typeid);
+self.SQL := 
+' SELECT * FROM item where item_type_id = :typeid'; 
+GTIOPFManager.VisitorManager.Execute('TItemList_FindByTypeIDVis', self);
 result := self.Count;
 end;
 
@@ -718,6 +753,19 @@ Criteria.ClearAll;
 Criteria.AddEqualTo('OID', AOID);
 Read;
 result := Count;
+end;
+
+function TItemBOMList.FindbyItemOID( itemid: String): integer;
+begin
+if self.Count > 0 then
+self.Clear;
+
+Params.Clear;
+AddParam('itemid', 'itemid', ptString, itemid);
+self.SQL := 
+' SELECT * FROM item_bom where item_id = :itemid'; 
+GTIOPFManager.VisitorManager.Execute('TItemBOMList_FindbyItemOIDVis', self);
+result := self.Count;
 end;
 
 { TItem_Create }
@@ -1026,6 +1074,39 @@ lList := TtiMappedFilteredObjectList(Visited);
 
 lParam := TSelectParam(lList.Params.FindByProps(['ParamName'], ['aname']));
 Query.ParamAsString['aname'] := lParam.Value;
+end;
+
+{ TItemList_FindByTypeIDVis }
+function TItemList_FindByTypeIDVis.AcceptVisitor: Boolean;
+begin
+result := (Visited.ObjectState = posEmpty);
+end;
+
+procedure TItemList_FindByTypeIDVis.MapRowToObject;
+var
+lObj: TItem;
+begin
+lObj := TItem.Create;
+lObj.OID.AssignFromTIQuery('OID',Query);
+lObj.item_name := Query.FieldAsString['item_name'];
+lObj.item_type_id := Query.FieldAsString['item_type_id'];
+lObj.item_onhand := Query.FieldAsInteger['item_onhand'];
+lObj.item_required := Query.FieldAsInteger['item_required'];
+lObj.item_production_time := Query.FieldAsDatetime['item_production_time'];
+lObj.ObjectState := posClean;
+TtiObjectList(Visited).Add(lObj);
+end;
+
+procedure TItemList_FindByTypeIDVis.SetupParams;
+var
+lCtr: integer;
+lParam: TSelectParam;
+lList: TtiMappedFilteredObjectList;
+begin
+lList := TtiMappedFilteredObjectList(Visited);
+
+lParam := TSelectParam(lList.Params.FindByProps(['ParamName'], ['typeid']));
+Query.ParamAsString['typeid'] := lParam.Value;
 end;
 
 { TItemType_Create }
@@ -1592,6 +1673,37 @@ lObj.OID.AssignToTIQuery('OID',Query);
 Query.ParamAsString['item_id'] := lObj.item_id;
 Query.ParamAsString['bom_item_id'] := lObj.bom_item_id;
 Query.ParamAsInteger['bom_item_quantity'] := lObj.bom_item_quantity;
+end;
+
+{ TItemBOMList_FindbyItemOIDVis }
+function TItemBOMList_FindbyItemOIDVis.AcceptVisitor: Boolean;
+begin
+result := (Visited.ObjectState = posEmpty);
+end;
+
+procedure TItemBOMList_FindbyItemOIDVis.MapRowToObject;
+var
+lObj: TItemBOM;
+begin
+lObj := TItemBOM.Create;
+lObj.OID.AssignFromTIQuery('OID',Query);
+lObj.item_id := Query.FieldAsString['item_id'];
+lObj.bom_item_id := Query.FieldAsString['bom_item_id'];
+lObj.bom_item_quantity := Query.FieldAsInteger['bom_item_quantity'];
+lObj.ObjectState := posClean;
+TtiObjectList(Visited).Add(lObj);
+end;
+
+procedure TItemBOMList_FindbyItemOIDVis.SetupParams;
+var
+lCtr: integer;
+lParam: TSelectParam;
+lList: TtiMappedFilteredObjectList;
+begin
+lList := TtiMappedFilteredObjectList(Visited);
+
+lParam := TSelectParam(lList.Params.FindByProps(['ParamName'], ['itemid']));
+Query.ParamAsString['itemid'] := lParam.Value;
 end;
 
 initialization

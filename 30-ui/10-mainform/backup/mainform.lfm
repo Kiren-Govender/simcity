@@ -178,6 +178,13 @@ object frmMain: TfrmMain
             Top = 2
             Action = dmApplicationService.acMaintainItemTypes
           end
+          object ToolButton7: TToolButton
+            Left = 47
+            Top = 2
+            Caption = 'ToolButton7'
+            ImageIndex = 35
+            OnClick = ToolButton7Click
+          end
         end
       end
       object Panel11: TPanel

@@ -1,0 +1,8 @@
+object frmModifyItemBom: TfrmModifyItemBom
+  Left = 388
+  Height = 240
+  Top = 201
+  Width = 320
+  Caption = 'frmModifyItemBom'
+  LCLVersion = '4.0.0.3'
+end
